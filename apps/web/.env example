@@ -1,0 +1,7 @@
+# Supabase
+NEXT_PUBLIC_SUPABASE_ID=supabase_id
+NEXT_PUBLIC_SUPABASE_URL=supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=supabase_anon_key
+
+# GA
+NEXT_PUBLIC_GA_MEASUREMENT_ID=ga_measurement_id
