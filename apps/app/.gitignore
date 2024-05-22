@@ -12,3 +12,13 @@ web-build/
 
 # macOS
 .DS_Store
+
+expo-env.d.ts
+# @end expo-cli
+
+# Build
+android
+ios
+
+# EAS
+eas.json
