@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    "./provider": "./src/query-provider.tsx",
+    "./provider": {
+      "react-native": "./src/query-provider.native.tsx",
+      "default": "./src/query-provider.tsx"
+    },
     "./user": "./src/user/index.ts"
   },
   "dependencies": {
