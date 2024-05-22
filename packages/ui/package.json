@@ -10,6 +10,9 @@
     "./Loading": {
       "react-native": "./src/Loading.native.tsx",
       "default": "./src/Loading.tsx"
+    },
+    "./Input": {
+      "default": "./src/Input.tsx"
     }
   },
   "devDependencies": {
