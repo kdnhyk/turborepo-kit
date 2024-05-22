@@ -1,3 +1,5 @@
+'use client'
+
 import { Loading } from '@repo/ui/Loading'
 
 const LoadingPage = () => {
