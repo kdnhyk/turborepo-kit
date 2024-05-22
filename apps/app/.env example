@@ -1,0 +1,10 @@
+# Supabase
+EXPO_PUBLIC_SUPABASE_ID=supabase_id
+EXPO_PUBLIC_SUPABASE_URL=supabase_url
+EXPO_PUBLIC_SUPABASE_ANON_KEY=supabase_anon_key
+
+# Expo router with monorepo
+EXPO_USE_METRO_WORKSPACE_ROOT=1
+
+# Auth
+EXPO_PUBLIC_GOOGLE_CLIENT_ID=google_client_id
