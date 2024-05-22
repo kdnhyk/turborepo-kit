@@ -3,8 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    "./supabase": "./src/supabase.ts",
-    "./supabase-app": "./src/supabase-app.ts",
+    "./supabase": {
+      "react-native": "./src/supabase.native.ts",
+      "default": "./src/supabase.ts"
+    },
     "./auth": "./src/auth/index.ts",
     "./user": "./src/user/index.ts"
   },
