@@ -19,6 +19,9 @@ const UserProfile = () => {
           <Link className="underline" href="/posts">
             글 목록
           </Link>
+          <Link className="underline" href="/profile">
+            프로필
+          </Link>
           <Button onClick={logout}>로그아웃</Button>
         </div>
       </div>
