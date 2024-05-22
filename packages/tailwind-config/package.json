@@ -3,7 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    ".": "./tailwind.config.ts"
+    ".": {
+      "react-native": "./tailwind.config.js",
+      "require": "./tailwind.config.js",
+      "import": "./tailwind.config.ts",
+      "default": "./tailwind.config.ts"
+    }
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
