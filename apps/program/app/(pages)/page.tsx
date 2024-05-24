@@ -3,6 +3,7 @@
 import { Page } from '@/(components)/layout/Page'
 import UserProfile from '@/(components)/user/UserProfile'
 import { Loading } from '@repo/ui/Loading'
+import Link from 'next/link'
 import { Suspense } from 'react'
 
 const HomePage = () => {
@@ -13,6 +14,9 @@ const HomePage = () => {
         <Suspense fallback={<Loading />}>
           <UserProfile />
         </Suspense>
+        <Link className="underline" href="/clipboard">
+          clipboard
+        </Link>
       </Page.Layout>
     </>
   )
