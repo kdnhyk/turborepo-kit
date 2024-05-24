@@ -1,26 +1,12 @@
 import { Tabs } from 'expo-router'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 import { TabBarIcon } from '@/components/navigation/TabBarIcon'
 import { Colors } from '@/constants/Colors'
 import { useColorScheme } from '@/hooks/useColorScheme'
-import { Session } from '@supabase/supabase-js'
-import { supabase } from '@repo/api/supabase'
-import { useProfile } from '@repo/query/user'
 
 export default function TabLayout() {
   const colorScheme = useColorScheme()
-  const [session, setSession] = useState<Session | null>(null)
-  const { profile } = useProfile()
-
-  console.log(session)
-  console.log(profile)
-
-  useEffect(() => {
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-    })
-  }, [])
 
   return (
     <Tabs
