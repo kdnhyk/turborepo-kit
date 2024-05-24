@@ -129,6 +129,9 @@ importers:
       '@repo/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
+      '@repo/supabase':
+        specifier: workspace:*
+        version: link:../../packages/supabase
       '@repo/tailwind-config':
         specifier: workspace:*
         version: link:../../packages/tailwind-config

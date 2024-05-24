@@ -3,7 +3,7 @@ import {
   GoogleSigninButton,
   statusCodes,
 } from '@react-native-google-signin/google-signin'
-import { supabase } from '@repo/api/supabase'
+import { supabase } from '@repo/supabase'
 import { useColorScheme } from 'react-native'
 
 const GoogleAuth = () => {

@@ -51,6 +51,7 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@repo/eslint-config": "workspace:*",
+    "@repo/supabase": "workspace:*",
     "@repo/tailwind-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/jest": "^29.5.12",

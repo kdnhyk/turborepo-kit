@@ -1,6 +1,6 @@
 import { Platform, useColorScheme } from 'react-native'
 import * as AppleAuthentication from 'expo-apple-authentication'
-import { supabase } from '@repo/api/supabase'
+import { supabase } from '@repo/supabase'
 
 const AppleAuth = () => {
   const colorScheme = useColorScheme()

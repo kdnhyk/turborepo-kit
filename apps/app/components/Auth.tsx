@@ -3,7 +3,7 @@ import { makeRedirectUri } from 'expo-auth-session'
 import * as QueryParams from 'expo-auth-session/build/QueryParams'
 import * as WebBrowser from 'expo-web-browser'
 import * as Linking from 'expo-linking'
-import { supabase } from '@repo/api/supabase'
+import { supabase } from '@repo/supabase'
 
 WebBrowser.maybeCompleteAuthSession() // required for web only
 const redirectTo = makeRedirectUri()
