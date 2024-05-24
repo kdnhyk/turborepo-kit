@@ -1,0 +1,20 @@
+{
+  "name": "@repo/supabase",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "react-native": "./src/supabase.native.ts",
+    "browser": "./src/supabase.ssr.ts",
+    "node": "./src/supabase.ts",
+    "default": "./src/supabase.ts"
+  },
+  "devDependencies": {
+    "@react-native-async-storage/async-storage": "^1.23.1",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/types": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@supabase/ssr": "^0.3.0",
+    "@supabase/supabase-js": "^2.43.2",
+    "react-native-url-polyfill": "^2.0.0"
+  }
+}

@@ -1,5 +1,5 @@
 import { User } from '@supabase/supabase-js'
-import { supabase } from '../supabase'
+import { supabase } from '@repo/supabase'
 
 const signin = {
   signInWithKakao: async () => {
@@ -58,6 +58,8 @@ const getUser: () => Promise<User | null> = async () => {
   const {
     data: { user },
   } = await supabase.auth.getUser()
+
+  console.log(user)
 
   if (!user) return null
 

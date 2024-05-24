@@ -1,5 +1,5 @@
 import { getUserId } from '../auth'
-import { supabase } from '../supabase'
+import { supabase } from '@repo/supabase'
 import { ProfileType } from '@repo/types/profile'
 
 const PROFILE_SELECOR = `user_id, profile_image, nickname`
