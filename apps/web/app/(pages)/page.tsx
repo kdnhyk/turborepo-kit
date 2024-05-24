@@ -1,26 +1,30 @@
 'use client'
 
+import { Page } from '@/(components)/layout/Page'
 import UserProfile from '@/(components)/user/UserProfile'
-import { signin } from '@repo/api/auth'
-import { Button } from '@repo/ui/Button'
 import { useProfile } from '@repo/query/user'
+import Link from 'next/link'
 
 const HomePage = () => {
   const { profile } = useProfile()
 
   return (
     <>
-      <div className="flex h-full flex-col items-center justify-center gap-1 p-4">
-        {profile.data ? (
-          <UserProfile />
-        ) : (
-          <>
-            <Button onClick={signin.signInWithKakao}>Kakao로 로그인</Button>
-            <Button onClick={signin.signInWithGoogle}>Google로 로그인</Button>
-            <Button onClick={signin.signInWithApple}>Apple로 로그인</Button>
-          </>
-        )}
-      </div>
+      <Page.Header title="홈" />
+      <Page.Layout>
+        <>
+          {profile.data ? (
+            <UserProfile />
+          ) : (
+            <>
+              <p>로그인 후 이용가능합니다</p>
+              <Link className="underline" href="/login">
+                로그인
+              </Link>
+            </>
+          )}
+        </>
+      </Page.Layout>
     </>
   )
 }

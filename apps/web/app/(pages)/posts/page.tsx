@@ -1,14 +1,12 @@
-import Link from 'next/link'
+import { Page } from '@/(components)/layout/Page'
 
 const PostsPage = () => {
   return (
     <>
-      <div className="flex flex-1 flex-col items-center justify-center gap-2">
-        <Link className="underline" href="/">
-          Home
-        </Link>
+      <Page.Header title="Posts" />
+      <Page.Layout>
         <p className="text-xl italic">Do it yourself 😉</p>
-      </div>
+      </Page.Layout>
     </>
   )
 }
