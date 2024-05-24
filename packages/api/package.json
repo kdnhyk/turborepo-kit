@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    "./auth": "./src/auth/index.ts",
+    "./auth": {
+      "browser": "./src/auth/index.ssr.ts",
+      "default": "./src/auth/index.ts"
+    },
     "./user": "./src/user/index.ts"
   },
   "devDependencies": {

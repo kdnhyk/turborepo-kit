@@ -5,7 +5,9 @@ const signin = {
   signInWithKakao: async () => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'kakao',
-      options: {},
+      options: {
+        redirectTo: window.location.origin + '/auth/callback',
+      },
     })
 
     if (error) {
@@ -17,6 +19,7 @@ const signin = {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
+        redirectTo: window.location.origin + '/auth/callback',
         queryParams: {
           access_type: 'offline',
           prompt: 'consent',
@@ -32,7 +35,9 @@ const signin = {
   signInWithApple: async () => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'apple',
-      options: {},
+      options: {
+        redirectTo: window.location.origin + '/auth/callback',
+      },
     })
 
     if (error) {
