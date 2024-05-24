@@ -5,7 +5,7 @@
 @layer base {
   html,
   body {
-    @apply h-full;
+    @apply flex h-full flex-col;
   }
 
   main {
