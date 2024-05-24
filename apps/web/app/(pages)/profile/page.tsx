@@ -17,6 +17,7 @@ const ProfilePage = () => {
           <Input.Label>UID</Input.Label>
           <Input.Content
             field="user_id"
+            placeholder="uid"
             maxLength={40}
             defaultValue={profile.data?.user_id}
             disabled
@@ -26,10 +27,10 @@ const ProfilePage = () => {
           <Input.Label>이름</Input.Label>
           <Input.Content
             field="nickname"
-            placeholder="Required"
+            placeholder="아름"
             maxLength={20}
             defaultValue={profile.data?.nickname}
-            required
+            required="이름을 입력해주세요"
           />
         </Input.Container>
 
