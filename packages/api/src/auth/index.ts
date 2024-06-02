@@ -1,74 +1,28 @@
-import { User } from '@supabase/supabase-js'
+import { Provider } from '@supabase/supabase-js'
 import { supabase } from '@repo/supabase'
 
-const signin = {
-  signInWithKakao: async () => {
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: 'kakao',
-      options: {},
-    })
-
-    if (error) {
-      console.log(error)
-    }
-  },
-
-  signInWithGoogle: async () => {
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        queryParams: {
-          access_type: 'offline',
-          prompt: 'consent',
-        },
-      },
-    })
-
-    if (error) {
-      console.log(error)
-    }
-  },
-
-  signInWithApple: async () => {
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: 'apple',
-      options: {},
-    })
-
-    if (error) {
-      console.log(error)
-    }
-  },
+interface SigninOptions {
+  redirectTo?: string | undefined
+  scopes?: string | undefined
+  queryParams?:
+    | {
+        [key: string]: string
+      }
+    | undefined
+  skipBrowserRedirect?: boolean | undefined
 }
 
-const signout = async () => {
-  const { error } = await supabase.auth.signOut()
+const signInWithOAuth = async (provider: Provider, options?: SigninOptions) =>
+  await supabase.auth.signInWithOAuth({
+    provider,
+    options,
+  })
 
-  if (error) {
-    console.log(error)
-  }
-}
+const signout = async () => await supabase.auth.signOut()
 
-const getUser: () => Promise<User | null> = async () => {
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+const getUser = async () => (await supabase.auth.getUser()).data.user
 
-  console.log(user)
+const getUserId = async () =>
+  (await supabase.auth.getSession()).data.session?.user.id
 
-  if (!user) return null
-
-  return user
-}
-
-const getUserId: () => Promise<string | null> = async () => {
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
-
-  if (!session) return null
-
-  return session.user.id
-}
-
-export { signin, signout, getUser, getUserId }
+export { signInWithOAuth, signout, getUser, getUserId }
