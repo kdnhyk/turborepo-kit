@@ -9,7 +9,7 @@
   }
 
   main {
-    @apply flex h-full flex-col;
+    @apply flex h-full flex-col p-4;
   }
 }
 
