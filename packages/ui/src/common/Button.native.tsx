@@ -8,7 +8,7 @@ interface ButtonProps {
   color?: 'black' | 'white'
 }
 
-const Button = forwardRef<View, ButtonProps>(
+export const Button = forwardRef<View, ButtonProps>(
   ({ children, onclick, disable = false, color = 'white' }, ref) => {
     return (
       <Pressable
@@ -22,5 +22,3 @@ const Button = forwardRef<View, ButtonProps>(
     )
   },
 )
-
-export { Button }

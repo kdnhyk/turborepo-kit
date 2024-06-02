@@ -1,4 +1,4 @@
-const Loading = () => {
+export const Loading = () => {
   return (
     <div className="flex flex-1 items-center justify-center bg-white/30">
       <div className="animate-spin">
@@ -18,5 +18,3 @@ const Loading = () => {
     </div>
   )
 }
-
-export { Loading }

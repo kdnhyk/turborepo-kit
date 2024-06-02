@@ -8,7 +8,7 @@ import Animated, {
   Easing,
 } from 'react-native-reanimated'
 
-const Loading = () => {
+export const Loading = () => {
   const spinValue = useSharedValue(0)
 
   const animatedStyle = useAnimatedStyle(() => {
@@ -33,5 +33,3 @@ const Loading = () => {
     </View>
   )
 }
-
-export { Loading }
