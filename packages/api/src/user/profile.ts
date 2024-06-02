@@ -1,53 +1,55 @@
-import { getUserId } from '../auth'
 import { supabase } from '@repo/supabase'
-import { ProfileType } from '@repo/types/profile'
+import { QueryData } from '@supabase/supabase-js'
 
-const PROFILE_SELECOR = `user_id, profile_image, nickname`
+const SELECOR = `user_id, profile_image, nickname`
 
-const getProfile = async () => {
-  const user_id = await getUserId()
+const profileQuery = supabase.from('profile').select(SELECOR).single()
+export type ProfileType = QueryData<typeof profileQuery>
 
-  let { data, error } = await supabase
+const getProfileByUserId = async (user_id: string) => {
+  const { data, error } = await supabase
     .from('profile')
-    .select(PROFILE_SELECOR)
+    .select(SELECOR)
     .eq('user_id', user_id)
-    .limit(1)
-    .maybeSingle()
+    .single()
 
   if (error) {
     console.log(error)
   }
 
-  return data as ProfileType | null
+  return data
 }
 
 const postProfile = async (profile: ProfileType) => {
   const { data, error } = await supabase
     .from('profile')
-    .insert([profile])
-    .select()
+    .insert(profile)
+    .select(SELECOR)
     .maybeSingle()
 
   if (error) {
     console.log(error)
   }
+
+  return data
 }
 
-const updateProfile = async (profile: Partial<ProfileType>) => {
-  const user_id = await getUserId()
-
+const updateProfile = async (
+  user_id: string,
+  profile: Partial<ProfileType>,
+) => {
   const { data, error } = await supabase
     .from('profile')
-    .update([{ user_id, ...profile }])
+    .update(profile)
     .eq('user_id', user_id)
-    .select(PROFILE_SELECOR)
+    .select(SELECOR)
     .maybeSingle()
 
   if (error) {
     console.log(error)
   }
 
-  return data as ProfileType
+  return data
 }
 
-export { getProfile, postProfile, updateProfile }
+export { getProfileByUserId, postProfile, updateProfile }
