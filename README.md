@@ -1,81 +1,112 @@
-# Turborepo starter
+# Turborepo-kit
 
-This is an official starter Turborepo.
+Tuborepo-kit은 Turborepo를 기반으로 한 Production용 모노레포 보일러플레이트입니다.
 
-## Using this example
+Web(Next.js), App(React Native Expo), Program(Tauri) 3가지 환경에서 공용으로 사용할 수 있는 Supabase, Tailwindcss, TanStack Query, React-hook-form 기반의 패키지가 준비되어 있습니다.
 
-Run the following command:
-
-```sh
-npx create-turbo@latest
-```
-
-## What's inside?
-
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
+## File Tree
 
 ```
-cd my-turborepo
-pnpm build
+.vscode
+  └─ Recommended extensions and settings for VSCode users
+apps
+  ├─ app
+  |   ├─ Expo SDK 51
+  |   ├─ React Native using React 18
+  |   ├─ Navigation using Expo Router
+  |   └─ Tailwind CSS using NativeWind
+  ├─ program
+  |   ├─ Tauri 1.6
+  |   ├─ Next.js 14 using React 18
+  |   ├─ Auth using tauri-plugin-oauth
+  |   └─ Tailwind CSS
+  └─ web
+      ├─ Next.js 14
+      ├─ React 18
+      ├─ Tailwind CSS
+      └─ @supabase/ssr
+packages
+  ├─ api
+  |   └─ Api using Supabase client
+  ├─ eslint-config
+  |   └─ Shared eslint configuration
+  ├─ query
+  |   └─ State management using Tanstack-query
+  ├─ supabase
+  |   └─ Supabase client, Edge functions
+  ├─ tailwind-config
+  |   └─ Shared tailwind configuration
+  ├─ types
+  |   └─ Shared types
+  ├─ typescript-config
+  |   └─ Shared tsconfig
+  ├─ ui
+  |   └─ Shared ui using React-hook-form
+  └─ utils
+      └─ Shared utils
+
 ```
 
-### Develop
+## Quick Start
 
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm dev
+```bash
+git clone https://github.com/01-works/turborepo-kit.git
 ```
 
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+```bash
+pnpm i
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+## Setup
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+### **1. Environment Variables**
 
+```bash
+cp .env.example .env.local
 ```
-npx turbo link
+
+각 프로젝트에서 Supabase 환경변수를 설정해줍니다.
+
+### 2. Supabase
+
+```sql
+create table
+  public.profile (
+    user_id uuid primary key,
+    profile_image text,
+    nickname text not null,
+    foreign key (user_id) references auth.users (id)
+  );
 ```
 
-## Useful Links
+[Supabase](https://supabase.com/)에서 프로젝트를 생성하고 profile 테이블과 profile 스토리지를 생성해줍니다. (RLS 설정 생략)
 
-Learn more about the power of Turborepo:
+```bash
+supabase init
+supabase login
+supabase link
+```
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+위 명령어를 순서대로 실행하고 `pnpm gen-types` 를 입력하면 `database.types.ts` 파일이 생성됩니다.
+
+### 3. Run
+
+각 환경별 사전 설정은 [Expo](https://docs.expo.dev/), [Next.js](https://nextjs.org/docs), [Tauri](https://tauri.app/ko/v1/guides/) 공식문서를 참고해주시길 바랍니다.
+
+- app
+    
+    ```bash
+    pnpm run dev
+    ```
+    
+- program
+    
+    ```bash
+    pnpm tauri dev
+    ```
+    
+- web
+    
+    ```bash
+    pnpm run dev
+    ```
