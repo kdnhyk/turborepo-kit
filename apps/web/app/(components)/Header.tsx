@@ -1,16 +1,24 @@
-'use client'
+import { useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 
-import { usePathname, useRouter } from 'next/navigation'
+const pageTitles: { [key: string]: string } = {
+  '/': '홈',
+  '/login': '로그인',
+  '/auth/callback': '로딩중',
+  '/profile': '프로필',
+  '/posts': '글 목록',
+}
 
-const HeaderButton = () => {
+export const Header = () => {
   const pathname = usePathname()
-  const isBack = pathname !== '/'
+  const title = pageTitles[pathname] || '404'
+
+  console.log(title)
 
   const router = useRouter()
-
   return (
-    <>
-      {!isBack ? (
+    <header className="text-18 flex shrink-0 basis-12 items-center border-b bg-white">
+      {title === '홈' ? (
         <div
           className="flex h-10 basis-10 cursor-pointer items-center justify-center"
           onClick={() => router.push('/')}
@@ -47,8 +55,8 @@ const HeaderButton = () => {
           </svg>
         </div>
       )}
-    </>
+
+      <p>{title}</p>
+    </header>
   )
 }
-
-export default HeaderButton
