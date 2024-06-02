@@ -2,8 +2,14 @@
   "name": "@repo/utils",
   "version": "0.0.0",
   "private": true,
+  "exports": {
+    "./image": "./src/image.ts"
+  },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*"
+  },
+  "dependencies": {
+    "browser-image-compression": "^2.0.2"
   }
 }
