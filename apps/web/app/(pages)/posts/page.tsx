@@ -1,14 +1,7 @@
-import { Page } from '@/(components)/layout/Page'
-
-const PostsPage = () => {
+export default function PostsPage() {
   return (
     <>
-      <Page.Header title="Posts" />
-      <Page.Layout>
-        <p className="text-xl italic">Do it yourself 😉</p>
-      </Page.Layout>
+      <p className="text-xl italic">Do it yourself 😉</p>
     </>
   )
 }
-
-export default PostsPage
