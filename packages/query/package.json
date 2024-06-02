@@ -7,16 +7,17 @@
       "react-native": "./src/query-provider.native.tsx",
       "default": "./src/query-provider.tsx"
     },
+    "./auth": "./src/auth/index.ts",
     "./user": "./src/user/index.ts"
   },
   "dependencies": {
     "@repo/api": "workspace:*",
     "@repo/utils": "workspace:*",
     "@tanstack/react-query": "^5.29.2",
+    "nanoid": "3.0.0",
     "react": "^18.2.0"
   },
   "devDependencies": {
-    "@repo/types": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@tanstack/eslint-plugin-query": "^5.28.11",
     "@tanstack/react-query-devtools": "^5.29.2"
