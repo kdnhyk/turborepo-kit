@@ -2,16 +2,19 @@
   "name": "@repo/supabase",
   "version": "0.0.0",
   "private": true,
+  "scripts": {
+    "gen-types": "supabase gen types typescript --linked > ./database.types.ts",
+    "func-deploy": "supabase functions deploy"
+  },
   "exports": {
-    "react-native": "./src/supabase.native.ts",
-    "browser": "./src/supabase.ssr.ts",
-    "node": "./src/supabase.ts",
-    "default": "./src/supabase.ts"
+    "react-native": "./cli/supabase.native.ts",
+    "browser": "./cli/supabase.browser.ts",
+    "node": "./cli/supabase.ts",
+    "default": "./cli/supabase.ts"
   },
   "devDependencies": {
     "@react-native-async-storage/async-storage": "^1.23.1",
     "@repo/eslint-config": "workspace:*",
-    "@repo/types": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@supabase/ssr": "^0.3.0",
     "@supabase/supabase-js": "^2.43.2",
