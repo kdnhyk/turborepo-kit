@@ -11,16 +11,16 @@
   "dependencies": {
     "@repo/api": "workspace:*",
     "@repo/query": "workspace:*",
-    "@repo/types": "workspace:*",
+    "@repo/supabase": "workspace:*",
     "@repo/ui": "workspace:*",
     "@repo/utils": "workspace:*",
-    "@supabase/ssr": "^0.3.0",
     "@supabase/supabase-js": "^2.43.2",
     "@tauri-apps/api": "^1.5.6",
     "next": "^14.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.51.4"
+    "react-hook-form": "^7.51.4",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.1.1",
