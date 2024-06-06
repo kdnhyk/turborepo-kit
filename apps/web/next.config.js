@@ -1,6 +1,13 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-  transpilePackages: ['@repo/ui'],
+  transpilePackages: [
+    '@repo/api',
+    '@repo/supabase',
+    '@repo/query',
+    '@repo/ui',
+    '@repo/utils',
+  ],
+  reactStrictMode: false,
   images: {
     domains: [process.env.NEXT_PUBLIC_SUPABASE_URL],
     loader: 'custom',
