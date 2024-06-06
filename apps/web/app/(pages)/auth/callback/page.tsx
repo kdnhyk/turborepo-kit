@@ -5,7 +5,7 @@ import { useHistory } from '@/hooks/use-hostory'
 import { useRouter } from 'next/navigation'
 import { Loading } from '@repo/ui/loading'
 
-export default function Callback() {
+export default function CallbackPage() {
   const { replace } = useRouter()
   const { history } = useHistory()
 

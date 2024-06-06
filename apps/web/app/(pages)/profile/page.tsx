@@ -1,64 +1,29 @@
-'use client'
+import UserProfile from '@/(components)/common/UserProfile'
+import { createClient } from '@/utils/supabase/server'
+import { Metadata } from 'next'
+import { redirect } from 'next/navigation'
 
-import { FormProvider, useForm } from 'react-hook-form'
-import { useProfile, useProfileMutation } from '@repo/query/user'
-import { Button } from '@repo/ui/button'
-import { Input } from '@repo/ui/input'
-import { ImageUploader } from '@repo/ui/imageUploader'
-import { Label } from '@repo/ui/Label'
-import { ErrorMessage } from '@repo/ui/ErrorMessage'
+export const revalidate = 0
 
-interface ProfileForm {
-  user_id: string
-  profile_image: File | string | null
-  nickname: string
+export const metadata: Metadata = {
+  title: '프로필',
+  description: 'description',
 }
-export default function ProfilePage() {
-  const { data: profile } = useProfile()
-  const { update } = useProfileMutation()
-  const methods = useForm<ProfileForm>(
-    profile ? { defaultValues: profile } : {},
-  )
 
-  const onSubmit = async (data: ProfileForm) => {
-    console.log(data)
+export default async function ProfilePage() {
+  const supabase = createClient()
 
-    update.mutate(data)
+  const {
+    data: { session },
+  } = await supabase.auth.getSession()
+
+  if (!session) {
+    redirect('/login')
   }
 
   return (
     <>
-      <div className="flex flex-col gap-2">
-        <FormProvider {...methods}>
-          <Label>UID</Label>
-          <Input field="user_id" placeholder="uid" maxLength={40} disabled />
-          <ErrorMessage field="user_id" />
-
-          <Label>프로필 이미지</Label>
-          <ImageUploader field="profile_image" />
-          <ErrorMessage field="profile_image" />
-          <Button onClick={() => methods.setValue('profile_image', null)}>
-            초기화
-          </Button>
-
-          <Label>이름</Label>
-          <Input
-            field="nickname"
-            placeholder="아름"
-            maxLength={20}
-            required="이름을 입력해주세요"
-          />
-          <ErrorMessage field="nickname" />
-
-          <Button
-            onClick={methods.handleSubmit(onSubmit)}
-            color={methods.formState.isDirty ? 'black' : 'white'}
-            disable={update.isPending}
-          >
-            저장
-          </Button>
-        </FormProvider>
-      </div>
+      <UserProfile user={session.user} />
     </>
   )
 }
