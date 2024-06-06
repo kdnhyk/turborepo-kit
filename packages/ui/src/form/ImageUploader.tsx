@@ -21,30 +21,39 @@ interface ImageUploaderProps {
   disabled?: boolean
 }
 
-export const ImageUploader = ({ field, required, disabled }: ImageUploaderProps) => {
+export const ImageUploader = ({
+  field,
+  required,
+  disabled,
+}: ImageUploaderProps) => {
   const { register, setValue, watch } = useFormContext()
   const value = watch(field) as File | string | null
 
-  const inputRef = useRef<HTMLInputElement>(null)
+  const inputRef = useRef<HTMLInputElement | null>(null)
   const [loading, setLoading] = useState(false)
   const [preview, setPreview] = useState<string | null>(null)
 
   const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
     setLoading(true)
-    if (event.target.files && event.target.files.length > 0) {
-      const files = Array.from(event.target.files)
-      try {
+    try {
+      if (event.target.files && event.target.files.length > 0) {
+        const files = Array.from(event.target.files)
+
         const result = await Promise.all(
           files.map((file) => toCompressImage(file)),
         )
 
         const dataUrl = await readFileAsDataURL(result[0]!)
         setPreview(dataUrl)
-        setValue(field, result[0])
-      } catch (error) {
-        console.error('Failed to read file', error)
+        setValue(field, result[0], {
+          shouldValidate: true,
+          shouldDirty: true,
+        })
       }
+    } catch (error) {
+      console.error('Failed to read file', error)
     }
+
     setLoading(false)
   }
 
@@ -57,8 +66,13 @@ export const ImageUploader = ({ field, required, disabled }: ImageUploaderProps)
 
   return (
     <div
-      className={`relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-[4px] border border-black bg-grey-100 ${!disabled ? 'cursor-pointer' : 'cursor-not-allowed'}`}
-      onClick={() => (!disabled ? inputRef.current?.click() : null)}
+      className={`relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded border border-black ${!disabled ? 'cursor-pointer' : 'cursor-not-allowed'}`}
+      onClick={(event) => {
+        event.stopPropagation()
+        if (!disabled) {
+          inputRef.current?.click()
+        }
+      }}
     >
       {loading ? (
         <Loading />
@@ -99,4 +113,3 @@ export const ImageUploader = ({ field, required, disabled }: ImageUploaderProps)
     </div>
   )
 }
-

@@ -2,29 +2,24 @@
 
 import { useFormContext } from 'react-hook-form'
 
-export const Input = ({
+export const Textarea = ({
   field,
   placeholder,
   required,
-  maxLength = 20,
-  max,
-  min,
+  maxLength = 80,
   disabled,
 }: {
   field: string
   placeholder: string
   required?: string
   maxLength?: number
-  max?: number
-  min?: number
   disabled?: boolean
 }) => {
   const { register } = useFormContext()
 
   return (
-    <input
-      className="rounded-xl border px-3 py-2 disabled:bg-zinc-100 disabled:text-zinc-700"
-      type="text"
+    <textarea
+      className="h-[160px] resize-y rounded-xl border px-3 py-2 disabled:bg-zinc-100 disabled:text-zinc-700"
       placeholder={placeholder}
       disabled={disabled}
       {...register(field, {
@@ -32,14 +27,6 @@ export const Input = ({
         maxLength: {
           value: maxLength,
           message: `${maxLength}자 이내로 입력해주세요`,
-        },
-        min: min && {
-          value: min,
-          message: `${min} 이상으로 입력해주세요`,
-        },
-        max: max && {
-          value: max,
-          message: `${max} 이하로 입력해주세요`,
         },
       })}
     />

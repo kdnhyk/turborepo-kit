@@ -12,8 +12,17 @@
       "react-native": "./src/common/Loading.native.tsx",
       "default": "./src/common/Loading.tsx"
     },
+    "./modal": {
+      "default": "./src/common/Modal.tsx"
+    },
     "./input": {
       "default": "./src/form/Input.tsx"
+    },
+    "./Textarea": {
+      "default": "./src/form/Textarea.tsx"
+    },
+    "./inputWrapper": {
+      "default": "./src/form/InputWrapper.tsx"
     },
     "./Label": {
       "default": "./src/form/Label.tsx"
@@ -38,7 +47,7 @@
     "eslint": "^8.57.0",
     "framer-motion": "^11.2.0",
     "next": "^14.2.3",
-    "react": "^18.2.0",
+    "react": "18.2.0",
     "react-hook-form": "^7.51.4",
     "react-native": "0.74.1",
     "react-native-gesture-handler": "~2.16.1",

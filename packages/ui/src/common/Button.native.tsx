@@ -1,24 +1,21 @@
-import { ReactNode, forwardRef } from 'react'
-import { Pressable, Text, View } from 'react-native'
+import { Pressable, Text } from 'react-native'
 
 interface ButtonProps {
-  children?: ReactNode
+  children: React.ReactNode
   onclick?: () => void
   disable?: boolean
   color?: 'black' | 'white'
 }
 
-export const Button = forwardRef<View, ButtonProps>(
-  ({ children, onclick, disable = false, color = 'white' }, ref) => {
-    return (
-      <Pressable
-        ref={ref}
-        className="bg-black p-2"
-        disabled={disable}
-        onPress={onclick}
-      >
-        <Text className="bg-green text-[20px]">{children}</Text>
-      </Pressable>
-    )
-  },
-)
+export const Button = ({
+  children,
+  onclick,
+  disable = false,
+  color = 'white',
+}: ButtonProps) => {
+  return (
+    <Pressable className="bg-black p-2" disabled={disable} onPress={onclick}>
+      <Text className="bg-green text-[20px]">{children}</Text>
+    </Pressable>
+  )
+}
