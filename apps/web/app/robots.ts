@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
 
-const URL = 'https://01.works'
+const URL = 'https://turborepo-kit.01.works'
 
 export default function robots(): MetadataRoute.Robots {
   return {
