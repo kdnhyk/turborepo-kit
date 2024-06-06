@@ -1,5 +1,5 @@
 import { Provider } from '@supabase/supabase-js'
-import { supabase } from '@repo/supabase'
+import supabase from '@repo/supabase'
 
 interface SigninOptions {
   redirectTo?: string | undefined

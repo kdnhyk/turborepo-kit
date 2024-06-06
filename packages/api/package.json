@@ -6,7 +6,8 @@
     "./edge": "./edge/index.ts",
     "./auth": "./src/auth/index.ts",
     "./storage": "./src/storage/index.ts",
-    "./user": "./src/user/index.ts"
+    "./user": "./src/user/index.ts",
+    "./post": "./src/post/index.ts"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
