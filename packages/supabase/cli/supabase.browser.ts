@@ -1,5 +1,3 @@
-console.log(window.__TAURI__)
-
 let supabase
 
 if (typeof window !== 'undefined' && window.__TAURI__) {

@@ -1,6 +1,5 @@
 {
-  "extends": "@repo/typescript-config/react-library.json",
-  "main": "index.ts",
+  "extends": "@repo/typescript-config/base.json",
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }
