@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { invoke } from '@tauri-apps/api'
 import { listen } from '@tauri-apps/api/event'
 import { open } from '@tauri-apps/api/shell'
-import { supabase } from '@repo/supabase'
+import supabase from '@repo/supabase'
 import { signInWithOAuth } from '@repo/api/auth'
 
 function getLocalHostUrl(port: number) {
@@ -42,8 +42,7 @@ export default function useSignin() {
       setPort(port as number)
       _port = port as number
     })
-
-    return () => {
+    ;() => {
       unlisten?.then((u) => u())
       invoke('plugin:oauth|cancel', { port: _port })
     }
