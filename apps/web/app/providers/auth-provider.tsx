@@ -1,6 +1,8 @@
+'use client'
+
 import { useEffect } from 'react'
-import { useProfile, useProfileMutation } from '@repo/query/user'
-import { supabase } from '@repo/supabase'
+import { useProfileSelf, useProfileMutation } from '@repo/query/user'
+import supabase from '@repo/supabase'
 import { usePathname } from 'next/navigation'
 import { useHistory } from '@/hooks/use-hostory'
 
@@ -11,18 +13,18 @@ export default function AuthProvider({
 }) {
   const pathname = usePathname()
   const { push } = useHistory()
-  const { data: profile } = useProfile()
+  const { data: profile } = useProfileSelf()
   const { post } = useProfileMutation()
 
   useEffect(() => {
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange(async (event, _session) => {
-      console.log(event, _session)
+    } = supabase.auth.onAuthStateChange(async (event, session) => {
+      console.log(event, session)
 
-      if (event === 'INITIAL_SESSION' || event === 'SIGNED_IN') {
+      if (session && (event === 'INITIAL_SESSION' || event === 'SIGNED_IN')) {
         if (!profile) {
-          post.mutate()
+          post.mutate(session.user)
         }
       }
     })
