@@ -5,11 +5,19 @@
 @layer base {
   html,
   body {
-    @apply flex h-full flex-col;
+    @apply flex h-full flex-col overflow-y-hidden;
   }
 
   main {
-    @apply flex h-full flex-col p-4;
+    @apply flex h-full flex-col items-center overflow-y-auto;
+  }
+
+  * {
+    @apply border-black;
+  }
+
+  img {
+    @apply select-none;
   }
 }
 
