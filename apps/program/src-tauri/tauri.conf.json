@@ -33,7 +33,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.turborepokit.app",
+      "identifier": "com.turborepokit.program",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
