@@ -11,12 +11,12 @@ import {
 } from '@tanstack/react-query'
 import { getUserId } from '@repo/api/auth'
 import { removeProfileImage, uploadProfileImage } from '@repo/api/storage'
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid/non-secure'
 import { User } from '@supabase/supabase-js'
 
 const useProfileSelf = () =>
   useSuspenseQuery({
-    queryKey: ['profile'],
+    queryKey: ['profile_self'],
     queryFn: async () => {
       const user_id = await getUserId()
 
@@ -43,7 +43,7 @@ const useProfileMutation = () => {
         nickname: user.user_metadata.name,
       }),
     onSuccess: (result) => {
-      queryClient.setQueryData(['profile'], () => result)
+      queryClient.setQueryData(['profile_self'], () => result)
     },
   })
 
@@ -81,7 +81,7 @@ const useProfileMutation = () => {
       })
     },
     onSuccess: (result) => {
-      queryClient.setQueryData(['profile'], () => result)
+      queryClient.setQueryData(['profile_self'], () => result)
       queryClient.invalidateQueries({ queryKey: ['post_page'] })
     },
   })

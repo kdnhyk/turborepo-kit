@@ -6,7 +6,7 @@ const useAuth = () => {
 
   const logout = async () => {
     await signout()
-    queryClient.setQueryData(['profile'], () => null)
+    queryClient.setQueryData(['profile_self'], () => null)
   }
 
   return { logout }
