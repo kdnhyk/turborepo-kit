@@ -16,7 +16,7 @@ const uploadProfileImage = async (
     console.log(error)
   }
 
-  return `profile/${data?.path}`
+  return data?.path
 }
 
 const removeProfileImage = async (user_id: string) => {
