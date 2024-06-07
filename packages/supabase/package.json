@@ -15,6 +15,9 @@
     },
     "./database": "./database.types.ts"
   },
+  "peerDependencies": {
+    "@supabase/supabase-js": "^2.43.2"
+  },
   "devDependencies": {
     "@react-native-async-storage/async-storage": "^1.23.1",
     "@repo/eslint-config": "workspace:*",
