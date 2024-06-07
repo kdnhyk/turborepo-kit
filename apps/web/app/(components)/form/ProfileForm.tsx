@@ -20,7 +20,9 @@ export default function ProfileForm() {
   const { data: profile } = useProfileSelf()
   const { update } = useProfileMutation()
   const methods = useForm<FormType>({
-    defaultValues: profile || undefined,
+    defaultValues:
+      { ...profile, profile_image: `profile/${profile?.profile_image}` } ||
+      undefined,
   })
   const { back } = useRouter()
 
