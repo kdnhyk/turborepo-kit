@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useHistory } from '@/hooks/use-hostory'
+import { useHistory } from '@/hooks/use-history'
 import { useRouter } from 'next/navigation'
 import { Loading } from '@repo/ui/loading'
 

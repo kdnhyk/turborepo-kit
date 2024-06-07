@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { useProfileSelf, useProfileMutation } from '@repo/query/user'
 import supabase from '@repo/supabase'
 import { usePathname } from 'next/navigation'
-import { useHistory } from '@/hooks/use-hostory'
+import { useHistory } from '@/hooks/use-history'
 
 export default function AuthProvider({
   children,
