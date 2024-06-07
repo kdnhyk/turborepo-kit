@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "com.turborepokit.app",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -15,7 +15,8 @@
     "ios": {
       "supportsTablet": true,
       "usesAppleSignIn": true,
-      "bundleIdentifier": "com.turborepokit.app"
+      "bundleIdentifier": "com.turborepokit.app",
+      "infoPlist": {}
     },
     "android": {
       "adaptiveIcon": {
@@ -31,11 +32,10 @@
     },
     "plugins": [
       "expo-router",
-      "expo-apple-authentication",
       [
-        "@react-native-google-signin/google-signin",
+        "expo-dev-launcher",
         {
-          "iosUrlScheme": "com.googleusercontent.apps.636822964912-6ism891fbfpln8uf544em7302stdu037"
+          "launchMode": "most-recent"
         }
       ]
     ],
