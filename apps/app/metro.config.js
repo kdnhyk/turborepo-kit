@@ -27,6 +27,9 @@ config.cacheStores = [
 config.resolver.unstable_enableSymlinks = true
 config.resolver.unstable_enablePackageExports = true
 
+// Use browser package
+config.resolver.unstable_conditionNames = ['require', 'react-native', 'browser']
+
 // Force Metro to resolve (sub)dependencies only from the `nodeModulesPaths`
 config.resolver.disableHierarchicalLookup = true
 
