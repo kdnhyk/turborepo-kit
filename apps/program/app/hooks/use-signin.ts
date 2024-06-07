@@ -4,6 +4,7 @@ import { listen } from '@tauri-apps/api/event'
 import { open } from '@tauri-apps/api/shell'
 import supabase from '@repo/supabase'
 import { signInWithOAuth } from '@repo/api/auth'
+import { Provider } from '@supabase/supabase-js'
 
 function getLocalHostUrl(port: number) {
   return `http://localhost:${port}`
@@ -48,10 +49,10 @@ export default function useSignin() {
     }
   }, [port])
 
-  const signinWithGoogle = async () => {
+  const signinWithOauth = async (provider: Provider) => {
     setIsLoading(true)
 
-    const { data, error } = await signInWithOAuth('google', {
+    const { data, error } = await signInWithOAuth(provider, {
       skipBrowserRedirect: true,
       redirectTo: getLocalHostUrl(port!),
     })
@@ -63,5 +64,5 @@ export default function useSignin() {
     }
   }
 
-  return { signinWithGoogle, isLoading }
+  return { signinWithOauth, isLoading }
 }

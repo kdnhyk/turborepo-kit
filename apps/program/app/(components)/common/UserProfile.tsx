@@ -27,7 +27,7 @@ export default function UserProfile({ user }: { user: User }) {
         ) : (
           <Image
             className="rounded border"
-            src={profile.profile_image}
+            src={`profile/${profile.profile_image}`}
             alt="Profile Image"
             width={80}
             height={80}
