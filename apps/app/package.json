@@ -1,6 +1,6 @@
 {
   "name": "app",
-  "main": "expo-router/entry",
+  "main": "index.js",
   "version": "1.0.0",
   "scripts": {
     "dev": "expo start",
@@ -18,15 +18,14 @@
   "dependencies": {
     "@expo/vector-icons": "^14.0.0",
     "@react-native-async-storage/async-storage": "^1.23.1",
-    "@react-native-google-signin/google-signin": "^11.0.1",
     "@react-navigation/native": "^6.0.2",
     "@repo/api": "workspace:*",
     "@repo/query": "workspace:*",
+    "@repo/supabase": "workspace:*",
     "@repo/ui": "workspace:*",
     "@rneui/themed": "4.0.0-rc.8",
     "@supabase/supabase-js": "^2.43.2",
-    "expo": "~51.0.8",
-    "expo-apple-authentication": "~6.4.1",
+    "expo": "~51.0.11",
     "expo-auth-session": "^5.5.2",
     "expo-constants": "~16.0.1",
     "expo-dev-client": "~4.0.14",
@@ -42,17 +41,18 @@
     "react-dom": "18.2.0",
     "react-native": "0.74.1",
     "react-native-gesture-handler": "~2.16.1",
+    "react-native-get-random-values": "^1.11.0",
     "react-native-reanimated": "~3.10.1",
     "react-native-safe-area-context": "4.10.1",
     "react-native-screens": "3.31.1",
     "react-native-url-polyfill": "^2.0.0",
     "react-native-web": "~0.19.10",
-    "react-native-webview": "13.8.6"
+    "react-native-webview": "13.8.6",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@repo/eslint-config": "workspace:*",
-    "@repo/supabase": "workspace:*",
     "@repo/tailwind-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/jest": "^29.5.12",
