@@ -28,30 +28,18 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="new"
         options={{
-          title: 'Explore',
+          title: 'New Post',
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? 'code-slash' : 'code-slash-outline'}
-              color={color}
-            />
+            <TabBarIcon name={focused ? 'add' : 'add-outline'} color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="webview"
+        name="profile"
         options={{
-          title: 'Webview',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'tv' : 'tv-outline'} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="mypage"
-        options={{
-          title: 'Mypage',
+          title: 'Profile',
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name={focused ? 'man' : 'man-outline'} color={color} />
           ),
