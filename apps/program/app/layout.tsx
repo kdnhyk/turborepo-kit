@@ -1,4 +1,5 @@
 import '@/styles/globals.css'
+import '@repo/ui/styles'
 import type { Metadata } from 'next'
 import { inter } from './styles/fonts'
 
@@ -13,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode
 }): JSX.Element {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body className={inter.className}>{children}</body>
     </html>
   )
