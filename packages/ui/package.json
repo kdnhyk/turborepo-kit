@@ -2,7 +2,11 @@
   "name": "@repo/ui",
   "version": "0.0.0",
   "private": true,
+  "sideEffects": [
+    "**/*.css"
+  ],
   "exports": {
+    "./styles": "./src/styles.css",
     "./icon": "./src/icon/index.tsx",
     "./button": {
       "react-native": "./src/common/Button.native.tsx",
@@ -33,6 +37,10 @@
     "./imageUploader": {
       "default": "./src/form/ImageUploader.tsx"
     }
+  },
+  "peerDependencies": {
+    "react": "18.2.0",
+    "react-hook-form": "^7.51.4"
   },
   "devDependencies": {
     "@expo/vector-icons": "^14.0.0",

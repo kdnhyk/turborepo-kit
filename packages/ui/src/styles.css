@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    @apply flex h-full flex-col overflow-y-hidden;
+  }
+
+  main {
+    @apply flex h-full flex-col items-center overflow-y-auto;
+  }
+
+  * {
+    @apply border-black;
+  }
+
+  img {
+    @apply select-none;
+  }
+}
+
+@layer components {
+}
+
+@layer utilities {
+}
