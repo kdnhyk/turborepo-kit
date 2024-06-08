@@ -9,7 +9,7 @@ module.exports = {
   ],
   reactStrictMode: false,
   images: {
-    domains: [process.env.NEXT_PUBLIC_SUPABASE_URL],
+    // domains: [process.env.NEXT_PUBLIC_SUPABASE_URL],
     loader: 'custom',
     loaderFile: './supabase-image-loader.ts',
   },

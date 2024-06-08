@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import { useHistory } from '@/hooks/use-history'
 import { useRouter } from 'next/navigation'
-import { Loading } from '@repo/ui/loading'
+import { Loading } from '@repo/ui/Loading'
 
 export default function CallbackPage() {
   const { replace } = useRouter()

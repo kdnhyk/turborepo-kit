@@ -4,7 +4,7 @@ import Header from '@/(components)/common/Header'
 import PostForm from '@/(components)/form/PostForm'
 import useSession from '@/hooks/use-session'
 import { useProfileSelf } from '@repo/query/user'
-import { Loading } from '@repo/ui/loading'
+import { Loading } from '@repo/ui/Loading'
 
 export default function NewPage() {
   const { session } = useSession()

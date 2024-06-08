@@ -1,7 +1,7 @@
 'use client'
 
 import { usePostMutation } from '@repo/query/post'
-import { Button } from '@repo/ui/button'
+import { Button } from '@repo/ui/Button'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 

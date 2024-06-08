@@ -1,7 +1,7 @@
 'use client'
 
 import { signInWithOAuth } from '@repo/api/auth'
-import { Button } from '@repo/ui/button'
+import { Button } from '@repo/ui/Button'
 
 export default function Login() {
   return (

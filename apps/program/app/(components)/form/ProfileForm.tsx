@@ -2,12 +2,12 @@
 
 import { FormProvider, useForm } from 'react-hook-form'
 import { useProfileSelf, useProfileMutation } from '@repo/query/user'
-import { Button } from '@repo/ui/button'
-import { Input } from '@repo/ui/input'
-import { ImageUploader } from '@repo/ui/imageUploader'
+import { Button } from '@repo/ui/Button'
+import { Input } from '@repo/ui/Input'
+import { ImageUploader } from '@repo/ui/ImageUploader'
 import { Label } from '@repo/ui/Label'
 import { ErrorMessage } from '@repo/ui/ErrorMessage'
-import { InputWrapper } from '@repo/ui/inputWrapper'
+import { InputWrapper } from '@repo/ui/InputWrapper'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 

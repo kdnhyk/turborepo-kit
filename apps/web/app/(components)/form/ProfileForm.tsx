@@ -2,14 +2,14 @@
 
 import { FormProvider, useForm } from 'react-hook-form'
 import { useProfileSelf, useProfileMutation } from '@repo/query/user'
-import { Button } from '@repo/ui/button'
-import { Input } from '@repo/ui/input'
-import { ImageUploader } from '@repo/ui/imageUploader'
-import { Label } from '@repo/ui/Label'
-import { ErrorMessage } from '@repo/ui/ErrorMessage'
-import { InputWrapper } from '@repo/ui/inputWrapper'
+import { Button } from '@repo/ui/Button'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
+import { InputWrapper } from '@repo/ui/InputWrapper'
+import { Label } from '@repo/ui/Label'
+import { ImageUploader } from '@repo/ui/ImageUploader'
+import { ErrorMessage } from '@repo/ui/ErrorMessage'
+import { Input } from '@repo/ui/Input'
 
 interface FormType {
   user_id: string

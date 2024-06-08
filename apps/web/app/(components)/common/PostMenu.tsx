@@ -1,4 +1,4 @@
-import { Button } from '@repo/ui/button'
+import { Button } from '@repo/ui/Button'
 import Link from 'next/link'
 
 export default function PostMenu() {

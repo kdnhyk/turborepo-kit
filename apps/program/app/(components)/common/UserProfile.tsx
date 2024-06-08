@@ -2,7 +2,7 @@
 
 import { useAuth } from '@repo/query/auth'
 import { useProfileSelf } from '@repo/query/user'
-import { Button } from '@repo/ui/button'
+import { Button } from '@repo/ui/Button'
 import { User } from '@supabase/supabase-js'
 import Image from 'next/image'
 import Link from 'next/link'

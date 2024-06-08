@@ -1,10 +1,10 @@
 'use client'
 
 import { usePostMutation } from '@repo/query/post'
+import { Button } from '@repo/ui/Button'
+import { Input } from '@repo/ui/Input'
 import { Label } from '@repo/ui/Label'
 import { Textarea } from '@repo/ui/Textarea'
-import { Button } from '@repo/ui/button'
-import { Input } from '@repo/ui/input'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'

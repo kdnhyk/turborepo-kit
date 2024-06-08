@@ -22,7 +22,7 @@
     "@repo/api": "workspace:*",
     "@repo/query": "workspace:*",
     "@repo/supabase": "workspace:*",
-    "@repo/ui": "workspace:*",
+    "@repo/ui-app": "workspace:*",
     "@rneui/themed": "4.0.0-rc.8",
     "@supabase/supabase-js": "^2.43.2",
     "expo": "~51.0.11",
