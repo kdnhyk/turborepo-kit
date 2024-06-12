@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
+    "./date": "./src/date.ts",
     "./image": "./src/image.ts"
   },
   "devDependencies": {
