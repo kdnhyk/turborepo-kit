@@ -5,7 +5,7 @@ import Constants from 'expo-constants'
 import { Session } from '@supabase/supabase-js'
 import { useAuth } from '@repo/query/auth'
 
-const ORIGIN = 'http://192.168.45.187:3002'
+const ORIGIN = 'https://turborepo-kit.01.works/'
 
 export interface MessageType {
   type: string
