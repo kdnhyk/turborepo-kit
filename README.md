@@ -1,10 +1,30 @@
 # Turborepo-kit
 
-Tuborepo-kit은 Turborepo를 기반으로 한 Production용 모노레포 보일러플레이트입니다.
+<img width="2790" alt="turborepo-kit" src="https://github.com/kdnhyk/turborepo-kit/assets/64140936/87085222-86e3-46b6-90bd-28cf6a9f9cd8">
 
-Web(Next.js), App(React Native Expo), Program(Tauri) 3가지 환경에서 공용으로 사용할 수 있는 Supabase, Tailwindcss, TanStack Query, React-hook-form 기반의 패키지가 준비되어 있습니다.
+The Tuborepo-kit is a Turborepo-based cross-platform dedicated monorepo boilerplate designed for general use in Web (Next.js), App (Expo) + Webview (Next.js), and Program (Tauri, Next.js).
 
-## File Tree
+### [Demo website](https://turborepo-kit.01.works/)
+    
+## Dependency(Library)
+
+### Global
+
+Supabase - @supabase/supabase-js(Client side), @supabase/ssr(Server side)
+
+Tailwindcss - Styling (App with nativewind)
+
+TanStack Query - Global state management
+
+React-hook-form - Form management
+
+### Animation
+
+Framer-motion (Next.js)
+
+React-native-reanimated (Expo)
+
+## About
 
 ```
 .vscode
@@ -20,9 +40,15 @@ apps
   |   ├─ Next.js 14 using React 18
   |   ├─ Auth using tauri-plugin-oauth
   |   └─ Tailwind CSS
-  └─ web
+  ├─ web
+  |   ├─ Next.js 14
+  |   ├─ React 18
+  |   ├─ Tailwind CSS
+  |   └─ @supabase/ssr
+  └─ webview
       ├─ Next.js 14
       ├─ React 18
+      ├─ Only using app webview
       ├─ Tailwind CSS
       └─ @supabase/ssr
 packages
@@ -31,17 +57,17 @@ packages
   ├─ eslint-config
   |   └─ Shared eslint configuration
   ├─ query
-  |   └─ State management using Tanstack-query
+  |   └─ State management using TanStack-query
   ├─ supabase
   |   └─ Supabase client, Edge functions
   ├─ tailwind-config
   |   └─ Shared tailwind configuration
-  ├─ types
-  |   └─ Shared types
   ├─ typescript-config
   |   └─ Shared tsconfig
   ├─ ui
-  |   └─ Shared ui using React-hook-form
+  |   └─ Shared ui using Framer-motion, React-hook-form
+  ├─ ui-app
+  |   └─ Shared ui for app using Reanimated
   └─ utils
       └─ Shared utils
 
@@ -50,24 +76,17 @@ packages
 ## Quick Start
 
 ```bash
-git clone https://github.com/01-works/turborepo-kit.git
+git clone <https://github.com/01-works/turborepo-kit.git>
+
 ```
 
 ```bash
-pnpm i
+pnpm install
 ```
 
 ## Setup
 
-### **1. Environment Variables**
-
-```bash
-cp .env.example .env.local
-```
-
-각 프로젝트에서 Supabase 환경변수를 설정해줍니다.
-
-### 2. Supabase
+### 1. Supabase
 
 ```sql
 create table
@@ -77,21 +96,34 @@ create table
     nickname text not null,
     foreign key (user_id) references auth.users (id)
   );
+
 ```
 
-[Supabase](https://supabase.com/)에서 프로젝트를 생성하고 profile 테이블과 profile 스토리지를 생성해줍니다. (RLS 설정 생략)
+```sql
+create table
+  public.post (
+    id number primary key
+    user_id uuid,
+    title text not null,
+    content text,
+    foreign key (user_id) references auth.users (id)
+  );
+
+```
+
+Create a project in [Supabase](https://supabase.com/) and create profile/post table, and profile storage. (RLS settings omitted)
+
+### **2. Environment Variables**
 
 ```bash
-supabase init
-supabase login
-supabase link
+cp .env.example .env.local
 ```
 
-위 명령어를 순서대로 실행하고 `pnpm gen-types` 를 입력하면 `database.types.ts` 파일이 생성됩니다.
+Set the Supabase environment variable for each project.
 
 ### 3. Run
 
-각 환경별 사전 설정은 [Expo](https://docs.expo.dev/), [Next.js](https://nextjs.org/docs), [Tauri](https://tauri.app/ko/v1/guides/) 공식문서를 참고해주시길 바랍니다.
+Please refer to the official documents of [Expo](https://docs.expo.dev/), [Next.js](https://nextjs.org/docs), and [Tauri](https://tauri.app/ko/v1/guides/) for pre-setting for each environment.
 
 - app
     
@@ -110,3 +142,22 @@ supabase link
     ```bash
     pnpm run dev
     ```
+    
+
+### 4. C**ommand**
+
+**packages/supabase**
+
+```bash
+supabase init
+supabase login
+supabase link
+```
+
+ Running the above commands in order and entering `pnpm gen-types` creates the `database.types.ts` file.
+
+## **Update history**
+
+### 2024.06.12
+
+Currently, web and program are available immediately, and app is incomplete.
