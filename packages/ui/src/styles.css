@@ -3,13 +3,16 @@
 @tailwind utilities;
 
 @layer base {
-  html,
+  html {
+    @apply flex h-full flex-col;
+  }
+
   body {
-    @apply flex h-full flex-col overflow-y-hidden;
+    @apply flex flex-1 flex-col items-center overflow-x-hidden;
   }
 
   main {
-    @apply flex h-full flex-col items-center overflow-y-auto;
+    @apply flex h-full w-full flex-col divide-y md:w-[768px] md:border-x;
   }
 
   * {

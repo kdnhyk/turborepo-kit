@@ -33,7 +33,7 @@ export default function Header() {
   console.log(title)
 
   return (
-    <header className="text-18 z-10 flex shrink-0 basis-12 items-center justify-between border-b bg-white">
+    <header className="text-18 z-10 flex shrink-0 basis-12 items-center justify-between self-stretch border-b bg-white">
       <div className="flex basis-20 justify-start">
         {title === 'Home' ? (
           <HomeButton />

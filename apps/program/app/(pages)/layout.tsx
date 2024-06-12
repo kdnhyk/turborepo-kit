@@ -14,11 +14,7 @@ export default async function Layout({
       <Header />
       <main>
         <Suspense fallback={<Loading />}>
-          <AuthProvider>
-            <div className="flex w-full flex-1 flex-col divide-y md:w-[768px] md:border-x">
-              {children}
-            </div>
-          </AuthProvider>
+          <AuthProvider>{children}</AuthProvider>
         </Suspense>
       </main>
     </QueryProvider>

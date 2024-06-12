@@ -12,11 +12,7 @@ export default async function Layout({
     <QueryProvider>
       <main>
         <Suspense fallback={<Loading />}>
-          <AuthProvider>
-            <div className="flex w-full flex-1 flex-col md:w-[768px] md:border-x">
-              {children}
-            </div>
-          </AuthProvider>
+          <AuthProvider>{children}</AuthProvider>
         </Suspense>
       </main>
     </QueryProvider>
