@@ -10,14 +10,12 @@ export default function CallbackPage() {
   const { history } = useHistory()
 
   useEffect(() => {
-    if (history) {
-      if (history && history.at(-3)) {
-        replace(`${history.at(-3)}`)
-        return
-      }
-
-      replace('/profile')
+    if (history && history.at(-3)) {
+      replace(`${history.at(-3)}`)
+      return
     }
+
+    replace('/profile')
   }, [history])
 
   return (
