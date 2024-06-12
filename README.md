@@ -6,6 +6,7 @@ The Tuborepo-kit is a Turborepo-based cross-platform dedicated monorepo boilerpl
 
 ### [Demo website](https://turborepo-kit.01.works/)
     
+
 ## Dependency(Library)
 
 ### Global
@@ -37,20 +38,20 @@ apps
   |   └─ Tailwind CSS using NativeWind
   ├─ program
   |   ├─ Tauri 1.6
-  |   ├─ Next.js 14 using React 18
+  |   ├─ Next.js 14 using React 18 (Static Exports)
   |   ├─ Auth using tauri-plugin-oauth
   |   └─ Tailwind CSS
   ├─ web
-  |   ├─ Next.js 14
-  |   ├─ React 18
+  |   ├─ Next.js 14 using React 18
+  |   ├─ React Server Component with PrefetchQuery
   |   ├─ Tailwind CSS
   |   └─ @supabase/ssr
   └─ webview
-      ├─ Next.js 14
-      ├─ React 18
-      ├─ Only using app webview
+      ├─ Next.js 14 using React 18
+      ├─ React Server Component with PrefetchQuery
       ├─ Tailwind CSS
-      └─ @supabase/ssr
+      ├─ @supabase/ssr
+      └─ Only using webview for App
 packages
   ├─ api
   |   └─ Api using Supabase client
@@ -75,18 +76,17 @@ packages
 
 ## Quick Start
 
+### 1. Install
+
 ```bash
 git clone <https://github.com/01-works/turborepo-kit.git>
-
 ```
 
 ```bash
 pnpm install
 ```
 
-## Setup
-
-### 1. Supabase
+### 2. Supabase setup
 
 ```sql
 create table
@@ -113,7 +113,7 @@ create table
 
 Create a project in [Supabase](https://supabase.com/) and create profile/post table, and profile storage. (RLS settings omitted)
 
-### **2. Environment Variables**
+### **3. Environment Variables setup**
 
 ```bash
 cp .env.example .env.local
@@ -144,9 +144,7 @@ Please refer to the official documents of [Expo](https://docs.expo.dev/), [Next.
     ```
     
 
-### 4. C**ommand**
-
-**packages/supabase**
+### 4. A**dditional** C**ommand (supabase)**
 
 ```bash
 supabase init
