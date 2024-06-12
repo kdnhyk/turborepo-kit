@@ -3,6 +3,7 @@ import { Metadata } from 'next'
 import { createClient } from '@/utils/supabase/server'
 import supabase from '@repo/supabase'
 import PostBottoms from '@/(components)/common/PostButtons'
+import { formmatedDate } from '@repo/utils/date'
 
 export const revalidate = 60
 
@@ -44,7 +45,7 @@ export default async function PostPage({
 
   const { data: post } = await supabase
     .from('post')
-    .select('id, user_id, title, content')
+    .select('id, user_id, created_at, title, content')
     .eq('id', id)
     .limit(1)
     .single()
@@ -53,7 +54,7 @@ export default async function PostPage({
     notFound()
   }
 
-  const { user_id, title, content } = post
+  const { user_id, created_at, title, content } = post
 
   const {
     data: { session },
@@ -67,6 +68,9 @@ export default async function PostPage({
           {user_id === session?.user.id && <PostBottoms id={id} />}
         </div>
         <p className="flex-1 p-3">{content}</p>
+        <p className="p-3 text-end text-zinc-700">
+          {formmatedDate(created_at)}
+        </p>
       </div>
     </>
   )

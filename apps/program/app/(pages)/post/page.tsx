@@ -3,6 +3,7 @@
 import PostBottoms from '@/(components)/common/PostButtons'
 import useSession from '@/hooks/use-session'
 import { usePost } from '@repo/query/post'
+import { formmatedDate } from '@repo/utils/date'
 import { notFound, useSearchParams } from 'next/navigation'
 
 export default function PostPage() {
@@ -16,7 +17,7 @@ export default function PostPage() {
     notFound()
   }
 
-  const { title, content, user_id } = post
+  const { title, created_at, content, user_id } = post
 
   return (
     <>
@@ -26,6 +27,9 @@ export default function PostPage() {
           {user_id === session?.user.id && <PostBottoms id={id} />}
         </div>
         <p className="flex-1 p-3">{content}</p>
+        <p className="p-3 text-end text-zinc-700">
+          {formmatedDate(created_at)}
+        </p>
       </div>
     </>
   )
