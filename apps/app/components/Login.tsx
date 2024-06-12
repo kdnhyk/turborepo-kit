@@ -55,7 +55,7 @@ export default function Login() {
   return (
     <ThemedView style={styles.container}>
       <ThemedView className="flex w-full flex-row justify-center">
-        <ThemedText className="text-lg font-bold">로그인</ThemedText>
+        <ThemedText className="text-lg font-bold">Login</ThemedText>
       </ThemedView>
       <Button
         onClick={async () => await siginInWithOauth('google')}
