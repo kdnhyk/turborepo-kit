@@ -1,7 +1,7 @@
 import { signout } from '@repo/api/auth'
 import { useQueryClient } from '@tanstack/react-query'
 
-const useAuth = () => {
+export const useAuth = () => {
   const queryClient = useQueryClient()
 
   const logout = async () => {
@@ -11,5 +11,3 @@ const useAuth = () => {
 
   return { logout }
 }
-
-export { useAuth }

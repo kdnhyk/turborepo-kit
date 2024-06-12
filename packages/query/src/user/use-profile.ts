@@ -14,7 +14,7 @@ import { removeProfileImage, uploadProfileImage } from '@repo/api/storage'
 import { nanoid } from 'nanoid/non-secure'
 import { User } from '@supabase/supabase-js'
 
-const useProfileSelf = () =>
+export const useProfileSelf = () =>
   useSuspenseQuery({
     queryKey: ['profile_self'],
     queryFn: async () => {
@@ -26,13 +26,13 @@ const useProfileSelf = () =>
     },
   })
 
-const useProfile = (user_id: string) =>
+export const useProfile = (user_id: string) =>
   useSuspenseQuery({
     queryKey: ['profile', user_id],
     queryFn: () => getProfileByUserId(user_id),
   })
 
-const useProfileMutation = () => {
+export const useProfileMutation = () => {
   const queryClient = useQueryClient()
 
   const post = useMutation({
@@ -89,4 +89,3 @@ const useProfileMutation = () => {
   return { post, update }
 }
 
-export { useProfile, useProfileSelf, useProfileMutation }

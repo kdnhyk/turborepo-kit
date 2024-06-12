@@ -14,7 +14,7 @@ import {
   updatePost,
 } from '@repo/api/post'
 
-const usePostPage = () =>
+export const usePostPage = () =>
   useSuspenseInfiniteQuery({
     queryKey: ['post_page'],
     queryFn: async ({ pageParam }) => {
@@ -35,7 +35,7 @@ const usePostPage = () =>
     },
   })
 
-const usePost = (id: number) =>
+export const usePost = (id: number) =>
   useSuspenseQuery({
     queryKey: ['post', id],
     queryFn: () => getPostById(id),
@@ -58,7 +58,7 @@ const usePost = (id: number) =>
     },
   })
 
-const usePostMutation = () => {
+export const usePostMutation = () => {
   const queryClient = useQueryClient()
 
   const post = useMutation({
@@ -87,5 +87,3 @@ const usePostMutation = () => {
 
   return { post, update, remove }
 }
-
-export { usePostPage, usePost, usePostMutation }
