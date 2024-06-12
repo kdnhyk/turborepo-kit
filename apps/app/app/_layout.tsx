@@ -11,7 +11,7 @@ import 'react-native-reanimated'
 
 import { useColorScheme } from '@/hooks/useColorScheme'
 import { QueryProvider } from '@repo/query/provider'
-import AuthProvider from './providers/auth-provider'
+import AuthProvider from '../providers/auth-provider'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
