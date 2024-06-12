@@ -3,13 +3,13 @@
 import { FormProvider, useForm } from 'react-hook-form'
 import { useProfileSelf, useProfileMutation } from '@repo/query/user'
 import { Button } from '@repo/ui/Button'
-import { Input } from '@repo/ui/Input'
-import { ImageUploader } from '@repo/ui/ImageUploader'
-import { Label } from '@repo/ui/Label'
-import { ErrorMessage } from '@repo/ui/ErrorMessage'
-import { InputWrapper } from '@repo/ui/InputWrapper'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
+import { InputWrapper } from '@repo/ui/InputWrapper'
+import { Label } from '@repo/ui/Label'
+import { ImageUploader } from '@repo/ui/ImageUploader'
+import { ErrorMessage } from '@repo/ui/ErrorMessage'
+import { Input } from '@repo/ui/Input'
 
 interface FormType {
   user_id: string
@@ -42,7 +42,7 @@ export default function ProfileForm() {
     <div className="flex flex-col gap-3 p-3">
       <FormProvider {...methods}>
         <InputWrapper>
-          <Label>프로필 이미지</Label>
+          <Label>Profile Image</Label>
           <div className="flex items-end gap-3">
             <ImageUploader field="profile_image" />
 
@@ -54,19 +54,19 @@ export default function ProfileForm() {
                 })
               }
             >
-              초기화
+              Reset
             </Button>
           </div>
           <ErrorMessage field="profile_image" />
         </InputWrapper>
 
         <InputWrapper>
-          <Label>이름</Label>
+          <Label>Nickname</Label>
           <Input
             field="nickname"
-            placeholder="아름"
+            placeholder="Nickname"
             maxLength={20}
-            required="이름을 입력해주세요"
+            required="Please enter your nickname"
           />
           <ErrorMessage field="nickname" />
         </InputWrapper>
@@ -77,7 +77,7 @@ export default function ProfileForm() {
             color={methods.formState.isDirty ? 'black' : 'white'}
             disable={update.isPending}
           >
-            {update.isPending ? '저장 중...' : '저장'}
+            {update.isPending ? 'Saving...' : 'Save'}
           </Button>
         </div>
       </FormProvider>

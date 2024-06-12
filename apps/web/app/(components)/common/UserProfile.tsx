@@ -16,14 +16,14 @@ export default function UserProfile({ user }: { user: User }) {
   return (
     <div className="flex flex-1 flex-col">
       <div className="flex items-center gap-2 p-4">
-        <p className="basis-[80px]">이메일</p>
+        <p className="basis-[110px]">Email</p>
         <p>{user.email}</p>
       </div>
 
       <div className="flex items-center gap-2 p-3">
-        <p className="basis-[80px]">프로필 사진</p>
+        <p className="basis-[110px]">Profile Image</p>
         {!profile.profile_image ? (
-          <div className="aspect-square basis-[80px] rounded border"></div>
+          <div className="aspect-square basis-[110px] rounded border"></div>
         ) : (
           <Image
             className="rounded border"
@@ -36,13 +36,13 @@ export default function UserProfile({ user }: { user: User }) {
       </div>
 
       <div className="flex items-center gap-2 p-3">
-        <p className="basis-[80px]">이름</p>
+        <p className="basis-[110px]">Nickname</p>
         <p>{profile.nickname}</p>
       </div>
 
       <div className="flex justify-end p-3">
         <Link href="/profile/edit">
-          <Button color="black">수정</Button>
+          <Button color="black">Edit</Button>
         </Link>
       </div>
 
@@ -50,7 +50,7 @@ export default function UserProfile({ user }: { user: User }) {
 
       <div className="flex justify-end p-3">
         <Button onClick={logout} color="white">
-          로그아웃
+          Logout
         </Button>
       </div>
     </div>

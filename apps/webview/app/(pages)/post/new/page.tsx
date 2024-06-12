@@ -12,7 +12,7 @@ export default function NewPage() {
 
   return (
     <>
-      <Header title="글 작성" />
+      <Header title="New" />
       {!session || !profile ? <Loading /> : <PostForm />}
     </>
   )

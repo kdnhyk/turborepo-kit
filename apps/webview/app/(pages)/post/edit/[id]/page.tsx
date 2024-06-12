@@ -25,7 +25,7 @@ export default async function PostEditPage({
 
   return (
     <>
-      <Header title="글 수정" />
+      <Header title="Post Edit" />
       <PostForm
         defaultValues={{
           id: Number(id),

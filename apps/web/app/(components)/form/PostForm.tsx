@@ -46,10 +46,10 @@ export default function PostForm({
   return (
     <div className="flex flex-1 flex-col gap-2 p-3">
       <FormProvider {...methods}>
-        <Label>제목</Label>
+        <Label>Title</Label>
         <Input field="title" placeholder="Title" />
 
-        <Label>내용</Label>
+        <Label>Content</Label>
         <Textarea field="content" placeholder="Content" />
 
         <div className="flex justify-end">
@@ -58,7 +58,7 @@ export default function PostForm({
             color={methods.formState.isValid ? 'black' : 'white'}
             disable={post.isPending}
           >
-            저장
+            Save
           </Button>
         </div>
       </FormProvider>

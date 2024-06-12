@@ -13,7 +13,7 @@ export default function Login() {
           })
         }
       >
-        Google로 로그인
+        Sign in with Google
       </Button>
     </div>
   )

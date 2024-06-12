@@ -4,7 +4,7 @@ import ProfileForm from '@/(components)/form/ProfileForm'
 export default async function ProfileEditPage() {
   return (
     <>
-      <Header title="프로필 수정" />
+      <Header title="Profile Edit" />
       <ProfileForm />
       <hr className="flex-1 bg-zinc-100" />
     </>

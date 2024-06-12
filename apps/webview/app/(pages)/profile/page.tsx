@@ -12,7 +12,7 @@ export default function ProfilePage() {
 
   return (
     <>
-      <Header title="프로필" />
+      <Header title="Profile" />
       {!session || !profile ? <Loading /> : <UserProfile user={session.user} />}
     </>
   )

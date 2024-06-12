@@ -6,13 +6,13 @@ import { useRouter } from 'next/navigation'
 import { usePathname } from 'next/navigation'
 
 const pageTitles: { [key: string]: string } = {
-  '/': '홈',
-  '/login': '로그인',
-  '/auth/callback': '로딩중',
-  '/profile': '프로필',
-  '/profile/edit': '프로필 수정',
-  '/post': '글 목록',
-  '/post/new': '글 쓰기',
+  '/': 'Home',
+  '/login': 'Login',
+  '/auth/callback': 'Loading...',
+  '/profile': 'Profile',
+  '/profile/edit': 'Profile Edit',
+  '/post': 'Posts',
+  '/post/new': 'New Post',
 }
 
 function HomeButton() {
@@ -35,7 +35,7 @@ export default function Header() {
   return (
     <header className="text-18 z-10 flex shrink-0 basis-12 items-center justify-between border-b bg-white">
       <div className="flex basis-20 justify-start">
-        {title === '홈' ? (
+        {title === 'Home' ? (
           <HomeButton />
         ) : (
           <div
@@ -50,7 +50,7 @@ export default function Header() {
       <p>{title}</p>
 
       <div className="flex basis-20 justify-end">
-        {title !== '홈' && <HomeButton />}
+        {title !== 'Home' && <HomeButton />}
         <div
           className="flex h-10 basis-10 cursor-pointer items-center justify-center"
           onClick={() => {

@@ -8,7 +8,9 @@ export default function Login() {
 
   return (
     <div className="flex flex-1 items-center justify-center">
-      <Button onClick={() => signinWithOauth('google')}>Google로 로그인</Button>
+      <Button onClick={() => signinWithOauth('google')}>
+        Sign in with Google
+      </Button>
     </div>
   )
 }

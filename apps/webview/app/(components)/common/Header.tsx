@@ -4,8 +4,8 @@ import { BackIcon, HomeIcon } from '@repo/ui/icon'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
-const MainPages = ['홈', '글 작성', '프로필']
-const SubPages = ['글 수정', '프로필 수정']
+const MainPages = ['Home', 'New', 'Profile']
+const SubPages = ['Post Edit', 'Profile Edit']
 
 type MainPagesType = (typeof MainPages)[number]
 type SubPagesType = (typeof SubPages)[number]
@@ -32,7 +32,7 @@ export default function Header({
   return (
     <header className="text-18 sticky top-0 z-10 flex shrink-0 basis-12 items-center justify-between border-b bg-white">
       <div className="flex basis-20 justify-start">
-        {title === '홈' ? (
+        {title === 'Home' ? (
           <HomeButton />
         ) : !MainPages.includes(title || '') ? (
           <div

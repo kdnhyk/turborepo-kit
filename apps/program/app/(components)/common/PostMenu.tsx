@@ -6,7 +6,7 @@ export default function PostMenu() {
     <>
       <div className="flex justify-end p-3">
         <Link href="/post/new">
-          <Button color="black">글 쓰기</Button>
+          <Button color="black">New</Button>
         </Link>
       </div>
     </>

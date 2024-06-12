@@ -37,7 +37,7 @@ export default async function HomePage() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <Header title='홈'/>
+      <Header title='Home'/>
       <ul className="flex flex-1 flex-col divide-y">
         <PostPageList />
       </ul>

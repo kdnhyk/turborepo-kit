@@ -26,10 +26,10 @@ export default function PostButtons({ id }: { id: string }) {
   return (
     <div className="flex gap-3">
       <Button color="white" onClick={handleRemove}>
-        삭제
+        Delete
       </Button>
       <Button color="black" onClick={handleEdit}>
-        수정
+        Edit
       </Button>
     </div>
   )
