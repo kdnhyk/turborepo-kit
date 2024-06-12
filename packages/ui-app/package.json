@@ -4,8 +4,8 @@
   "private": true,
   "sideEffects": false,
   "exports": {
-    "./icon": "./src/icon/index.tsx",
-    "./common": "./src/common/index.tsx"
+    "./Button": "./src/common/Button.tsx",
+    "./Loading": "./src/common/Loading.tsx"
   },
   "peerDependencies": {
     "react": "18.2.0",
