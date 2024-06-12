@@ -2,7 +2,7 @@
 
 <img width="2790" alt="turborepo-kit" src="https://github.com/kdnhyk/turborepo-kit/assets/64140936/87085222-86e3-46b6-90bd-28cf6a9f9cd8">
 
-The Tuborepo-kit is a Turborepo-based cross-platform dedicated monolepo boilerplate designed for general use in Web (Next.js), App (Expo) + Webview (Next.js), and Program (Tauri, Next.js).
+The Tuborepo-kit is a Turborepo-based cross-platform dedicated monorepo boilerplate designed for general use in Web (Next.js), App (Expo) + Webview (Next.js), and Program (Tauri, Next.js).
 
 ### [Demo website](https://turborepo-kit.01.works/)
     
