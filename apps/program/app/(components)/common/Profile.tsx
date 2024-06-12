@@ -11,7 +11,7 @@ export default function Profile({ userId }: { userId: string }) {
   return (
     <div className="flex flex-col p-3">
       {!profile.profile_image ? (
-        <div className="aspect-square basis-[40px] rounded-full border"></div>
+        <div className="aspect-square w-10 rounded-full border"></div>
       ) : (
         <Image
           className="rounded-full border"

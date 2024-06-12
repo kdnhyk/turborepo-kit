@@ -23,7 +23,7 @@ export default function UserProfile({ user }: { user: User }) {
       <div className="flex items-center gap-2 p-3">
         <p className="basis-[110px]">Profile Image</p>
         {!profile.profile_image ? (
-          <div className="aspect-square basis-[110px] rounded border"></div>
+          <div className="aspect-square basis-[80px] rounded border"></div>
         ) : (
           <Image
             className="rounded border"
