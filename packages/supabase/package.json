@@ -16,14 +16,14 @@
     "./database": "./database.types.ts"
   },
   "peerDependencies": {
-    "@supabase/supabase-js": "^2.43.2"
+    "@supabase/supabase-js": "2.43.5"
   },
   "devDependencies": {
     "@react-native-async-storage/async-storage": "^1.23.1",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@supabase/ssr": "^0.3.0",
-    "@supabase/supabase-js": "^2.43.2",
+    "@supabase/ssr": "0.4.0",
+    "@supabase/supabase-js": "2.43.5",
     "next": "^14.2.3",
     "react-native-url-polyfill": "^2.0.0"
   }
