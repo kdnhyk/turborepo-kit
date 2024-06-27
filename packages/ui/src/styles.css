@@ -12,7 +12,7 @@
   }
 
   main {
-    @apply flex h-full w-full flex-col divide-y md:w-[768px] md:border-x;
+    @apply flex flex-1 flex-col divide-y md:w-[768px] md:border-x;
   }
 
   * {
