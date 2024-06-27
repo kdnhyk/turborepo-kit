@@ -1,8 +1,6 @@
 import Header from '@/(components)/common/Header'
 import AuthProvider from '@/providers/auth-provider'
 import { QueryProvider } from '@repo/query/provider'
-import { Loading } from '@repo/ui/Loading'
-import { Suspense } from 'react'
 
 export default async function Layout({
   children,
@@ -14,11 +12,9 @@ export default async function Layout({
   return (
     <QueryProvider>
       <Header />
-      <main>
-        <Suspense fallback={<Loading />}>
-          <AuthProvider>{children}</AuthProvider>
-        </Suspense>
-      </main>
+      <AuthProvider>
+        <main>{children} </main>
+      </AuthProvider>
       {modal}
     </QueryProvider>
   )
