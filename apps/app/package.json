@@ -25,6 +25,7 @@
     "@repo/ui-app": "workspace:*",
     "@rneui/themed": "4.0.0-rc.8",
     "@supabase/supabase-js": "2.43.5",
+    "@tanstack/react-query": "5.48.0",
     "expo": "~51.0.11",
     "expo-auth-session": "^5.5.2",
     "expo-constants": "~16.0.1",

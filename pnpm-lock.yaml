@@ -56,6 +56,9 @@ importers:
       '@supabase/supabase-js':
         specifier: 2.43.5
         version: 2.43.5
+      '@tanstack/react-query':
+        specifier: 5.48.0
+        version: 5.48.0(react@18.2.0)
       expo:
         specifier: ~51.0.11
         version: 51.0.11(@babel/core@7.24.6)(@babel/preset-env@7.24.6)
@@ -186,6 +189,9 @@ importers:
       '@supabase/supabase-js':
         specifier: 2.43.5
         version: 2.43.5
+      '@tanstack/react-query':
+        specifier: 5.48.0
+        version: 5.48.0(react@18.2.0)
       '@tauri-apps/api':
         specifier: ^1.5.6
         version: 1.5.6
@@ -271,6 +277,9 @@ importers:
       '@supabase/supabase-js':
         specifier: 2.43.5
         version: 2.43.5
+      '@tanstack/react-query':
+        specifier: 5.48.0
+        version: 5.48.0(react@18.2.0)
       next:
         specifier: ^14.2.3
         version: 14.2.3(@babel/core@7.24.6)(react-dom@18.2.0)(react@18.2.0)
@@ -350,6 +359,9 @@ importers:
       '@supabase/supabase-js':
         specifier: 2.43.5
         version: 2.43.5
+      '@tanstack/react-query':
+        specifier: 5.48.0
+        version: 5.48.0(react@18.2.0)
       next:
         specifier: ^14.2.3
         version: 14.2.3(@babel/core@7.24.6)(react-dom@18.2.0)(react@18.2.0)
@@ -3867,7 +3879,6 @@ packages:
 
   /@tanstack/query-core@5.48.0:
     resolution: {integrity: sha512-lZAfPPeVIqXCswE9SSbG33B6/91XOWt/Iq41bFeWb/mnHwQSIfFRbkS4bfs+WhIk9abRArF9Id2fp0Mgo+hq6Q==}
-    dev: true
 
   /@tanstack/query-devtools@5.47.0:
     resolution: {integrity: sha512-oo10s7Nqaf/Q3QF4vuSwS0xw7zuYr5nXef4RHQIXVJKvRQeo9WowPLAnB0SF/voB0c4GTX6Vq8wfQ1G72ezEdw==}
@@ -3891,7 +3902,6 @@ packages:
     dependencies:
       '@tanstack/query-core': 5.48.0
       react: 18.2.0
-    dev: true
 
   /@tauri-apps/api@1.5.6:
     resolution: {integrity: sha512-LH5ToovAHnDVe5Qa9f/+jW28I6DeMhos8bNDtBOmmnaDpPmJmYLyHdeDblAWWWYc7KKRDg9/66vMuKyq0WIeFA==}
