@@ -1,5 +1,5 @@
 import UserProfile from '@/(components)/common/UserProfile'
-import { createClient } from '@/utils/supabase/server'
+import { createClient } from '@/utils/supabase/server-component'
 import { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 

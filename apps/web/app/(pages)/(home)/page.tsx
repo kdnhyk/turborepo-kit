@@ -1,6 +1,6 @@
 import PostMenu from '@/(components)/common/PostMenu'
 import PostPageList from '@/(components)/list/PostPageList'
-import { createClient } from '@/utils/supabase/server'
+import { createClient } from '@/utils/supabase/server-component'
 import { POST_SELECTOR } from '@repo/api/post'
 import {
   dehydrate,

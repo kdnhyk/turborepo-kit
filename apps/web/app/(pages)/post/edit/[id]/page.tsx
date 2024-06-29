@@ -1,5 +1,5 @@
 import PostForm from '@/(components)/form/PostForm'
-import { createClient } from '@/utils/supabase/server'
+import { createClient } from '@/utils/supabase/server-component'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 

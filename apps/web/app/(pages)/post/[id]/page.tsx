@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
-import { createClient } from '@/utils/supabase/server'
+import { createClient } from '@/utils/supabase/server-component'
 import supabase from '@repo/supabase'
 import PostBottoms from '@/(components)/common/PostButtons'
 import { formmatedDate } from '@repo/utils/date'
