@@ -5,7 +5,7 @@ import supabase from '@repo/supabase'
 import PostBottoms from '@/(components)/common/PostButtons'
 import { formmatedDate } from '@repo/utils/date'
 
-export const revalidate = 60
+export const revalidate = 60 
 
 export async function generateStaticParams() {
   const { data: posts } = await supabase.from('post').select('id')
@@ -56,16 +56,12 @@ export default async function PostPage({
 
   const { user_id, created_at, title, content } = post
 
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
-
   return (
     <>
       <div className="flex flex-1 flex-col divide-y">
         <div className="flex justify-between p-3">
           <h2 className="text-xl font-bold">{title}</h2>
-          {user_id === session?.user.id && <PostBottoms id={id} />}
+          <PostBottoms id={id} userId={user_id} />
         </div>
         <p className="flex-1 p-3">{content}</p>
         <p className="p-3 text-end text-zinc-700">
