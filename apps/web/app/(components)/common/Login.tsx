@@ -9,7 +9,8 @@ export default function Login() {
       <Button
         onClick={() =>
           signInWithOAuth('google', {
-            redirectTo: window.location.origin + '/auth',
+            redirectTo:
+              window.location.origin + `/auth?next${window.location.pathname}`,
           })
         }
       >

@@ -3,16 +3,12 @@
 import { useEffect } from 'react'
 import { useProfileSelf, useProfileMutation } from '@repo/query/user'
 import supabase from '@repo/supabase'
-import { usePathname } from 'next/navigation'
-import { useHistory } from '@/hooks/use-history'
 
 export default function AuthProvider({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const pathname = usePathname()
-  const { push } = useHistory()
   const { data: profile } = useProfileSelf()
   const { post } = useProfileMutation()
 
@@ -31,10 +27,6 @@ export default function AuthProvider({
 
     return () => subscription.unsubscribe()
   }, [])
-
-  useEffect(() => {
-    push(pathname)
-  }, [pathname])
 
   return <>{children}</>
 }
