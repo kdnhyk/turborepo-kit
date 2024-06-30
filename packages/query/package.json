@@ -7,6 +7,7 @@
       "react-native": "./src/query-provider.native.tsx",
       "default": "./src/query-provider.tsx"
     },
+    "./get-query-client": "./src/get-query-client.ts",
     "./auth": "./src/auth/index.ts",
     "./user": "./src/user/index.ts",
     "./post": "./src/post/index.ts"
