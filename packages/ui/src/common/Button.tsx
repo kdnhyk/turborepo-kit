@@ -17,10 +17,8 @@ export const Button = ({
 }: ButtonProps) => {
   return (
     <motion.button
-      className={`relative flex h-8 w-fit items-center rounded-[8px] border border-zinc-700 px-3 text-sm transition-colors disabled:cursor-not-allowed ${
-        color === 'black'
-          ? 'bg-[#000] text-white disabled:bg-zinc-700 disabled:text-zinc-100'
-          : ' bg-white text-[#000] disabled:bg-zinc-100 disabled:text-zinc-700'
+      className={`relative flex h-8 w-fit items-center rounded-[8px] border border-zinc-700 px-3 text-sm transition-colors disabled:cursor-not-allowed disabled:opacity-60 ${
+        color === 'black' ? 'bg-[#000] text-white' : ' bg-white text-[#000]'
       }`}
       disabled={disable}
       onClick={onClick}
