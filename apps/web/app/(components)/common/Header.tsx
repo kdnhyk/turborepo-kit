@@ -5,54 +5,39 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { usePathname } from 'next/navigation'
 
-const pageTitles: { [key: string]: string } = {
-  '/': 'Home',
-  '/login': 'Login',
-  '/auth/callback': 'Loading...',
-  '/profile': 'Profile',
-  '/profile/edit': 'Profile Edit',
-  '/post': 'Posts',
-  '/post/new': 'New Post',
-}
-
-function HomeButton() {
-  return (
-    <Link
-      href="/"
-      className="flex h-10 basis-10 cursor-pointer items-center justify-center"
-    >
-      <HomeIcon />
-    </Link>
-  )
-}
 export default function Header() {
   const pathname = usePathname()
-  const title = pageTitles[pathname]
+  const isHome = pathname === '/'
   const { push, back, prefetch } = useRouter()
 
-  console.log(title)
-
   return (
-    <header className="text-18 z-10 flex shrink-0 basis-12 items-center justify-between self-stretch border-b bg-white">
-      <div className="flex basis-20 justify-start">
-        {title === 'Home' ? (
-          <HomeButton />
-        ) : (
-          <div
-            className="flex h-10 basis-10 cursor-pointer items-center justify-center"
-            onClick={() => back()}
-          >
-            <BackIcon />
-          </div>
-        )}
-      </div>
+    <div className="fixed top-0 z-10 flex w-full shrink-0 basis-auto flex-col items-center bg-gradient-to-t from-white/0 to-white p-2 md:p-4">
+      <header className="flex w-full max-w-[calc(1280px-32px)] flex-1 shrink-0 basis-12 items-center justify-between rounded-lg bg-white shadow-inner">
+        <Link
+          href="/"
+          className="flex h-12 basis-12 cursor-pointer items-center justify-center"
+          style={{
+            order: isHome ? 1 : 3,
+          }}
+        >
+          <HomeIcon />
+        </Link>
 
-      <p>{title}</p>
+        <div className="order-2 flex-1" />
 
-      <div className="flex basis-20 justify-end">
-        {title !== 'Home' && <HomeButton />}
         <div
-          className="flex h-10 basis-10 cursor-pointer items-center justify-center"
+          className="flex h-12 basis-12 cursor-pointer items-center justify-center"
+          onClick={() => back()}
+          style={{
+            display: isHome ? 'none' : 'flex',
+            order: isHome ? 3 : 1,
+          }}
+        >
+          <BackIcon />
+        </div>
+
+        <div
+          className="order-4 flex h-12 basis-12 cursor-pointer items-center justify-center"
           onClick={() => {
             prefetch('/profile')
             push('/profile')
@@ -60,7 +45,7 @@ export default function Header() {
         >
           <ProfileIcon />
         </div>
-      </div>
-    </header>
+      </header>
+    </div>
   )
 }
