@@ -8,11 +8,11 @@
   }
 
   body {
-    @apply flex flex-1 flex-col items-center overflow-x-hidden;
+    @apply flex flex-1 flex-col items-center overflow-x-hidden bg-zinc-100;
   }
 
   main {
-    @apply flex flex-1 flex-col divide-y md:w-[768px] md:border-x;
+    @apply flex w-full max-w-7xl flex-1 flex-col px-2 pb-10 pt-16 md:px-4 md:pt-20;
   }
 
   * {
