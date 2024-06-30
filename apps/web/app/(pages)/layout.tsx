@@ -3,11 +3,8 @@ import AuthProvider from '@/providers/auth-provider'
 import { createClient } from '@/utils/supabase/server-component'
 import { PROFILE_SELECTOR } from '@repo/api/user'
 import { QueryProvider } from '@repo/query/provider'
-import {
-  HydrationBoundary,
-  QueryClient,
-  dehydrate,
-} from '@tanstack/react-query'
+import { getQueryClient } from '@repo/query/get-query-client'
+import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 
 export default async function Layout({
   children,
@@ -16,13 +13,13 @@ export default async function Layout({
   children: React.ReactNode
   modal: React.ReactNode
 }) {
-  const queryClient = new QueryClient()
+  const queryClient = getQueryClient()
   const supabase = createClient()
 
   const userId = (await supabase.auth.getSession()).data.session?.user.id
 
   if (userId) {
-    await queryClient.prefetchQuery({
+    queryClient.prefetchQuery({
       queryKey: ['profile_self'],
       queryFn: async () => {
         const { data, error } = await supabase

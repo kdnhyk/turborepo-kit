@@ -8,7 +8,10 @@ export default function PostList({ posts }: { posts: PostType[] }) {
     <>
       {posts.map((post) => {
         return (
-          <li className="flex flex-col" key={post.id}>
+          <li
+            className="flex flex-col rounded-lg bg-white shadow-inner"
+            key={post.id}
+          >
             <Link href={`/post/${post.id}`}>
               {post.user_id && <Profile userId={post.user_id} />}
 
