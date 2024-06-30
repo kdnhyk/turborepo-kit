@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@repo/api": "workspace:*",
+    "@repo/const": "workspace:*",
     "@repo/query": "workspace:*",
     "@repo/supabase": "workspace:*",
     "@repo/ui": "workspace:*",

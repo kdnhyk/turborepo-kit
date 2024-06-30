@@ -41,6 +41,9 @@ importers:
       '@repo/api':
         specifier: workspace:*
         version: link:../../packages/api
+      '@repo/const':
+        specifier: workspace:*
+        version: link:../../packages/const
       '@repo/query':
         specifier: workspace:*
         version: link:../../packages/query
@@ -259,88 +262,9 @@ importers:
       '@repo/api':
         specifier: workspace:*
         version: link:../../packages/api
-      '@repo/query':
+      '@repo/const':
         specifier: workspace:*
-        version: link:../../packages/query
-      '@repo/supabase':
-        specifier: workspace:*
-        version: link:../../packages/supabase
-      '@repo/ui':
-        specifier: workspace:*
-        version: link:../../packages/ui
-      '@repo/utils':
-        specifier: workspace:*
-        version: link:../../packages/utils
-      '@supabase/ssr':
-        specifier: 0.4.0
-        version: 0.4.0(@supabase/supabase-js@2.43.5)
-      '@supabase/supabase-js':
-        specifier: 2.43.5
-        version: 2.43.5
-      '@tanstack/react-query':
-        specifier: 5.48.0
-        version: 5.48.0(react@18.2.0)
-      next:
-        specifier: ^14.2.3
-        version: 14.2.3(@babel/core@7.24.6)(react-dom@18.2.0)(react@18.2.0)
-      react:
-        specifier: 18.2.0
-        version: 18.2.0
-      react-dom:
-        specifier: 18.2.0
-        version: 18.2.0(react@18.2.0)
-      react-hook-form:
-        specifier: ^7.51.4
-        version: 7.51.5(react@18.2.0)
-      zustand:
-        specifier: ^4.5.2
-        version: 4.5.2(@types/react@18.3.3)(react@18.2.0)
-    devDependencies:
-      '@next/eslint-plugin-next':
-        specifier: ^14.1.1
-        version: 14.2.3
-      '@repo/eslint-config':
-        specifier: workspace:*
-        version: link:../../packages/eslint-config
-      '@repo/tailwind-config':
-        specifier: workspace:*
-        version: link:../../packages/tailwind-config
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../../packages/typescript-config
-      '@types/eslint':
-        specifier: ^8.56.5
-        version: 8.56.10
-      '@types/node':
-        specifier: ^20.11.24
-        version: 20.14.0
-      '@types/react':
-        specifier: ^18.2.61
-        version: 18.3.3
-      '@types/react-dom':
-        specifier: ^18.2.19
-        version: 18.3.0
-      autoprefixer:
-        specifier: ^10.4.19
-        version: 10.4.19(postcss@8.4.38)
-      eslint:
-        specifier: ^8.57.0
-        version: 8.57.0
-      postcss:
-        specifier: ^8.4.38
-        version: 8.4.38
-      tailwindcss:
-        specifier: 3.3.2
-        version: 3.3.2
-      typescript:
-        specifier: ^5.3.3
-        version: 5.4.5
-
-  apps/webview:
-    dependencies:
-      '@repo/api':
-        specifier: workspace:*
-        version: link:../../packages/api
+        version: link:../../packages/const
       '@repo/query':
         specifier: workspace:*
         version: link:../../packages/query
@@ -426,6 +350,15 @@ importers:
       '@repo/supabase':
         specifier: workspace:*
         version: link:../supabase
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+
+  packages/const:
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
