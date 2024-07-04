@@ -8,6 +8,8 @@
   "exports": {
     "./styles": "./src/styles.css",
     "./icon": "./src/icon/index.tsx",
+    "./cn": "./src/utils/cn.ts",
+    "./cva": "./src/utils/cva.ts",
     "./Button": "./src/common/Button.tsx",
     "./Loading": "./src/common/Loading.tsx",
     "./Modal": "./src/common/Modal.tsx",
@@ -38,5 +40,10 @@
     "react-hook-form": "^7.51.4",
     "tailwindcss": "3.3.2",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.3.0"
   }
 }
