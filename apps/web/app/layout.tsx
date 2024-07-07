@@ -5,6 +5,7 @@ import { inter, notoSansKr } from '@repo/ui/fonts'
 export const metadata: Metadata = {
   title: 'Nogwon',
   description: 'Dear my green',
+  metadataBase: new URL('https://nogwon.com'),
 }
 
 export default function RootLayout({
