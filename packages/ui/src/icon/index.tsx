@@ -50,16 +50,41 @@ export const BackIcon = () => {
 export const CloseIcon = () => {
   return (
     <svg
-      width="25"
-      height="25"
-      viewBox="0 0 25 25"
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path
-        d="M7.22926 19.0398L6.52151 18.3321L12.1215 12.7321L6.52151 7.13207L7.22926 6.42432L12.8293 12.0243L18.4293 6.42432L19.137 7.13207L13.537 12.7321L19.137 18.3321L18.4293 19.0398L12.8293 13.4398L7.22926 19.0398Z"
-        fill="black"
-      />
+      <path d="M1 1L17 17M17 1L1 17" stroke="black" />
+    </svg>
+  )
+}
+
+export const OpenIcon = () => {
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M1 1H17M17 17V1M17 1L1 17" stroke="black" />
+    </svg>
+  )
+}
+
+export const HideIcon = () => {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M0 15H16" stroke="black" />
     </svg>
   )
 }

@@ -5,26 +5,52 @@ import { useFormContext } from 'react-hook-form'
 import { Loading } from '../common/Loading'
 import { toCompressImage } from '@repo/utils/image'
 import Image from 'next/image'
+import { Container } from './atoms/Container'
+import { Label } from './atoms/Label'
+import { ErrorMessage } from './atoms/ErrorMessage'
+import { VariantProps, cva } from 'class-variance-authority'
+import { cn } from '../utils/cn'
 
-const readFileAsDataURL = (file: File): Promise<string> => {
-  return new Promise<string>((resolve, reject) => {
-    const reader = new FileReader()
-    reader.onloadend = () => resolve(reader.result as string)
-    reader.onerror = reject
-    reader.readAsDataURL(file)
-  })
-}
+const ImageUploaderVariants = cva(
+  `relative flex shrink-0 items-center justify-center overflow-hidden border border-black cursor-pointer`,
+  {
+    variants: {
+      shape: {
+        square: 'rounded-none',
+        'rounded-full': 'rounded-full',
+      },
+      size: {
+        small: 'h-20 w-20',
+        medium: 'h-32 w-32',
+        large: 'h-40 w-40',
+      },
+    },
+    defaultVariants: {
+      shape: 'square',
+      size: 'small',
+    },
+  },
+)
 
-interface ImageUploaderProps {
+interface ImageUploaderProps
+  extends VariantProps<typeof ImageUploaderVariants> {
   field: string
+  label?: string
+  bucket: string
   required?: string
   disabled?: boolean
+  className?: string
 }
 
 export const ImageUploader = ({
   field,
+  label,
+  bucket,
   required,
   disabled,
+  shape,
+  size,
+  className,
 }: ImageUploaderProps) => {
   const { register, setValue, watch } = useFormContext()
   const value = watch(field) as File | string | null
@@ -65,51 +91,68 @@ export const ImageUploader = ({
   }, [value])
 
   return (
-    <div
-      className={`relative flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded border border-black ${!disabled ? 'cursor-pointer' : 'cursor-not-allowed'}`}
-      onClick={(event) => {
-        event.stopPropagation()
-        if (!disabled) {
-          inputRef.current?.click()
-        }
-      }}
-    >
-      {loading ? (
-        <Loading />
-      ) : preview ? (
-        <img
-          className="h-full w-full overflow-hidden object-cover"
-          src={preview}
-          alt={`Preview`}
-        />
-      ) : value && typeof value === 'string' ? (
-        <Image
-          className="h-full w-full overflow-hidden object-cover"
-          src={value}
-          alt={`Default Image`}
-          width={80}
-          height={80}
-        />
-      ) : (
-        <svg
-          width="82"
-          height="82"
-          viewBox="0 0 82 82"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M1 1L81 81M81 1L1 81" stroke="black" />
-        </svg>
-      )}
+    <Container>
+      {label && <Label optional={!required}>{label}</Label>}
+      <div
+        className={cn(
+          ImageUploaderVariants({ shape, size }),
+          disabled && 'cursor-not-allowed',
+          className,
+        )}
+        onClick={(event) => {
+          event.stopPropagation()
+          if (!disabled) {
+            inputRef.current?.click()
+          }
+        }}
+      >
+        {loading ? (
+          <Loading />
+        ) : preview ? (
+          <img
+            className="h-full w-full overflow-hidden object-cover"
+            src={preview}
+            alt={`Preview`}
+          />
+        ) : value && typeof value === 'string' ? (
+          <Image
+            className="h-full w-full overflow-hidden object-cover"
+            src={`${bucket}/${value}`}
+            alt={`Default Image`}
+            width={80}
+            height={80}
+          />
+        ) : (
+          <svg
+            width="160"
+            height="160"
+            viewBox="0 0 160 160"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M0 0L160 160M160 0L0 160" stroke="black" />
+          </svg>
+        )}
 
-      <input
-        type="file"
-        accept="image/*"
-        hidden
-        {...register(field, { required })}
-        ref={inputRef}
-        onChange={handleFileChange}
-      />
-    </div>
+        <input
+          type="file"
+          accept="image/*"
+          hidden
+          {...register(field, { required })}
+          ref={inputRef}
+          onChange={handleFileChange}
+        />
+      </div>
+      <ErrorMessage field={field} />
+    </Container>
   )
+}
+
+const readFileAsDataURL = (file: File): Promise<string> => {
+  return new Promise<string>((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onloadend = () => resolve(reader.result as string)
+    reader.onerror = reject
+    reader.readAsDataURL(file)
+  })
 }

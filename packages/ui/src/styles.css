@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+img {
+  -webkit-user-drag: none;
+}
+
 @layer base {
   html {
     @apply flex h-full flex-col;
@@ -12,7 +16,7 @@
   }
 
   main {
-    @apply flex w-full max-w-7xl flex-1 flex-col px-2 pb-10 pt-16 md:px-4 md:pt-20;
+    @apply relative flex w-full max-w-7xl flex-1 flex-col px-2 pb-10 pt-16 md:px-4 md:pt-20;
   }
 
   * {

@@ -6,19 +6,22 @@
     "**/*.css"
   ],
   "exports": {
+    "./fonts": "./src/fonts.ts",
     "./styles": "./src/styles.css",
     "./icon": "./src/icon/index.tsx",
     "./cn": "./src/utils/cn.ts",
     "./cva": "./src/utils/cva.ts",
+    "./Badge": "./src/common/Badge.tsx",
     "./Button": "./src/common/Button.tsx",
     "./Loading": "./src/common/Loading.tsx",
-    "./Modal": "./src/common/Modal.tsx",
+    "./SafeImage": "./src/common/SafeImage.tsx",
     "./Input": "./src/form/Input.tsx",
     "./Textarea": "./src/form/Textarea.tsx",
     "./InputWrapper": "./src/form/InputWrapper.tsx",
     "./Label": "./src/form/Label.tsx",
     "./ErrorMessage": "./src/form/ErrorMessage.tsx",
-    "./ImageUploader": "./src/form/ImageUploader.tsx"
+    "./ImageUploader": "./src/form/ImageUploader.tsx",
+    "./Modal": "./src/modal/Modal.tsx"
   },
   "peerDependencies": {
     "react": "18.2.0",
