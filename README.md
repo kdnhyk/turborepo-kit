@@ -15,7 +15,7 @@ Program - 90%
 
 App - 0% (Before the start)
 
-# Turborepo-kit
+# ~~Turborepo-kit~~
 
 <img width="2790" alt="turborepo-kit" src="https://github.com/kdnhyk/turborepo-kit/assets/64140936/87085222-86e3-46b6-90bd-28cf6a9f9cd8">
 
