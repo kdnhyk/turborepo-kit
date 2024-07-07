@@ -32,7 +32,7 @@ export const Loading = ({ variant, className }: LoadingProps) => {
             className="animate-dash"
             d="M2 0V16H18V32H2H34C34 32 34 41.7516 34 48M34 48C29.5817 48 26 51.5817 26 56C26 60.4183 29.5817 64 34 64C38.4183 64 42 60.4183 42 56C42 51.5817 38.4183 48 34 48Z"
             stroke="black"
-            stroke-width="4"
+            strokeWidth="4"
             strokeDasharray={100}
             pathLength={100}
           />

@@ -98,13 +98,13 @@ export function Player() {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 {playing ? (
-                  <path d="M2 0V24M18 0V24" stroke="white" stroke-width="4" />
+                  <path d="M2 0V24M18 0V24" stroke="white" strokeWidth="4" />
                 ) : (
                   <path
                     d="M2 20.3806V3.44636L16.1118 11.5103L2 20.3806Z"
                     fill="white"
                     stroke="white"
-                    stroke-width="4"
+                    strokeWidth="4"
                   />
                 )}
               </svg>
