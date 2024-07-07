@@ -1,5 +1,5 @@
 import { Reorder } from 'framer-motion'
-import { FieldArrayWithId, useFormContext } from 'react-hook-form'
+import { FieldArrayWithId } from 'react-hook-form'
 import { PostFormType } from './PostForm'
 import { CloseIcon } from '@repo/ui/icon'
 import { Badge } from '@repo/ui/Badge'
@@ -16,9 +16,6 @@ export function MusicList({
   onReorder: (value: number[]) => void
   remove: (index: number) => void
 }) {
-  const methods = useFormContext<PostFormType>()
-  console.log(fields)
-
   return (
     <Reorder.Group
       className="flex flex-col"
