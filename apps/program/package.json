@@ -11,6 +11,7 @@
   "dependencies": {
     "@repo/api": "workspace:*",
     "@repo/query": "workspace:*",
+    "@repo/shared": "workspace:*",
     "@repo/supabase": "workspace:*",
     "@repo/ui": "workspace:*",
     "@repo/utils": "workspace:*",
@@ -21,6 +22,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.51.4",
+    "react-player": "^2.16.0",
+    "sonner": "^1.5.0",
     "zustand": "^4.5.2"
   },
   "devDependencies": {
