@@ -63,7 +63,7 @@ export const useProfileMutation = () => {
       },
     ) => {
       // Not update profile image
-      if (!profile.profile_image || typeof profile.profile_image === 'string') {
+      if (typeof profile.profile_image === 'string') {
         return await updateProfile(profile.user_id, {
           ...profile,
           profile_image: undefined,
@@ -72,6 +72,13 @@ export const useProfileMutation = () => {
 
       // Update profile image
       await removeProfileImage(profile.user_id)
+
+      if (!profile.profile_image) {
+        return await updateProfile(profile.user_id, {
+          ...profile,
+          profile_image: null,
+        })
+      }
 
       const profile_image = await uploadProfileImage(
         profile.profile_image,
@@ -84,9 +91,12 @@ export const useProfileMutation = () => {
         profile_image,
       })
     },
-    onSuccess: (result) => {
+    onSuccess: (result, variable) => {
       queryClient.setQueryData(profileQueryKey.profile_self, () => result)
-      queryClient.invalidateQueries({ queryKey: postQueryKey.post_page })
+      queryClient.invalidateQueries({
+        queryKey: profileQueryKey.profile_by_user_id(variable.user_id),
+      })
+      queryClient.invalidateQueries({ queryKey: ['post'] })
     },
   })
 
