@@ -46,7 +46,7 @@ export const PlayerMusicList = ({
 
   return (
     <Reorder.Group
-      className="flex flex-col border-t bg-black"
+      className="flex w-[300px] flex-col border-t bg-black"
       as="ul"
       initial={{
         height: 21,
@@ -84,7 +84,7 @@ export const PlayerMusicList = ({
             }}
           >
             <motion.div
-              className="relative flex flex-1 gap-2 px-1"
+              className="relative flex max-w-[300px] flex-1 gap-2 whitespace-nowrap px-1"
               custom={i}
               variants={item}
               initial="hidden"
@@ -94,7 +94,7 @@ export const PlayerMusicList = ({
               <p className="text-sm">{el.artist ? `${el.artist} |` : '〇 |'}</p>
               <p className="text-sm">{el.title || '〇'}</p>
 
-              <div className="absolute inset-y-0 right-0 flex w-5 translate-x-full">
+              <div className="absolute inset-y-0 right-0 flex w-5 translate-x-full bg-black">
                 <div
                   className="flex w-5 cursor-pointer items-center justify-center p-1"
                   onClick={(event) => {
