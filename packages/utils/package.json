@@ -4,13 +4,15 @@
   "private": true,
   "exports": {
     "./date": "./src/date.ts",
-    "./image": "./src/image.ts"
+    "./image": "./src/image.ts",
+    "./supabase": "./src/supabase.ts"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*"
   },
   "dependencies": {
-    "browser-image-compression": "^2.0.2"
+    "browser-image-compression": "^2.0.2",
+    "date-fns": "^3.6.0"
   }
 }
