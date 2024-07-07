@@ -14,8 +14,9 @@ export function PostContent({
       <h4 className="p-2 text-lg font-bold sm:p-3 sm:text-xl">{title}</h4>
       <div className="flex flex-col sm:flex-row">
         {image && (
-          <div className="flex justify-center sm:justify-start">
+          <div className="flex justify-start">
             <SafeImage
+              className="aspect-square w-full border-dashed object-cover sm:w-[400px] sm:border-r"
               src={`post/${image}`}
               alt={title}
               width={400}
@@ -24,11 +25,7 @@ export function PostContent({
             />
           </div>
         )}
-        <p
-          className={`whitespace-pre p-2 sm:p-3 ${image && 'border-dashed sm:border-l'}`}
-        >
-          {content}
-        </p>
+        {content && <p className="whitespace-pre p-2 sm:p-3">{content}</p>}
       </div>
       <div className="flex-1">
         <PostMusicList music={music} />

@@ -13,7 +13,7 @@ export function Header() {
   const { push, back, prefetch } = useRouter()
 
   return (
-    <div className="fixed top-0 z-10 flex w-full shrink-0 basis-auto flex-col items-center bg-gradient-to-t from-white/0 to-white p-2 md:p-4">
+    <div className="fixed top-0 z-10 flex w-full shrink-0 basis-auto flex-col items-center bg-gradient-to-t from-white/0 to-white p-2 sm:p-4">
       <header className="flex w-full max-w-[calc(1280px-32px)] flex-1 shrink-0 basis-12 items-center justify-between border bg-white shadow-inner">
         <Link
           href="/"
