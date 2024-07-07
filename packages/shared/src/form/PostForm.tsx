@@ -17,13 +17,12 @@ import { MisicForm } from './MusicForm'
 import { MusicList } from './MusicList'
 import { useUser } from '@repo/query/user'
 import { isTauri } from '../utils/env'
+import { MusicType } from '../hooks/use-player'
 
 export type PostFormType = Omit<PostType, 'image' | 'music'> & {
   image: File | string | null
   music: PostMucisType[]
   url: string
-  musicTitle: string
-  artist: string
 }
 export function PostForm({ post }: { post?: PostType }) {
   const { data: user } = useUser()
@@ -33,22 +32,24 @@ export function PostForm({ post }: { post?: PostType }) {
     defaultValues: {
       ...post,
       url: '',
-      musicTitle: '',
-      artist: '',
     },
   })
   const { fields, append, swap, remove } = useFieldArray({
     control: methods.control,
     name: 'music',
   })
-  const [url, setUrl] = useState<string | null>(null)
+  const [editedMusic, setEditedMusic] = useState<MusicType | null>(null)
   const { insert, update } = usePostMutation()
   const { replace, refresh } = useRouter()
 
   console.log(fields)
 
+  const onAdd = () => {
+    setEditedMusic({ url: methods.getValues('url'), artist: '', title: '' })
+  }
+
   const onSubmit = async (data: PostFormType) => {
-    const { url, musicTitle, artist, ...rest } = data
+    const { url, ...rest } = data
 
     if (!post) {
       insert.mutate({ ...rest, user_id: user.id, image: rest.image as File })
@@ -112,20 +113,15 @@ export function PostForm({ post }: { post?: PostType }) {
             field="url"
             label="Music"
             placeholder="URL"
+            type="url"
             right={
-              <Button
-                onClick={() => {
-                  setUrl(methods.getValues('url'))
-                  methods.setValue('url', '')
-                }}
-                color="black"
-              >
+              <Button onClick={methods.handleSubmit(onAdd)} color="black">
                 Add
               </Button>
             }
           />
           <MusicList
-            setUrl={(url: string) => setUrl(url)}
+            setMusic={(music: MusicType) => setEditedMusic(music)}
             fields={fields}
             onReorder={(value: number[]) => {
               const prev = fields.map((el) => el.index)
@@ -151,43 +147,45 @@ export function PostForm({ post }: { post?: PostType }) {
         </Section>
 
         <Modal
-          visible={url ? true : false}
-          close={() => setUrl(null)}
+          visible={editedMusic ? true : false}
+          close={() => setEditedMusic(null)}
           variant="top"
         >
-          {url && (
+          {editedMusic && (
             <MisicForm
-              url={url}
-              append={() => {
+              music={editedMusic}
+              append={(url: string, artist: string, title: string) => {
                 if (fields.length >= 12) {
                   toast.error('You can add up to 12 music.')
                   return
                 }
+                const index = fields.length
+
                 if (fields.find((music) => music.url === url)) {
                   methods.setValue(
                     'music',
                     fields.map((music) =>
-                      music.url === url
+                      url === music.url
                         ? {
-                            ...music,
-                            artist: methods.getValues('artist'),
-                            title: methods.getValues('musicTitle'),
+                            url,
+                            title,
+                            artist,
+                            index,
                           }
                         : music,
                     ),
                   )
                 } else {
                   append({
-                    index: fields.length,
+                    index,
                     url,
-                    artist: methods.getValues('artist'),
-                    title: methods.getValues('musicTitle'),
+                    artist,
+                    title,
                   })
                 }
 
-                methods.setValue('musicTitle', '')
-                methods.setValue('artist', '')
-                setUrl(null)
+                methods.setValue('url', '')
+                setEditedMusic(null)
               }}
             />
           )}

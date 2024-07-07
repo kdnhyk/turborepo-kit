@@ -3,15 +3,16 @@ import { FieldArrayWithId, useFormContext } from 'react-hook-form'
 import { PostFormType } from './PostForm'
 import { CloseIcon } from '@repo/ui/icon'
 import { Badge } from '@repo/ui/Badge'
+import { MusicType } from '../hooks/use-player'
 
 export function MusicList({
   fields,
-  setUrl,
+  setMusic,
   onReorder,
   remove,
 }: {
   fields: FieldArrayWithId<PostFormType, 'music', 'id'>[]
-  setUrl: (url: string) => void
+  setMusic: (music: MusicType) => void
   onReorder: (value: number[]) => void
   remove: (index: number) => void
 }) {
@@ -32,9 +33,7 @@ export function MusicList({
             key={music.id}
             className="flex h-10 cursor-pointer items-center gap-2 hover:bg-zinc-100"
             onClick={() => {
-              setUrl(music.url)
-              methods.setValue('musicTitle', music.title)
-              methods.setValue('artist', music.artist)
+              setMusic(music)
             }}
             value={music.index}
             as="li"

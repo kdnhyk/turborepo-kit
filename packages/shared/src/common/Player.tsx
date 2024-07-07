@@ -82,6 +82,7 @@ export function Player() {
             onEnded={() => next()}
             onDuration={(e) => setDuratioin(e)}
             onProgress={(e) => setProgress(e.playedSeconds)}
+            onReady={(player) => console.log(player.getInternalPlayer())}
           />
           <div className="absolute inset-0 flex items-center justify-center transition hover:backdrop-blur">
             <div
