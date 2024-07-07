@@ -15,7 +15,7 @@ export default function PostPage({
 
   return (
     <>
-      <PostButtons id={Number(id)} />
+      <PostButtons post={post} />
       <PostContent post={post} />
     </>
   )

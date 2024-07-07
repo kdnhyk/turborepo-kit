@@ -1,14 +1,15 @@
 'use client'
 
+import { PostType } from '@repo/api/post'
 import { usePostMutation } from '@repo/query/post'
 import { useUser } from '@repo/query/user'
 import { Button } from '@repo/ui/Button'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-export function PostButtons({ id }: { id: number }) {
+export function PostButtons({ post }: { post: PostType }) {
   const { data: user } = useUser()
-  if (!user) return null
+  if (!user || user.id !== post.user_id) return null
 
   const { remove } = usePostMutation()
   const { push } = useRouter()
@@ -20,12 +21,12 @@ export function PostButtons({ id }: { id: number }) {
       return
     }
 
-    remove.mutate({ id, user_id: user.id })
+    remove.mutate({ id: post.id, user_id: user.id })
     push('/')
   }
 
   const handleEdit = () => {
-    push(`/post/edit/${id}`)
+    push(`/post/edit/${post.id}`)
   }
 
   return (

@@ -23,7 +23,7 @@ export default async function PostPage({
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <PostButtons id={Number(id)} />
+      <PostButtons post={post} />
       <PostContent post={post} />
     </HydrationBoundary>
   )
