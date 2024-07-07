@@ -1,15 +1,16 @@
 import supabase from '@repo/supabase'
 
-const BUCKET = 'profile'
+const BUCKET = 'post'
 
-export const uploadProfileImage = async (
+export const uploadPostImage = async (
   file: File,
   user_id: string,
+  post_id: number,
   name: string,
 ) => {
   const { data, error } = await supabase.storage
     .from(BUCKET)
-    .upload(`${user_id}/${name}.webp`, file, {
+    .upload(`${user_id}/${post_id}/${name}.webp`, file, {
       upsert: true,
       contentType: 'image/webp',
     })
@@ -21,13 +22,15 @@ export const uploadProfileImage = async (
   return data?.path
 }
 
-export const removeProfileImage = async (user_id: string) => {
-  const { data: list } = await supabase.storage.from(BUCKET).list(`${user_id}`)
-  const filesToRemove = list?.map((x) => `${user_id}/${x.name}`)
+export const removePostImage = async (user_id: string, post_id: number) => {
+  const { data: list } = await supabase.storage
+    .from(BUCKET)
+    .list(`${user_id}/${post_id}`)
+  const filesToRemove = list?.map((x) => `${user_id}/${post_id}/${x.name}`)
 
   if (filesToRemove && filesToRemove.length > 0) {
     const { data, error } = await supabase.storage
-      .from('profile')
+      .from('post')
       .remove(filesToRemove)
 
     if (error) {
