@@ -61,7 +61,7 @@ export function MisicForm({
             onReady={(player) => {
               setOk(true)
               // Youtube, Soundcloud
-              const internalPlayer = player?.getInternalPlayer('dash')
+              const internalPlayer = player?.getInternalPlayer()
               console.log(internalPlayer)
               const title =
                 typeof internalPlayer?.videoTitle === 'string'
