@@ -5,13 +5,14 @@ import { useProfileSelf, useUser } from '@repo/query/user'
 import { Button } from '@repo/ui/Button'
 import { Section } from '../layout/Section'
 import { ProfileForm } from '../form/ProfileForm'
+import { redirect } from 'next/navigation'
 
 export function UserProfile() {
   const { data: user } = useUser()
   const { data: profile } = useProfileSelf()
   const { logout } = useAuth()
 
-  if (!user || !profile) return null
+  if (!user || !profile) redirect('/')
 
   return (
     <Section>
