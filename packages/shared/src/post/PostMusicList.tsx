@@ -7,7 +7,7 @@ import { Badge } from '@repo/ui/Badge'
 import { toast } from 'sonner'
 
 export function PostMusicList({ music }: { music: PostMucisType[] }) {
-  const { push } = usePlayer()
+  const { list, push } = usePlayer()
 
   return (
     <>
@@ -19,8 +19,12 @@ export function PostMusicList({ music }: { music: PostMucisType[] }) {
             onClick={() => {
               const { index, ...rest } = el
 
-              push(rest)
-              toast.info(`Added: ${rest.artist} - ${rest.title}`)
+              if (!list?.some((el) => el.url === rest.url)) {
+                push(rest)
+                toast.info(`Added: ${rest.artist} - ${rest.title}`)
+              } else {
+                toast.info(`Already added: ${rest.artist} - ${rest.title}`)
+              }
             }}
           >
             <Badge>{el.artist || '〇'}</Badge>
