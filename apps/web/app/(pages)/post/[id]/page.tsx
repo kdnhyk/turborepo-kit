@@ -8,8 +8,6 @@ import { getQueryClient } from '@repo/query/get-query-client'
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 import { notFound } from 'next/navigation'
 
-export const revalidate = 0
-
 export default async function PostPage({
   params: { id },
 }: {

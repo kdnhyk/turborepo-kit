@@ -16,6 +16,7 @@ import { Modal } from '@repo/ui/Modal'
 import { MisicForm } from './MusicForm'
 import { MusicList } from './MusicList'
 import { useUser } from '@repo/query/user'
+import { isTauri } from '../utils/env'
 
 export type PostFormType = Omit<PostType, 'image' | 'music'> & {
   image: File | string | null
@@ -42,7 +43,7 @@ export function PostForm({ post }: { post?: PostType }) {
   })
   const [url, setUrl] = useState<string | null>(null)
   const { insert, update } = usePostMutation()
-  const { push } = useRouter()
+  const { replace, refresh } = useRouter()
 
   console.log(fields)
 
@@ -64,7 +65,21 @@ export function PostForm({ post }: { post?: PostType }) {
   useEffect(() => {
     if (insert.isSuccess || update.isSuccess) {
       toast.success('Post saved')
-      push('/')
+
+      if (post && !isTauri) {
+        const paths = [`/post/${post.id}`, `/post/edit/${post.id}`]
+        paths.forEach((path) =>
+          fetch(`/api/revalidatePath?path=${path}`, { method: 'GET' })
+            .then((res) => res.json())
+            .then(console.log),
+        )
+      }
+
+      const newPostId = insert.isSuccess ? insert.data?.id : update.data?.id
+      replace(`/post/${newPostId}`)
+      if (!isTauri) {
+        refresh()
+      }
     }
   }, [insert.isSuccess, update.isSuccess])
 
