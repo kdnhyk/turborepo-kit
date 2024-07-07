@@ -13,10 +13,16 @@ import { getUserId } from '@repo/api/auth'
 import { removeProfileImage, uploadProfileImage } from '@repo/api/storage'
 import { nanoid } from 'nanoid/non-secure'
 import { User } from '@supabase/supabase-js'
+import { postQueryKey } from '../post'
+
+export const profileQueryKey = {
+  profile_by_user_id: (user_id: string) => ['profile', user_id],
+  profile_self: ['profile_self'],
+}
 
 export const useProfileSelf = () =>
   useSuspenseQuery({
-    queryKey: ['profile_self'],
+    queryKey: profileQueryKey.profile_self,
     queryFn: async () => {
       const user_id = await getUserId()
 
@@ -26,9 +32,9 @@ export const useProfileSelf = () =>
     },
   })
 
-export const useProfile = (user_id: string) =>
+export const useProfileByUserId = (user_id: string) =>
   useSuspenseQuery({
-    queryKey: ['profile', user_id],
+    queryKey: profileQueryKey.profile_by_user_id(user_id),
     queryFn: () => getProfileByUserId(user_id),
   })
 
@@ -40,36 +46,34 @@ export const useProfileMutation = () => {
       insertProfile({
         user_id: user.id,
         profile_image: null,
-        nickname: user.user_metadata.name,
+        nickname:
+          typeof user.user_metadata.name === 'string'
+            ? user.user_metadata.name
+            : '',
       }),
     onSuccess: (result) => {
-      queryClient.setQueryData(['profile_self'], () => result)
+      queryClient.setQueryData(profileQueryKey.profile_self, () => result)
     },
   })
 
   const update = useMutation({
     mutationFn: async (
-      profile: Omit<ProfileType, 'profile_image'> & {
+      profile: Omit<ProfileType, 'profile_image' | 'created_at'> & {
         profile_image: File | string | null
       },
     ) => {
-      if (typeof profile.profile_image === 'string') {
+      // Not update profile image
+      if (!profile.profile_image || typeof profile.profile_image === 'string') {
         return await updateProfile(profile.user_id, {
           ...profile,
           profile_image: undefined,
         })
       }
 
+      // Update profile image
       await removeProfileImage(profile.user_id)
 
-      if (profile.profile_image === null) {
-        return await updateProfile(profile.user_id, {
-          ...profile,
-          profile_image: null,
-        })
-      }
-
-      const path = await uploadProfileImage(
+      const profile_image = await uploadProfileImage(
         profile.profile_image,
         profile.user_id,
         nanoid(),
@@ -77,15 +81,14 @@ export const useProfileMutation = () => {
 
       return await updateProfile(profile.user_id, {
         ...profile,
-        profile_image: path,
+        profile_image,
       })
     },
     onSuccess: (result) => {
-      queryClient.setQueryData(['profile_self'], () => result)
-      queryClient.invalidateQueries({ queryKey: ['post_page'] })
+      queryClient.setQueryData(profileQueryKey.profile_self, () => result)
+      queryClient.invalidateQueries({ queryKey: postQueryKey.post_page })
     },
   })
 
   return { post, update }
 }
-

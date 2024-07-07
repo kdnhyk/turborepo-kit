@@ -1,5 +1,4 @@
 import {
-  InfiniteData,
   useMutation,
   useQueryClient,
   useSuspenseInfiniteQuery,
@@ -13,10 +12,17 @@ import {
   removePost,
   updatePost,
 } from '@repo/api/post'
+import { removePostImage, uploadPostImage } from '@repo/api/storage'
+import { nanoid } from 'nanoid/non-secure'
+
+export const postQueryKey = {
+  post: (id: number) => ['post', id],
+  post_page: ['post_page'],
+}
 
 export const usePostPage = () =>
   useSuspenseInfiniteQuery({
-    queryKey: ['post_page'],
+    queryKey: postQueryKey.post_page,
     queryFn: async ({ pageParam }) => {
       let isLast = false
       const data = await getPostPage(pageParam)
@@ -25,7 +31,7 @@ export const usePostPage = () =>
         isLast = true
       }
 
-      return { result: data, currentPage: pageParam, isLast }
+      return { result: data || [], currentPage: pageParam, isLast }
     },
     initialPageParam: 0,
     getNextPageParam: (lastPage, _pages) => {
@@ -33,57 +39,88 @@ export const usePostPage = () =>
 
       return undefined
     },
+    select: (data) => data.pages.flatMap((page) => page.result),
   })
 
-export const usePost = (id: number) =>
+export const usePostById = (id: number) =>
   useSuspenseQuery({
-    queryKey: ['post', id],
+    queryKey: postQueryKey.post(id),
     queryFn: () => getPostById(id),
-    initialData: () => {
-      const queryClient = useQueryClient()
-
-      const prev = queryClient.getQueryData(['post_page']) as
-        | InfiniteData<{
-            result: PostType[]
-            currentPage: number
-            isLast: boolean
-          }>
-        | undefined
-
-      const post = prev?.pages
-        .flatMap((page) => page.result)
-        .find((post) => post.id === id)
-
-      return post
-    },
   })
 
 export const usePostMutation = () => {
   const queryClient = useQueryClient()
 
-  const post = useMutation({
-    mutationFn: insertPost,
+  const insert = useMutation({
+    mutationFn: async (
+      post: Omit<PostType, 'created_at' | 'id' | 'image'> & {
+        image?: File | null
+      },
+    ) => {
+      const { image: img, ...data } = post
+      // Not update post image
+      const { id } = await insertPost({ ...data, image: null })
+
+      let image: string | undefined = undefined
+      if (img) {
+        image = await uploadPostImage(img, post.user_id, id, nanoid())
+      }
+
+      return await updatePost({
+        id,
+        image,
+      })
+    },
     onSuccess: (result) => {
-      queryClient.invalidateQueries({ queryKey: ['post_page'] })
-      queryClient.setQueryData(['post', result.id], () => result)
+      queryClient.invalidateQueries({ queryKey: postQueryKey.post_page })
+      queryClient.setQueryData(postQueryKey.post(result.id), () => result)
     },
   })
 
   const update = useMutation({
-    mutationFn: updatePost,
+    mutationFn: async (
+      post: { id: number; user_id: string } & Partial<
+        Omit<PostType, 'image'> & { image?: File | string | null }
+      >,
+    ) => {
+      // Not update post image
+      if (!post.image || typeof post.image === 'string') {
+        return await updatePost({ ...post, image: undefined })
+      }
+
+      // Update post image
+      await removePostImage(post.user_id, post.id)
+
+      console.log(post)
+
+      const image = await uploadPostImage(
+        post.image,
+        post.user_id,
+        post.id,
+        nanoid(),
+      )
+
+      return await updatePost({
+        ...post,
+        image,
+      })
+    },
     onSuccess: (result) => {
-      queryClient.invalidateQueries({ queryKey: ['post_page'] })
-      queryClient.setQueryData(['post', result.id], () => result)
+      queryClient.invalidateQueries({ queryKey: postQueryKey.post_page })
+      queryClient.setQueryData(postQueryKey.post(result.id), () => result)
     },
   })
 
   const remove = useMutation({
-    mutationFn: removePost,
+    mutationFn: async (post: Pick<PostType, 'id' | 'user_id'>) => {
+      await removePostImage(post.user_id, post.id)
+      await removePost(post.id)
+    },
     onSuccess: (_result, variable) => {
-      queryClient.invalidateQueries({ queryKey: ['post_page'] })
-      queryClient.setQueryData(['post', variable], () => null)
+      queryClient.invalidateQueries({ queryKey: postQueryKey.post_page })
+      queryClient.setQueryData(postQueryKey.post(variable.id), () => null)
     },
   })
 
-  return { post, update, remove }
+  return { insert, update, remove }
 }
