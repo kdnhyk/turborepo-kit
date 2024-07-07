@@ -3,8 +3,7 @@
 import { FormProvider, useForm } from 'react-hook-form'
 import { useProfileSelf, useProfileMutation } from '@repo/query/user'
 import { Button } from '@repo/ui/Button'
-import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { ImageUploader } from '@repo/ui/ImageUploader'
 import { Input } from '@repo/ui/Input'
 import { Section } from '../layout/Section'
@@ -24,8 +23,6 @@ export function ProfileForm() {
   const methods = useForm<FormType>({
     defaultValues: profile,
   })
-  const [isEdit, setIsEdit] = useState(false)
-  const { back } = useRouter()
 
   const onSubmit = async (data: FormType) => {
     console.log(data)
@@ -36,7 +33,10 @@ export function ProfileForm() {
   useEffect(() => {
     if (update.isSuccess) {
       toast.success('Profile updated')
-      back()
+      methods.reset({
+        profile_image: update.data?.profile_image,
+        nickname: update.data?.nickname,
+      })
     }
   }, [update.isSuccess])
 
@@ -50,60 +50,35 @@ export function ProfileForm() {
               bucket="profile"
               label="Profile Image"
               shape="rounded-full"
-              disabled={!isEdit}
+              disabled={update.isPending}
             />
-            {isEdit && (
-              <Button
-                onClick={() =>
-                  methods.setValue('profile_image', null, {
-                    shouldValidate: true,
-                    shouldDirty: true,
-                  })
-                }
-                size="small"
-              >
-                Reset
-              </Button>
-            )}
+            <Button
+              onClick={() =>
+                methods.setValue('profile_image', null, {
+                  shouldValidate: true,
+                  shouldDirty: true,
+                })
+              }
+              size="small"
+            >
+              Reset
+            </Button>
           </div>
           <Input
             field="nickname"
             label="Nickname"
             placeholder="Nickname"
             required="Please enter your nickname"
-            disabled={!isEdit}
           />
 
           <div className="flex justify-end gap-2 sm:gap-4">
-            {!isEdit ? (
-              <Button
-                onClick={() => setIsEdit(true)}
-                color="black"
-                disable={update.isPending}
-              >
-                Edit
-              </Button>
-            ) : (
-              <>
-                <Button
-                  onClick={() => {
-                    setIsEdit(false)
-                    methods.reset()
-                  }}
-                  color="white"
-                  disable={update.isPending}
-                >
-                  Cancel
-                </Button>
-                <Button
-                  onClick={methods.handleSubmit(onSubmit)}
-                  color="black"
-                  disable={update.isPending}
-                >
-                  Save
-                </Button>
-              </>
-            )}
+            <Button
+              onClick={methods.handleSubmit(onSubmit)}
+              color={methods.formState.isDirty ? 'black' : 'white'}
+              disable={update.isPending || !methods.formState.isDirty}
+            >
+              Save
+            </Button>
           </div>
         </FormProvider>
       </Section>
