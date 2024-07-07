@@ -67,7 +67,7 @@ export function PostForm({ post }: { post?: PostType }) {
       toast.success('Post saved')
 
       if (post && !isTauri) {
-        const paths = [`/post/${post.id}`, `/post/edit/${post.id}`]
+        const paths = ['/', `/post/${post.id}`, `/post/edit/${post.id}`]
         paths.forEach((path) =>
           fetch(`/api/revalidatePath?path=${path}`, { method: 'GET' })
             .then((res) => res.json())
