@@ -60,6 +60,7 @@ export function MisicForm({
             }}
             onReady={(player) => {
               setOk(true)
+              if (music.title) return
               // Youtube, Soundcloud
               const internalPlayer = player?.getInternalPlayer()
               console.log(internalPlayer)
