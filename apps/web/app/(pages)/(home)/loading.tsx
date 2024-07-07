@@ -1,9 +1,11 @@
-import { Loading } from '@repo/ui/Loading'
+import { HomeButtonsSkeleton } from '@repo/shared/HomeButtonsSkeleton'
+import { PostPageListSkeleton } from '@repo/shared/PostPageListSkeleton'
 
 export default function HomeLoading() {
   return (
     <>
-      <Loading />
+      <HomeButtonsSkeleton />
+      <PostPageListSkeleton />
     </>
   )
 }

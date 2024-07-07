@@ -1,12 +1,6 @@
-import PostForm from '@/(components)/form/PostForm'
-import { Metadata } from 'next'
+import { PostForm } from '@repo/shared/PostForm'
 
-export const metadata: Metadata = {
-  title: '글 작성',
-  description: 'description',
-}
-
-export default async function NewPage() {
+export default function NewPage() {
   return (
     <>
       <PostForm />
