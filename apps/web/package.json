@@ -9,8 +9,11 @@
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
+    "@plaiceholder/next": "^3.0.0",
     "@repo/api": "workspace:*",
+    "@repo/const": "workspace:*",
     "@repo/query": "workspace:*",
+    "@repo/shared": "workspace:*",
     "@repo/supabase": "workspace:*",
     "@repo/ui": "workspace:*",
     "@repo/utils": "workspace:*",
@@ -18,9 +21,13 @@
     "@supabase/supabase-js": "2.43.5",
     "@tanstack/react-query": "5.48.0",
     "next": "^14.2.3",
+    "plaiceholder": "^3.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.51.4",
+    "react-player": "^2.16.0",
+    "sharp": "0.33.4",
+    "sonner": "^1.5.0",
     "zustand": "^4.5.2"
   },
   "devDependencies": {

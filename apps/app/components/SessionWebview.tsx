@@ -1,18 +1,34 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import WebView from 'react-native-webview'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, BackHandler } from 'react-native'
 import Constants from 'expo-constants'
 import { Session } from '@supabase/supabase-js'
 import { useAuth } from '@repo/query/auth'
+import { Message } from '@repo/const/message'
 
 const ORIGIN = 'https://turborepo-kit.01.works/'
 
-export interface MessageType {
-  type: string
-  value: any
-}
+const INJECTED_CODE = `
+  (function() {
+    function wrap(fn) {
+      return function wrapper() {
+        var res = fn.apply(this, arguments);
+        window.ReactNativeWebView.postMessage(JSON.stringify({ type: 'NAVIGATION_STATE', value: null }));
+        return res;
+      }
+    }
 
-export default function Webview({
+    history.pushState = wrap(history.pushState);
+    history.replaceState = wrap(history.replaceState);
+    window.addEventListener('popstate', function() {
+      window.ReactNativeWebView.postMessage(JSON.stringify({ type: 'NAVIGATION_STATE', value: null }));
+    });
+  })();
+
+  true;
+`
+
+export default function SessionWebview({
   path,
   session,
 }: {
@@ -22,24 +38,25 @@ export default function Webview({
   const webviewRef = useRef<WebView | null>(null)
   const { logout } = useAuth()
 
+  const [isCanGoBack, setIsCanGoBack] = useState(false)
+  const onPressHardwareBackButton = () => {
+    if (webviewRef.current && isCanGoBack) {
+      webviewRef.current.goBack()
+      return true
+    } else {
+      return false
+    }
+  }
+
   useEffect(() => {
-    console.log(session ? 'session' : 'no session')
-
-    console.log(session?.user.id)
-    console.log(webviewRef.current ? 'good' : 'bad')
-
-    if (session) {
-      const { access_token, refresh_token } = session
-
-      webviewRef.current?.postMessage(
-        JSON.stringify({
-          type: 'INITIAL_SESSION',
-          value: { access_token, refresh_token },
-        } as MessageType),
+    BackHandler.addEventListener('hardwareBackPress', onPressHardwareBackButton)
+    return () => {
+      BackHandler.removeEventListener(
+        'hardwareBackPress',
+        onPressHardwareBackButton,
       )
     }
-  }, [session])
-  //
+  }, [isCanGoBack])
 
   return (
     <WebView
@@ -47,14 +64,36 @@ export default function Webview({
       style={styles.container}
       bounces={false}
       source={{
-        uri: `${ORIGIN}/${path}`,
+        uri: `${ORIGIN}${path}`,
         headers: { 'Accept-Language': 'ko' },
       }}
       allowsBackForwardNavigationGestures={true}
-      onMessage={(event) => {
-        const data = JSON.parse(event.nativeEvent.data) as MessageType
+      onMessage={({ nativeEvent: state }) => {
+        console.log(state.data)
+
+        const data = JSON.parse(state.data) as Message
         if (data.type === 'SIGNED_OUT') {
           logout()
+        }
+
+        if (data.type === 'NAVIGATION_STATE') {
+          // Navigation state updated, can check state.canGoBack, etc.
+          setIsCanGoBack(state.canGoBack)
+        }
+      }}
+      onLoadStart={() => webviewRef.current?.injectJavaScript(INJECTED_CODE)}
+      onLoadEnd={() => {
+        if (session) {
+          const { access_token, refresh_token } = session
+
+          webviewRef.current?.postMessage(
+            JSON.stringify({
+              type: 'INITIAL_SESSION',
+              value: { access_token, refresh_token },
+            } as Message),
+          )
+
+          return
         }
       }}
     />

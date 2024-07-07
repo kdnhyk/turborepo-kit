@@ -1,0 +1,13 @@
+{
+  "name": "@repo/const",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "./message": "./src/message.ts"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*"
+  }
+}

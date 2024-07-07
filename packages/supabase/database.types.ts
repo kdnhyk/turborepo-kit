@@ -40,22 +40,28 @@ export type Database = {
           content: string | null
           created_at: string
           id: number
+          image: string | null
+          music: Json[]
           title: string
-          user_id: string | null
+          user_id: string
         }
         Insert: {
           content?: string | null
           created_at?: string
           id?: number
+          image?: string | null
+          music?: Json[]
           title: string
-          user_id?: string | null
+          user_id?: string
         }
         Update: {
           content?: string | null
           created_at?: string
           id?: number
+          image?: string | null
+          music?: Json[]
           title?: string
-          user_id?: string | null
+          user_id?: string
         }
         Relationships: [
           {
@@ -64,6 +70,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "post_user_id_fkey1"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profile"
+            referencedColumns: ["user_id"]
           },
         ]
       }
@@ -386,6 +399,10 @@ export type Database = {
           metadata: Json
           updated_at: string
         }[]
+      }
+      operation: {
+        Args: Record<PropertyKey, never>
+        Returns: string
       }
       search: {
         Args: {

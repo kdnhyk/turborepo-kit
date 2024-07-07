@@ -16,7 +16,9 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "postcss.config.js"
+    "postcss.config.js",
+    "tailwind.config.mjs",
+    "tailwind.config.mjs"
   ],
   "exclude": ["node_modules", "src-tauri"]
 }

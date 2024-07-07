@@ -1,13 +1,11 @@
-import PostMenu from '@/(components)/common/PostMenu'
-import PostPageList from '@/(components)/list/PostPageList'
+import { HomeButtons } from '@repo/shared/HomeButtons'
+import { PostPageList } from '@repo/shared/PostPageList'
 
 export default function HomePage() {
   return (
     <>
-      <PostMenu />
-      <ul className="flex flex-1 flex-col divide-y">
-        <PostPageList />
-      </ul>
+      <HomeButtons />
+      <PostPageList />
     </>
   )
 }

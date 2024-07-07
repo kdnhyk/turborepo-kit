@@ -1,13 +1,20 @@
-import Header from '@/(components)/common/Header'
-import AuthProvider from '@/providers/auth-provider'
-import { createClient } from '@/utils/supabase/server-component'
-import { PROFILE_SELECTOR } from '@repo/api/user'
+import AuthProvider from '@/_providers/auth-provider'
 import { QueryProvider } from '@repo/query/provider'
+import { getQueryClient } from '@repo/query/get-query-client'
+import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
 import {
-  HydrationBoundary,
-  QueryClient,
-  dehydrate,
-} from '@tanstack/react-query'
+  getUserId,
+  prefetchProfileSelf,
+  prefetchUser,
+} from '@/utils/supabase/dynamic-prefetch'
+import { Header } from '@repo/shared/Header'
+import dynamic from 'next/dynamic'
+
+const Toaster = dynamic(() => import('sonner').then((mod) => mod.Toaster))
+const NavigationEvents = dynamic(() => import('@/_components/NavigationEvents'))
+const Player = dynamic(() =>
+  import('@repo/shared/Player').then((mod) => mod.Player),
+)
 
 export default async function Layout({
   children,
@@ -16,36 +23,29 @@ export default async function Layout({
   children: React.ReactNode
   modal: React.ReactNode
 }) {
-  const queryClient = new QueryClient()
-  const supabase = createClient()
-
-  const userId = (await supabase.auth.getSession()).data.session?.user.id
-
-  if (userId) {
-    await queryClient.prefetchQuery({
-      queryKey: ['profile_self'],
-      queryFn: async () => {
-        const { data, error } = await supabase
-          .from('profile')
-          .select(PROFILE_SELECTOR)
-          .eq('user_id', userId)
-          .single()
-
-        if (error) {
-          throw new Error('프로필 정보를 가져오는데 실패했습니다')
-        }
-
-        return data
-      },
-    })
+  const queryClient = getQueryClient()
+  const user_id = await getUserId()
+  if (user_id) {
+    await prefetchUser(queryClient)
+    await prefetchProfileSelf(queryClient, user_id)
   }
 
   return (
     <QueryProvider>
       <HydrationBoundary state={dehydrate(queryClient)}>
+        <Player />
         <Header />
         <AuthProvider>
           <main>{children}</main>
+          <Toaster
+            toastOptions={{
+              style: {
+                border: '1px solid #000',
+                borderRadius: '0px',
+              },
+            }}
+          />
+          <NavigationEvents />
         </AuthProvider>
         {modal}
       </HydrationBoundary>

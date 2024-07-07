@@ -1,17 +1,40 @@
-export const Loading = () => {
+import { VariantProps, cva } from 'class-variance-authority'
+import { ClassName, cn } from '../utils/cn'
+
+const LoadingVariants = cva(``, {
+  variants: {
+    variant: {
+      default: 'flex flex-1 items-center justify-center',
+      fixed: 'fixed inset-0 flex items-center justify-center bg-white/30',
+    },
+  },
+  defaultVariants: {
+    variant: 'default',
+  },
+})
+
+interface LoadingProps extends VariantProps<typeof LoadingVariants> {
+  className?: ClassName
+}
+
+export const Loading = ({ variant, className }: LoadingProps) => {
   return (
-    <div className="flex flex-1 items-center justify-center bg-white/30">
-      <div className="animate-spin">
+    <div className={cn(LoadingVariants({ variant }), className)}>
+      <div className="w-fit">
         <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
+          width="44"
+          height="66"
+          viewBox="0 0 44 66"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M11.9939 21C10.7595 21 9.59578 20.7642 8.50273 20.2925C7.40966 19.8209 6.4551 19.177 5.63905 18.3609C4.823 17.5449 4.17914 16.5903 3.70747 15.4973C3.23582 14.4042 3 13.2405 3 12.0061C3 10.7566 3.23686 9.58618 3.71058 8.4948C4.18429 7.4034 4.82724 6.45161 5.63943 5.63943C6.45161 4.82724 7.40651 4.18429 8.50413 3.71057C9.60176 3.23686 10.767 3 12 3C12.1417 3 12.2604 3.04798 12.3562 3.14395C12.4521 3.2399 12.5 3.35881 12.5 3.50067C12.5 3.64252 12.4521 3.76121 12.3562 3.85672C12.2604 3.95224 12.1417 4 12 4C9.78333 4 7.89583 4.77917 6.3375 6.3375C4.77917 7.89583 4 9.78333 4 12C4 14.2167 4.77917 16.1042 6.3375 17.6625C7.89583 19.2208 9.78333 20 12 20C14.2167 20 16.1042 19.2208 17.6625 17.6625C19.2208 16.1042 20 14.2167 20 12C20 11.8577 20.048 11.7388 20.1439 11.6433C20.2399 11.5478 20.3588 11.5 20.5007 11.5C20.6425 11.5 20.7612 11.5479 20.8567 11.6438C20.9522 11.7396 21 11.8583 21 12C21 13.233 20.7631 14.3982 20.2894 15.4959C19.8157 16.5935 19.1728 17.5484 18.3606 18.3606C17.5484 19.1728 16.5966 19.8157 15.5052 20.2894C14.4138 20.7631 13.2434 21 11.9939 21Z"
-            fill="#1C1B1F"
+            className="animate-dash"
+            d="M2 0V16H18V32H2H34C34 32 34 41.7516 34 48M34 48C29.5817 48 26 51.5817 26 56C26 60.4183 29.5817 64 34 64C38.4183 64 42 60.4183 42 56C42 51.5817 38.4183 48 34 48Z"
+            stroke="black"
+            strokeWidth="4"
+            strokeDasharray={100}
+            pathLength={100}
           />
         </svg>
       </div>

@@ -1,12 +1,14 @@
 'use client'
 
-import dynamic from 'next/dynamic'
-
-const Login = dynamic(() => import('@/(components)/common/Login'), {
-  ssr: false,
-})
+import Login from '@/_components/Login'
+import { useUser } from '@repo/query/user'
+import { redirect } from 'next/navigation'
 
 export default function LoginPage() {
+  const user = useUser()
+
+  if (user) redirect('/')
+
   return (
     <>
       <Login />

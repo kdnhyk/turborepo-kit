@@ -4,7 +4,6 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       staleTime: Infinity,
-      gcTime: Infinity,
       refetchOnWindowFocus: false,
     },
   },

@@ -1,0 +1,48 @@
+{
+  "name": "@repo/shared",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "./Header": "./src/common/Header.tsx",
+    "./Player": "./src/common/Player.tsx",
+    "./PostForm": "./src/form/PostForm.tsx",
+    "./ProfileForm": "./src/form/ProfileForm.tsx",
+    "./HomeButtonsSkeleton": "./src/home/HomeButtonsSkeleton.tsx",
+    "./HomeButtons": "./src/home/HomeButtons.tsx",
+    "./PostPageListSkeleton": "./src/home/PostPageListSkeleton.tsx",
+    "./PostPageList": "./src/home/PostPageList.tsx",
+    "./PostList": "./src/list/PostList.tsx",
+    "./Profile": "./src/list/Profile.tsx",
+    "./PostButtons": "./src/post/PostButtons.tsx",
+    "./PostContent": "./src/post/PostContent.tsx",
+    "./PostContentSkeleton": "./src/post/PostContentSkeleton.tsx",
+    "./UserProfile": "./src/profile/UserProfile.tsx"
+  },
+  "peerDependencies": {
+    "framer-motion": "^11.2.0",
+    "next": "^14.2.3",
+    "react": "18.2.0",
+    "sonner": "^1.5.0"
+  },
+  "devDependencies": {
+    "@repo/api": "workspace:*",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/query": "workspace:*",
+    "@repo/tailwind-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@repo/ui": "workspace:*",
+    "@repo/utils": "workspace:*",
+    "@types/eslint": "^8.56.5",
+    "@types/node": "^20.11.24",
+    "@types/react": "^18.2.61",
+    "@types/react-dom": "^18.2.19",
+    "eslint": "^8.57.0",
+    "framer-motion": "^11.2.0",
+    "next": "^14.2.3",
+    "react": "18.2.0",
+    "react-hook-form": "^7.51.4",
+    "sonner": "^1.5.0",
+    "tailwindcss": "3.3.2",
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,17 +1,19 @@
 import supabase from '@repo/supabase'
 import { QueryData } from '@supabase/supabase-js'
 
-export const PROFILE_SELECTOR = `user_id, profile_image, nickname`
+const TABLE = 'profile'
+export const PROFILE_SELECTOR = `*`
 
 const profileQuery = supabase.from('profile').select(PROFILE_SELECTOR).single()
 export type ProfileType = QueryData<typeof profileQuery>
 
 export const getProfileByUserId = async (user_id: string) => {
   const { data, error } = await supabase
-    .from('profile')
+    .from(TABLE)
     .select(PROFILE_SELECTOR)
     .eq('user_id', user_id)
-    .single()
+    .limit(1)
+    .single<ProfileType | null>()
 
   if (error) {
     console.log(error)
@@ -20,12 +22,14 @@ export const getProfileByUserId = async (user_id: string) => {
   return data
 }
 
-export const insertProfile = async (profile: ProfileType) => {
+export const insertProfile = async (
+  profile: Omit<ProfileType, 'created_at'>,
+) => {
   const { data, error } = await supabase
-    .from('profile')
+    .from(TABLE)
     .insert(profile)
     .select(PROFILE_SELECTOR)
-    .maybeSingle()
+    .single<ProfileType>()
 
   if (error) {
     console.log(error)
@@ -39,11 +43,11 @@ export const updateProfile = async (
   profile: Partial<ProfileType>,
 ) => {
   const { data, error } = await supabase
-    .from('profile')
+    .from(TABLE)
     .update(profile)
     .eq('user_id', user_id)
     .select(PROFILE_SELECTOR)
-    .maybeSingle()
+    .single<ProfileType>()
 
   if (error) {
     console.log(error)

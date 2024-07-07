@@ -29,15 +29,13 @@ export async function middleware(request: NextRequest) {
     },
   )
 
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
+  const user_id = (await supabase.auth.getSession()).data.session?.user.id
 
-  if (session?.user.role !== 'authenticated') {
+  if (!user_id) {
     return NextResponse.redirect(new URL('/login', request.url))
   }
 }
 
 export const config = {
-  matcher: ['/profile', '/post/new'],
+  matcher: ['/profile/:path*', '/post/new', '/post/edit'],
 }
