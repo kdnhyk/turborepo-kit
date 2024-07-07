@@ -1,6 +1,8 @@
-import Header from '@/(components)/common/Header'
-import AuthProvider from '@/providers/auth-provider'
+import AuthProvider from '@/_providers/auth-provider'
 import { QueryProvider } from '@repo/query/provider'
+import { Header } from '@repo/shared/Header'
+import { Toaster } from 'sonner'
+import { Player } from '@repo/shared/Player'
 
 export default async function Layout({
   children,
@@ -11,9 +13,18 @@ export default async function Layout({
 }) {
   return (
     <QueryProvider>
+      <Player />
       <Header />
       <AuthProvider>
-        <main>{children} </main>
+        <main>{children}</main>
+        <Toaster
+          toastOptions={{
+            style: {
+              border: '1px solid #000',
+              borderRadius: '0px',
+            },
+          }}
+        />
       </AuthProvider>
       {modal}
     </QueryProvider>

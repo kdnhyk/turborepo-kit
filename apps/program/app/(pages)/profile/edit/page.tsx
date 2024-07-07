@@ -1,10 +1,9 @@
-import ProfileForm from '@/(components)/form/ProfileForm'
+import { ProfileForm } from '@repo/shared/ProfileForm'
 
-export default async function ProfileEditPage() {
+export default function ProfileEditPage() {
   return (
     <>
       <ProfileForm />
-      <hr className="flex-1 bg-zinc-100" />
     </>
   )
 }
