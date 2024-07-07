@@ -1,3 +1,20 @@
+# Nogwon
+
+### [Website](https://nogwon.com/)
+
+> **Currently switching to the music sharing platform Nogwon**
+> 
+
+## **Update history**
+
+### 2024.07.08
+
+Web - 100% (Complete)
+
+Program - 90%
+
+App - 0% (Before the start)
+
 # Turborepo-kit
 
 <img width="2790" alt="turborepo-kit" src="https://github.com/kdnhyk/turborepo-kit/assets/64140936/87085222-86e3-46b6-90bd-28cf6a9f9cd8">
@@ -153,9 +170,3 @@ supabase link
 ```
 
  Running the above commands in order and entering `pnpm gen-types` creates the `database.types.ts` file.
-
-## **Update history**
-
-### 2024.06.12
-
-Currently, web and program are available immediately, and app is incomplete.
