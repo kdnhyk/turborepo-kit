@@ -4,6 +4,7 @@ import { useFormContext } from 'react-hook-form'
 import { Container } from './atoms/Container'
 import { Label } from './atoms/Label'
 import { ErrorMessage } from './atoms/ErrorMessage'
+import { url } from './atoms/pattern'
 
 interface InputProps {
   field: string
@@ -12,6 +13,7 @@ interface InputProps {
   required?: string
   disabled?: boolean
   right?: React.ReactNode
+  type?: 'text' | 'url'
 }
 
 export const Input = ({
@@ -21,6 +23,7 @@ export const Input = ({
   required,
   disabled,
   right,
+  type = 'text',
 }: InputProps) => {
   const { register } = useFormContext()
 
@@ -30,11 +33,17 @@ export const Input = ({
       <div className="flex items-center gap-2">
         <input
           className="h-8 flex-1 border px-3 py-2 disabled:bg-zinc-100 disabled:text-zinc-700 sm:h-10"
-          type="text"
+          type={type}
           placeholder={placeholder}
           disabled={disabled}
           {...register(field, {
             required: required,
+            ...(type === 'url' && {
+              pattern: {
+                value: url,
+                message: 'Invalid URL format',
+              },
+            }),
           })}
         />
         {right}
