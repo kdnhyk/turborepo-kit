@@ -36,7 +36,7 @@ export const getPostById = async (id: number) => {
     .from(TABLE)
     .select(POST_SELECTOR)
     .eq('id', id)
-    .returns<PostType>()
+    .limit(1)
     .single<PostType | null>()
 
   if (error) {
@@ -53,7 +53,6 @@ export const insertPost = async (
     .from(TABLE)
     .insert(post)
     .select(POST_SELECTOR)
-    .returns<PostType>()
     .single<PostType>()
 
   if (error) {
@@ -69,7 +68,6 @@ export const updatePost = async (post: { id: number } & Partial<PostType>) => {
     .update(post)
     .eq('id', post.id)
     .select(POST_SELECTOR)
-    .returns<PostType>()
     .single<PostType>()
 
   if (error) {

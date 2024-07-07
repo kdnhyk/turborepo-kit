@@ -12,6 +12,7 @@ export const getProfileByUserId = async (user_id: string) => {
     .from(TABLE)
     .select(PROFILE_SELECTOR)
     .eq('user_id', user_id)
+    .limit(1)
     .single<ProfileType | null>()
 
   if (error) {
