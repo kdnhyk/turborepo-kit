@@ -34,7 +34,7 @@ export function PostForm({ post }: { post?: PostType }) {
       url: '',
     },
   })
-  const { fields, append, swap, remove } = useFieldArray({
+  const { fields, append, swap } = useFieldArray({
     control: methods.control,
     name: 'music',
   })
@@ -72,9 +72,7 @@ export function PostForm({ post }: { post?: PostType }) {
     update.mutate({ ...rest, id: post.id, user_id: user.id, music })
   }
 
-  useEffect(() => {
-    methods.setFocus('title')
-  }, [])
+  useEffect(() => {}, [])
 
   useEffect(() => {
     if (insert.isSuccess || update.isSuccess) {
@@ -153,7 +151,18 @@ export function PostForm({ post }: { post?: PostType }) {
                 }
               }
             }}
-            remove={(index: number) => remove(index)}
+            remove={(index: number) => {
+              methods.setValue(
+                'music',
+                fields
+                  .filter((_, i) => i !== index)
+                  .map((music) =>
+                    music.index > index
+                      ? { ...music, index: music.index - 1 }
+                      : music,
+                  ),
+              )
+            }}
           />
           <div className="flex justify-end">
             <Button

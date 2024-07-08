@@ -7,7 +7,7 @@ import { toast } from 'sonner'
 
 export default function RefreshButton() {
   const { refresh } = useRouter()
-  const { invalidatePost, invalidatePstPage } = usePostState()
+  const { refetchPost, refetchPostPage } = usePostState()
 
   return (
     <div className="flex basis-8 sm:basis-10">
@@ -15,8 +15,8 @@ export default function RefreshButton() {
         className="flex h-full w-full cursor-pointer items-center justify-center transition hover:scale-95 hover:bg-white"
         onClick={() => {
           refresh()
-          invalidatePost()
-          invalidatePstPage()
+          refetchPost()
+          refetchPostPage()
           toast.info('Refreshed')
         }}
       >

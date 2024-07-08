@@ -10,7 +10,7 @@ export function Header() {
   const pathname = usePathname()
   const isHome = pathname === '/'
   const { data: user } = useUser()
-  const { push, back, prefetch } = useRouter()
+  const { back } = useRouter()
 
   return (
     <div className="fixed top-0 z-10 flex w-full shrink-0 basis-auto flex-col items-center bg-gradient-to-t from-white/0 to-white p-2 sm:p-4">
@@ -38,20 +38,12 @@ export function Header() {
           <BackIcon />
         </div>
 
-        <div
+        <Link
           className="order-4 flex h-12 basis-12 cursor-pointer items-center justify-center transition hover:scale-95 hover:bg-zinc-100"
-          onClick={() => {
-            if (user) {
-              prefetch('/profile')
-              push('/profile')
-            } else {
-              prefetch('/login')
-              push('/login', { scroll: false })
-            }
-          }}
+          href={user ? '/profile' : '/login'}
         >
           <ProfileIcon />
-        </div>
+        </Link>
       </header>
     </div>
   )

@@ -24,12 +24,11 @@ export const postQueryKey = {
 export const usePostState = () => {
   const queryClient = useQueryClient()
 
-  const invalidatePstPage = () =>
-    queryClient.invalidateQueries({ queryKey: postQueryKey.post_page })
-  const invalidatePost = () =>
-    queryClient.invalidateQueries({ queryKey: ['post'] })
+  const refetchPostPage = () =>
+    queryClient.refetchQueries({ queryKey: postQueryKey.post_page })
+  const refetchPost = () => queryClient.refetchQueries({ queryKey: ['post'] })
 
-  return { invalidatePstPage, invalidatePost }
+  return { refetchPostPage, refetchPost }
 }
 
 export const usePostPage = () =>
