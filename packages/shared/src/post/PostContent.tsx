@@ -11,7 +11,12 @@ export function PostContent({
 }) {
   return (
     <Section className="gap-0 divide-y p-0 sm:gap-0 sm:p-0 [&>*]:border-dashed">
-      <h4 className="p-2 text-lg font-bold sm:p-3 sm:text-xl">{title}</h4>
+      <div className="flex items-end justify-between">
+        <h4 className="p-2 text-lg font-bold sm:p-3 sm:text-xl">{title}</h4>
+        <p className="p-2 text-end text-xs text-zinc-700 sm:p-3 sm:text-sm">
+          {kstFormat(created_at, 0, 'yyyy-MM-dd HH:mm:ss')}
+        </p>
+      </div>
       {(image || content) && (
         <div className="flex flex-col sm:flex-row">
           {image && (
@@ -32,9 +37,6 @@ export function PostContent({
       <div className="flex-1">
         <PostMusicList music={music} />
       </div>
-      <p className="p-2 text-end text-sm text-zinc-700 sm:p-3">
-        {kstFormat(created_at)}
-      </p>
     </Section>
   )
 }

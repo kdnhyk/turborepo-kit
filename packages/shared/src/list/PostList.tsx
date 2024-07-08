@@ -30,11 +30,12 @@ export function PostList({ posts }: { posts: PostType[] }) {
             }}
           >
             <Link
-              className="group flex flex-1 flex-col overflow-hidden bg-black"
+              className="group flex flex-1 flex-col overflow-hidden"
               href={!isTauri ? `/post/${post.id}` : `/post?id=${post.id}`}
             >
-              <div className="relative flex h-fit shrink-0 flex-col gap-2 border-b-[0.5px] border-dashed bg-white p-2">
+              <div className="relative flex h-fit shrink-0 flex-col bg-white p-2">
                 <div className="flex gap-2">
+                  {/* Image */}
                   {post.image && (
                     <Image
                       className="aspect-square w-[52px] border object-cover"
@@ -44,24 +45,42 @@ export function PostList({ posts }: { posts: PostType[] }) {
                       alt={post.title}
                     />
                   )}
+                  {/* Title */}
                   <h2 className="line-clamp-1 text-lg font-semibold">
                     {post.title}
                   </h2>
                 </div>
+                {/* Date */}
+                <p className="text-end text-xs text-black/50">
+                  {kstFormat(post.created_at)}
+                </p>
               </div>
-              <div className="relative flex translate-y-0 border-t-[0.5px] border-dashed transition group-hover:translate-y-[4px]">
-                <div className="flex flex-1 flex-col border-r-[0.5px] border-dashed bg-white p-2 text-black transition group-hover:translate-x-[-4px] group-hover:rounded-tr-[2px]">
-                  <div className="relative flex flex-1 gap-2">
-                    <p className="line-clamp-2 flex-1 text-sm">
+              <div className="flex flex-1">
+                <div className="relative flex flex-1 flex-col">
+                  {/* Music */}
+                  <div className="absolute inset-0 flex">
+                    <p className="line-clamp-3 flex-1 p-2 text-xs">
+                      {post.music
+                        .map((el) => `${el.artist || '〇'} - ${el.title}`)
+                        .join(', ')}
+                    </p>
+                  </div>
+                  {/* Content */}
+                  <div className="flex flex-1 translate-x-[-1px] gap-2 border-t bg-white p-2 transition group-hover:translate-y-[calc(100%-8px)]">
+                    <p className="line-clamp-2 flex-1 text-sm ">
                       {post.content}
                     </p>
                   </div>
-                  <p className="text-end text-xs text-black/50">
-                    {kstFormat(post.created_at)}
-                  </p>
                 </div>
-                <div className="shrink-0 basis-[80px] overflow-hidden border-l-[0.5px] border-dashed bg-white group-hover:rounded-tl-[2px]">
-                  {post.user_id && <Profile userId={post.user_id} />}
+                <div className="relative shrink-0 basis-[80px] overflow-hidden">
+                  {/* Play All */}
+                  <div className="absolute inset-0 shrink-0 basis-[80px]">
+                    <div></div>
+                  </div>
+                  {/* Profile */}
+                  <div className="flex-1 border-l border-t bg-white">
+                    {post.user_id && <Profile userId={post.user_id} />}
+                  </div>
                 </div>
               </div>
             </Link>
