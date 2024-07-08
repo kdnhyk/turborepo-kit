@@ -21,7 +21,7 @@ import { MusicType } from '../hooks/use-player'
 
 export type PostFormType = Omit<PostType, 'image' | 'music'> & {
   image: File | string | null
-  music: PostMucisType[]
+  music: (PostMucisType & { id?: string })[]
   url: string
 }
 export function PostForm({ post }: { post?: PostType }) {
@@ -45,18 +45,31 @@ export function PostForm({ post }: { post?: PostType }) {
   console.log(fields)
 
   const onAdd = () => {
-    setEditedMusic({ url: methods.getValues('url'), artist: '', title: '' })
+    const prev = fields.find((music) => music.url === methods.getValues('url'))
+    setEditedMusic({
+      url: methods.getValues('url'),
+      artist: prev?.artist || '',
+      title: prev?.title || '',
+    })
   }
 
   const onSubmit = async (data: PostFormType) => {
-    const { url, ...rest } = data
+    const { url, music: musicWithId, ...rest } = data
+
+    console.log(rest)
+    const music = musicWithId.map(({ id, ...data }) => data)
 
     if (!post) {
-      insert.mutate({ ...rest, user_id: user.id, image: rest.image as File })
+      insert.mutate({
+        ...rest,
+        user_id: user.id,
+        image: rest.image as File,
+        music,
+      })
       return
     }
 
-    update.mutate({ ...rest, id: post.id, user_id: user.id })
+    update.mutate({ ...rest, id: post.id, user_id: user.id, music })
   }
 
   useEffect(() => {
@@ -107,19 +120,26 @@ export function PostForm({ post }: { post?: PostType }) {
             label="Title"
             placeholder="Title"
             required="Require"
+            maxLength={100}
           />
           <Textarea field="content" label="Content" placeholder="Content" />
-          <Input
-            field="url"
-            label="Music"
-            placeholder="URL"
-            type="url"
-            right={
-              <Button onClick={methods.handleSubmit(onAdd)} color="black">
-                Add
-              </Button>
-            }
-          />
+          <form>
+            <Input
+              field="url"
+              label="Music"
+              placeholder="URL"
+              type="url"
+              right={
+                <Button
+                  onClick={methods.handleSubmit(onAdd)}
+                  color="black"
+                  type="submit"
+                >
+                  Add
+                </Button>
+              }
+            />
+          </form>
           <MusicList
             setMusic={(music: MusicType) => setEditedMusic(music)}
             fields={fields}
@@ -167,6 +187,7 @@ export function PostForm({ post }: { post?: PostType }) {
                     fields.map((music) =>
                       url === music.url
                         ? {
+                            id: music.id,
                             url,
                             title,
                             artist,
@@ -177,6 +198,7 @@ export function PostForm({ post }: { post?: PostType }) {
                   )
                 } else {
                   append({
+                    id: undefined,
                     index,
                     url,
                     artist,

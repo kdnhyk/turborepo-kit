@@ -6,6 +6,7 @@ import { Button } from '@repo/ui/Button'
 import { FormProvider, useForm } from 'react-hook-form'
 import { MusicType } from '../hooks/use-player'
 import { useState } from 'react'
+import { Loading } from '@repo/ui/Loading'
 
 type MusicFormType = {
   url: string
@@ -20,8 +21,7 @@ export function MisicForm({
   music: MusicType
   append: (url: string, artist: string, title: string) => void
 }) {
-  const [ok, setOk] = useState(false)
-  const [error, setError] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const methods = useForm<MusicFormType>({
     defaultValues: {
       url: music.url,
@@ -31,20 +31,18 @@ export function MisicForm({
   })
 
   const onConfirm = (data: MusicFormType) => {
-    console.log(data)
     const { url, artist, title } = data
 
     append(url, artist, title)
   }
-
-  console.log(ok)
+  console.log(methods.formState.errors)
 
   return (
     <FormProvider {...methods}>
       <div className="flex flex-col items-center [&>*]:w-full">
-        <div className="flex justify-center">
+        <div className="relative flex justify-center">
           <ReactPlayer
-            url={music.url}
+            url={methods.watch('url')}
             style={{
               width: '100%',
               borderWidth: '0px 1px',
@@ -59,7 +57,8 @@ export function MisicForm({
               },
             }}
             onReady={(player) => {
-              setOk(true)
+              setIsLoading(false)
+              methods.clearErrors('url')
               if (music.title) return
               // Youtube, Soundcloud
               const internalPlayer = player?.getInternalPlayer()
@@ -73,34 +72,52 @@ export function MisicForm({
 
               methods.setValue('title', title)
             }}
-            onError={() => setError(true)}
+            onError={() => {
+              console.log('Error..')
+
+              methods.setError(
+                'url',
+                { type: 'validate', message: 'Invalid URL' },
+                { shouldFocus: true },
+              )
+            }}
           />
+          <div className="absolute inset-0 flex items-center justify-center">
+            {isLoading && <Loading />}
+          </div>
         </div>
-        <div className="flex flex-col gap-3 border-t border-dashed p-3">
+        <form className="flex flex-col gap-3 border-t border-dashed p-3">
           <Input
             field="url"
             label="URL"
             placeholder="URL"
-            disabled={ok && !error}
+            disabled={isLoading}
           />
-          <Input field="artist" label="Artist" placeholder="Artist" />
+          <Input
+            field="artist"
+            label="Artist"
+            placeholder="Artist"
+            maxLength={100}
+          />
           <Input
             field="title"
             label="Title"
             placeholder="Title"
-            disabled={!ok}
+            disabled={isLoading}
             required="Please enter the title of the music"
+            maxLength={100}
           />
           <div className="flex justify-end">
             <Button
               onClick={methods.handleSubmit(onConfirm)}
               color="black"
-              disable={!ok || error}
+              disable={isLoading || methods.formState.errors.url ? true : false}
+              type="submit"
             >
               Confirm
             </Button>
           </div>
-        </div>
+        </form>
       </div>
     </FormProvider>
   )

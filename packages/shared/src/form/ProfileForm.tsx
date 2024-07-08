@@ -41,7 +41,7 @@ export function ProfileForm() {
   }, [update.isSuccess])
 
   return (
-    <>
+    <form>
       <Section>
         <FormProvider {...methods}>
           <div className="flex items-end">
@@ -69,13 +69,14 @@ export function ProfileForm() {
             label="Nickname"
             placeholder="Nickname"
             required="Please enter your nickname"
+            maxLength={20}
           />
-
           <div className="flex justify-end gap-2 sm:gap-4">
             <Button
               onClick={methods.handleSubmit(onSubmit)}
               color={methods.formState.isDirty ? 'black' : 'white'}
               disable={update.isPending || !methods.formState.isDirty}
+              type="submit"
             >
               Save
             </Button>
@@ -83,6 +84,6 @@ export function ProfileForm() {
         </FormProvider>
       </Section>
       {update.isPending && <Loading variant="fixed" />}
-    </>
+    </form>
   )
 }
