@@ -34,14 +34,16 @@ export const usePlayer = create<PlayerState>()(
       remove: (index) => {
         const { list, index: currentIndex, setIndex, setList } = get()
         if (!list) return
+
         if (list.length === 1) {
           setIndex(0)
           setList(null)
+          return
         }
 
         set({
           list: list.filter((_, i) => i !== index),
-          index: currentIndex > index ? currentIndex - 1 : currentIndex,
+          index: currentIndex >= index ? currentIndex - 1 : currentIndex,
         })
       },
       setList: (list) => {

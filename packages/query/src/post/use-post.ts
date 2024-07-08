@@ -91,8 +91,6 @@ export const usePostMutation = () => {
       // Update post image
       await removePostImage(post.user_id, post.id)
 
-      console.log(post)
-
       const image = await uploadPostImage(
         post.image,
         post.user_id,

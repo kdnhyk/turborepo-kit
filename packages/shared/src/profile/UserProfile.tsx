@@ -6,6 +6,7 @@ import { Button } from '@repo/ui/Button'
 import { Section } from '../layout/Section'
 import { ProfileForm } from '../form/ProfileForm'
 import { redirect } from 'next/navigation'
+import { Badge } from '@repo/ui/Badge'
 
 export function UserProfile() {
   const { data: user } = useUser()
@@ -17,13 +18,15 @@ export function UserProfile() {
   return (
     <Section>
       <div className="flex items-center gap-2 overflow-x-hidden border p-2 sm:p-4">
-        <p className="basis-[110px]">Email</p>
-        <p>
-          {user.email}
-          <span className="ml-2 rounded-full border bg-white px-2 py-1 text-xs uppercase">
-            {user.app_metadata.provider}
-          </span>
+        <p className="basis-[70px] text-sm sm:basis-[90px] sm:text-base">
+          Email
         </p>
+        <div className="flex gap-2">
+          <p className="text-sm sm:text-base">{user.email}</p>
+          <Badge variant="solid" transform="uppercase">
+            {user.app_metadata.provider}
+          </Badge>
+        </div>
       </div>
       <ProfileForm />
       <div className="flex-1" />

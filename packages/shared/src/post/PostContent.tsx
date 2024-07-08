@@ -12,21 +12,23 @@ export function PostContent({
   return (
     <Section className="gap-0 divide-y p-0 sm:gap-0 sm:p-0 [&>*]:border-dashed">
       <h4 className="p-2 text-lg font-bold sm:p-3 sm:text-xl">{title}</h4>
-      <div className="flex flex-col sm:flex-row">
-        {image && (
-          <div className="flex justify-start">
-            <SafeImage
-              className="aspect-square w-full border-dashed object-cover sm:w-[400px] sm:border-r"
-              src={`post/${image}`}
-              alt={title}
-              width={400}
-              height={400}
-              opacity
-            />
-          </div>
-        )}
-        {content && <p className="whitespace-pre p-2 sm:p-3">{content}</p>}
-      </div>
+      {(image || content) && (
+        <div className="flex flex-col sm:flex-row">
+          {image && (
+            <div className="flex justify-start">
+              <SafeImage
+                className="aspect-square w-full border-dashed object-cover sm:w-[400px] sm:border-r"
+                src={`post/${image}`}
+                alt={title}
+                width={400}
+                height={400}
+                opacity
+              />
+            </div>
+          )}
+          {content && <p className="whitespace-pre p-2 sm:p-3">{content}</p>}
+        </div>
+      )}
       <div className="flex-1">
         <PostMusicList music={music} />
       </div>

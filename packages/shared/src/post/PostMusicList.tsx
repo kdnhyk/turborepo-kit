@@ -21,9 +21,9 @@ export function PostMusicList({ music }: { music: PostMucisType[] }) {
 
               if (!list?.some((el) => el.url === rest.url)) {
                 push(rest)
-                toast.info(`Added: ${rest.artist} - ${rest.title}`)
+                toast.success(`Added: ${rest.artist} - ${rest.title}`)
               } else {
-                toast.info(`Already added: ${rest.artist} - ${rest.title}`)
+                toast.error(`Already added: ${rest.artist} - ${rest.title}`)
               }
             }}
           >
