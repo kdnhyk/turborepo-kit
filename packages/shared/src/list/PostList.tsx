@@ -52,7 +52,7 @@ export function PostList({ posts }: { posts: PostType[] }) {
                 </div>
                 {/* Date */}
                 <p className="text-end text-xs text-black/50">
-                  {kstFormat(post.created_at)}
+                  {kstFormat(post.updated_at)}
                 </p>
               </div>
               <div className="flex flex-1">
@@ -73,7 +73,7 @@ export function PostList({ posts }: { posts: PostType[] }) {
                   </div>
                 </div>
                 <div className="relative shrink-0 basis-[80px] overflow-hidden">
-                  {/* Play All */}
+                  {/* Empty */}
                   <div className="absolute inset-0 shrink-0 basis-[80px]">
                     <div></div>
                   </div>

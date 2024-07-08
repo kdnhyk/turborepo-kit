@@ -3,18 +3,19 @@ import { Section } from '../layout/Section'
 import { SafeImage } from '@repo/ui/SafeImage'
 import { PostType } from '@repo/api/post'
 import { PostMusicList } from './PostMusicList'
+import { PostViewCount } from './PostViewCount'
 
 export function PostContent({
-  post: { title, created_at, image, content, music },
+  post: { id, title, updated_at, image, content, music },
 }: {
   post: PostType
 }) {
   return (
     <Section className="gap-0 divide-y p-0 sm:gap-0 sm:p-0 [&>*]:border-dashed">
-      <div className="flex items-end justify-between">
-        <h4 className="p-2 text-lg font-bold sm:p-3 sm:text-xl">{title}</h4>
-        <p className="p-2 text-end text-xs text-zinc-700 sm:p-3 sm:text-sm">
-          {kstFormat(created_at, 0, 'yyyy-MM-dd HH:mm:ss')}
+      <div className="flex items-end justify-between p-2 sm:p-3">
+        <h4 className="text-lg font-bold sm:text-xl">{title}</h4>
+        <p className="text-xs text-black/50">
+          updated at {kstFormat(updated_at, 0, 'yyyy-MM-dd HH:mm:ss')}
         </p>
       </div>
       {(image || content) && (
@@ -36,6 +37,9 @@ export function PostContent({
       )}
       <div className="flex-1">
         <PostMusicList music={music} />
+      </div>
+      <div className="flex justify-end p-2 sm:p-3">
+        <PostViewCount id={id} />
       </div>
     </Section>
   )

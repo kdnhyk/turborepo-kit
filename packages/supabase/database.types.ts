@@ -43,6 +43,7 @@ export type Database = {
           image: string | null
           music: Json[]
           title: string
+          updated_at: string
           user_id: string
         }
         Insert: {
@@ -52,6 +53,7 @@ export type Database = {
           image?: string | null
           music?: Json[]
           title: string
+          updated_at?: string
           user_id?: string
         }
         Update: {
@@ -61,6 +63,7 @@ export type Database = {
           image?: string | null
           music?: Json[]
           title?: string
+          updated_at?: string
           user_id?: string
         }
         Relationships: [

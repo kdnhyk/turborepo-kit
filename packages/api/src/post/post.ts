@@ -21,7 +21,7 @@ export const getPostPage = async (page: number) => {
     .from(TABLE)
     .select(POST_SELECTOR)
     .range(i, i + 11)
-    .order('created_at', { ascending: false })
+    .order('updated_at', { ascending: false })
     .returns<PostType[] | null>()
 
   if (error) {
