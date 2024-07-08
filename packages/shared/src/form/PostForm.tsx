@@ -81,7 +81,7 @@ export function PostForm({ post }: { post?: PostType }) {
       if (post && !isTauri) {
         const paths = ['/', `/post/${post.id}`, `/post/edit/${post.id}`]
         paths.forEach((path) =>
-          fetch(`/api/revalidatePath?path=${path}`, { method: 'GET' })
+          fetch(`/api/utils/revalidate_path?path=${path}`, { method: 'GET' })
             .then((res) => res.json())
             .then(console.log),
         )

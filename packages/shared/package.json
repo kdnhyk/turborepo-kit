@@ -17,7 +17,7 @@
     "./PostContent": "./src/post/PostContent.tsx",
     "./PostContentSkeleton": "./src/post/PostContentSkeleton.tsx",
     "./UserProfile": "./src/profile/UserProfile.tsx",
-    "./PostLog": "./src/log/postLog.tsx"
+    "./PostLog": "./src/log/PostLog.tsx"
   },
   "peerDependencies": {
     "@upstash/redis": "^1.32.0",
