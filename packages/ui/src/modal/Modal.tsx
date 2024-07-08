@@ -6,20 +6,17 @@ import { ClassName, cn } from '../utils/cn'
 import { ModalBackground } from './atoms/Background'
 import { ModalHeader } from './atoms/Header'
 
-const ModalVariants = cva(
-  `flex max-h-full flex-col overflow-hidden border bg-white`,
-  {
-    variants: {
-      variant: {
-        default: 'w-full sm:max-w-[400px]',
-        top: 'absolute left-2 top-2 w-[calc(100%-16px)] sm:left-4 sm:top-4 sm:w-[calc(100%-32px)] xl:left-1/2 xl:left-[calc(50%-624px)] xl:w-[1248px]',
-      },
-    },
-    defaultVariants: {
-      variant: 'default',
+const ModalVariants = cva(`flex flex-col overflow-hidden border bg-white`, {
+  variants: {
+    variant: {
+      default: 'max-h-full w-full sm:max-w-[400px]',
+      top: 'absolute left-2 top-2 max-h-[calc(100%-16px)] max-h-[calc(100%-32px)] w-[calc(100%-16px)] overflow-y-auto sm:left-4 sm:top-4 sm:w-[calc(100%-32px)] xl:left-1/2 xl:left-[calc(50%-624px)] xl:w-[1248px]',
     },
   },
-)
+  defaultVariants: {
+    variant: 'default',
+  },
+})
 
 interface ModalProps extends VariantProps<typeof ModalVariants> {
   children: React.ReactNode

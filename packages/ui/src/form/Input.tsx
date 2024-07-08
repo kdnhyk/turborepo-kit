@@ -34,7 +34,7 @@ export const Input = ({
       {label && <Label optional={!required}>{label}</Label>}
       <div className="flex items-center gap-2">
         <input
-          className="h-8 flex-1 border px-3 py-2 disabled:bg-zinc-100 disabled:text-zinc-700 sm:h-10"
+          className="h-8 min-w-0 flex-1 border px-3 py-2 disabled:bg-zinc-100 disabled:text-zinc-700 sm:h-10"
           type={type}
           placeholder={placeholder}
           disabled={disabled}
