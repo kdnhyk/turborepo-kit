@@ -89,6 +89,23 @@ export const HideIcon = () => {
   )
 }
 
+export const RefreshIcon = () => {
+  return (
+    <svg
+      width="17"
+      height="16"
+      viewBox="0 0 17 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M2.90872 6.57692L2.90869 1H16V15H2.90869V10M2.90872 6.57692L3.81744 5.5H2L2.90872 6.57692Z"
+        stroke="black"
+      />
+    </svg>
+  )
+}
+
 export const ProfileIcon = () => {
   return (
     <svg

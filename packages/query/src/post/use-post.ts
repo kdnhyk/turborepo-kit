@@ -1,4 +1,5 @@
 import {
+  InfiniteData,
   useMutation,
   useQueryClient,
   useSuspenseInfiniteQuery,
@@ -18,6 +19,17 @@ import { nanoid } from 'nanoid/non-secure'
 export const postQueryKey = {
   post: (id: number) => ['post', id],
   post_page: ['post_page'],
+}
+
+export const usePostState = () => {
+  const queryClient = useQueryClient()
+
+  const invalidatePstPage = () =>
+    queryClient.invalidateQueries({ queryKey: postQueryKey.post_page })
+  const invalidatePost = () =>
+    queryClient.invalidateQueries({ queryKey: ['post'] })
+
+  return { invalidatePstPage, invalidatePost }
 }
 
 export const usePostPage = () =>
@@ -45,7 +57,28 @@ export const usePostPage = () =>
 export const usePostById = (id: number) =>
   useSuspenseQuery({
     queryKey: postQueryKey.post(id),
-    queryFn: () => getPostById(id),
+    queryFn: () => {
+      const queryClient = useQueryClient()
+
+      const postPage = queryClient.getQueryData(
+        postQueryKey.post_page,
+      ) as InfiniteData<{
+        result: PostType[]
+        currentPage: number
+        isLast: boolean
+      }> | null
+
+      if (postPage) {
+        const post = postPage.pages
+          .flatMap((page) => page.result)
+          .find((p) => p.id === id)
+        console.log('From post page:', post)
+
+        if (post) return post
+      }
+
+      return getPostById(id)
+    },
   })
 
 export const usePostMutation = () => {

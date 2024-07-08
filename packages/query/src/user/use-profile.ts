@@ -13,7 +13,6 @@ import { getUserId } from '@repo/api/auth'
 import { removeProfileImage, uploadProfileImage } from '@repo/api/storage'
 import { nanoid } from 'nanoid/non-secure'
 import { User } from '@supabase/supabase-js'
-import { postQueryKey } from '../post'
 
 export const profileQueryKey = {
   profile_by_user_id: (user_id: string) => ['profile', user_id],
