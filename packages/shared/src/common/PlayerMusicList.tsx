@@ -26,8 +26,6 @@ export const PlayerMusicList = ({
   const item = {
     hidden: (custom: number) => ({
       translateX: 12,
-      backgroundColor: custom === index ? '#000' : '#fff',
-      color: custom === index ? '#fff' : '#000',
       transition: {
         duration: 0.2,
         delay: (length - custom) * 0.05,
@@ -35,8 +33,6 @@ export const PlayerMusicList = ({
     }),
     show: (custom: number) => ({
       translateX: 0,
-      backgroundColor: custom === index ? '#000' : '#fff',
-      color: custom === index ? '#fff' : '#000',
       transition: {
         duration: 0.2,
         delay: custom * 0.08,
@@ -64,6 +60,7 @@ export const PlayerMusicList = ({
       values={list}
     >
       {list.map((el, i) => {
+        const current = i === index
         return (
           <Reorder.Item
             className="flex"
@@ -84,27 +81,45 @@ export const PlayerMusicList = ({
             }}
           >
             <motion.div
-              className="relative flex max-w-[300px] flex-1 gap-2 whitespace-nowrap px-1"
+              className="flex flex-1"
               custom={i}
               variants={item}
               initial="hidden"
               animate="show"
-              whileHover={{ opacity: 0.8, translateX: -20 }}
             >
-              <p className="text-sm">{el.artist ? `${el.artist} |` : '〇 |'}</p>
-              <p className="text-sm">{el.title || '〇'}</p>
+              <motion.div
+                className="relative flex max-w-[300px] flex-1 gap-2 whitespace-nowrap px-1"
+                initial={{
+                  backgroundColor: current ? '#000' : '#fff',
+                  color: current ? '#fff' : '#000',
+                }}
+                animate={{
+                  backgroundColor: current ? '#000' : '#fff',
+                  color: current ? '#fff' : '#000',
+                }}
+                whileHover={{
+                  opacity: 0.8,
+                  translateX: -20,
+                  transition: { duration: 0.2 },
+                }}
+              >
+                <p className="text-sm">
+                  {el.artist ? `${el.artist} |` : '〇 |'}
+                </p>
+                <p className="text-sm">{el.title || '〇'}</p>
 
-              <div className="absolute inset-y-0 right-0 flex w-5 translate-x-full bg-black">
-                <div
-                  className="flex w-5 cursor-pointer items-center justify-center p-1"
-                  onClick={(event) => {
-                    event.stopPropagation()
-                    remove(i)
-                  }}
-                >
-                  <div className="aspect-square h-full rounded-full bg-red-500"></div>
+                <div className="absolute inset-y-0 right-0 flex w-5 translate-x-full bg-black">
+                  <div
+                    className="flex w-5 cursor-pointer items-center justify-center p-1"
+                    onClick={(event) => {
+                      event.stopPropagation()
+                      remove(i)
+                    }}
+                  >
+                    <div className="aspect-square h-full rounded-full bg-red-500"></div>
+                  </div>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
           </Reorder.Item>
         )
