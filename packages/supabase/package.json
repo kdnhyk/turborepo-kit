@@ -24,7 +24,7 @@
     "@repo/typescript-config": "workspace:*",
     "@supabase/ssr": "0.4.0",
     "@supabase/supabase-js": "2.43.5",
-    "next": "^14.2.3",
+    "next": "14.2.4",
     "react-native-url-polyfill": "^2.0.0"
   }
 }
