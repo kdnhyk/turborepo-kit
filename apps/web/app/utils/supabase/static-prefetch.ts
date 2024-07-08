@@ -2,9 +2,10 @@ import { QueryClient } from '@tanstack/react-query'
 import { getPlaiceholder } from 'plaiceholder'
 import { getStoragePath } from '@repo/utils/supabase'
 import { getPostById, getPostPage } from '@repo/api/post'
-import { postQueryKey } from '@repo/query/post'
 import { profileQueryKey } from '@repo/query/user'
 import { getProfileByUserId } from '@repo/api/user'
+import { postQueryKey } from '@repo/query/post'
+import { getPostViewCount } from '@repo/api/redis'
 
 // RSC Static Rendering
 
@@ -83,4 +84,13 @@ export const prefetchPostPage = (queryClient: QueryClient) =>
       return undefined
     },
     pages: 3,
+  })
+
+export const prefetchPostViewCount = async (
+  queryClient: QueryClient,
+  id: number,
+) =>
+  queryClient.prefetchQuery({
+    queryKey: postQueryKey.post_view_count(id),
+    queryFn: () => getPostViewCount(id.toString()),
   })

@@ -4,6 +4,7 @@
   "private": true,
   "exports": {
     "./edge": "./edge/index.ts",
+    "./redis": "./redis/index.ts",
     "./auth": "./src/auth/index.ts",
     "./storage": "./src/storage/index.ts",
     "./user": "./src/user/index.ts",
@@ -12,6 +13,7 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/supabase": "workspace:*",
-    "@repo/typescript-config": "workspace:*"
+    "@repo/typescript-config": "workspace:*",
+    "@repo/utils": "workspace:*"
   }
 }

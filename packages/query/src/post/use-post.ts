@@ -15,10 +15,12 @@ import {
 } from '@repo/api/post'
 import { removePostImage, uploadPostImage } from '@repo/api/storage'
 import { nanoid } from 'nanoid/non-secure'
+import { getBaseURL } from '../get-base-url'
 
 export const postQueryKey = {
-  post: (id: number) => ['post', id],
   post_page: ['post_page'],
+  post: (id: number) => ['post', id],
+  post_view_count: (id: number) => ['post_view_count', id],
 }
 
 export const usePostState = () => {
@@ -78,6 +80,17 @@ export const usePostById = (id: number) =>
 
       return getPostById(id)
     },
+  })
+
+export const usePostViewCountById = (id: number) =>
+  useSuspenseQuery({
+    queryKey: postQueryKey.post_view_count(id),
+    queryFn: () =>
+      fetch(`${getBaseURL()}/api/redis/get_post_view?id=${id}`, {
+        method: 'GET',
+      })
+        .then((res) => res.json())
+        .then((data) => Number(data)),
   })
 
 export const usePostMutation = () => {
