@@ -4,6 +4,7 @@ import { Header } from '@repo/shared/Header'
 import dynamic from 'next/dynamic'
 
 const Toaster = dynamic(() => import('sonner').then((mod) => mod.Toaster))
+const NavigationEvents = dynamic(() => import('@/_components/NavigationEvents'))
 const Player = dynamic(() =>
   import('@repo/shared/Player').then((mod) => mod.Player),
 )
@@ -29,6 +30,7 @@ export default async function Layout({
             },
           }}
         />
+        <NavigationEvents />
       </AuthProvider>
       {modal}
     </QueryProvider>
