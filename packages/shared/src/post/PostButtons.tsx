@@ -6,6 +6,7 @@ import { useUser } from '@repo/query/user'
 import { Button } from '@repo/ui/Button'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { isTauri } from '../utils/env'
 
 export function PostButtons({ post }: { post: PostType }) {
   const { data: user } = useUser()
@@ -26,7 +27,7 @@ export function PostButtons({ post }: { post: PostType }) {
   }
 
   const handleEdit = () => {
-    push(`/post/edit/${post.id}`)
+    push(!isTauri ? `/post/edit/${post.id}` : `/post/edit?id=${post.id}`)
   }
 
   return (

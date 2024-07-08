@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { kstFormat } from '@repo/utils/date'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { isTauri } from '../utils/env'
 
 export function PostList({ posts }: { posts: PostType[] }) {
   return (
@@ -30,7 +31,7 @@ export function PostList({ posts }: { posts: PostType[] }) {
           >
             <Link
               className="group flex flex-1 flex-col overflow-hidden bg-black"
-              href={`/post/${post.id}`}
+              href={!isTauri ? `/post/${post.id}` : `/post?id=${post.id}`}
             >
               <div className="relative flex h-fit shrink-0 flex-col gap-2 border-b-[0.5px] border-dashed bg-white p-2">
                 <div className="flex gap-2">
