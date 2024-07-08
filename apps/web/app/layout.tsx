@@ -1,11 +1,12 @@
 import '@repo/ui/styles'
 import type { Metadata } from 'next'
 import { inter, notoSansKr } from '@repo/ui/fonts'
+import { baseUrl } from './_const/url'
 
 export const metadata: Metadata = {
   title: 'Nogwon',
   description: 'Dear my green',
-  metadataBase: new URL('https://nogwon.com'),
+  metadataBase: new URL(baseUrl),
 }
 
 export default function RootLayout({

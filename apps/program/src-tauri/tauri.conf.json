@@ -7,7 +7,7 @@
     "distDir": "../out"
   },
   "package": {
-    "productName": "program",
+    "productName": "nogwon",
     "version": "0.1.0"
   },
   "tauri": {
@@ -33,7 +33,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.turborepokit.program",
+      "identifier": "com.nogwon.program",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
@@ -60,10 +60,10 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
+        "height": 900,
         "resizable": true,
-        "title": "turborepo-kit",
-        "width": 800
+        "title": "Nogwon",
+        "width": 1200
       }
     ]
   }

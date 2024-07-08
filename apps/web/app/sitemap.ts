@@ -1,11 +1,10 @@
 import supabase from '@repo/supabase'
 import { MetadataRoute } from 'next'
-
-const URL = 'https://turborepo-kit.01.works'
+import { baseUrl } from './_const/url'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const routes = [''].map((route) => ({
-    url: `${URL}${route}`,
+  const routes = ['/'].map((route) => ({
+    url: `${baseUrl}${route}`,
     lastModified: new Date(),
     priority: 0.2,
   }))
@@ -15,7 +14,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   if (!posts) return routes
 
   const postRoutes = posts.map(({ id }) => ({
-    url: `${URL}/post/${id}`,
+    url: `${baseUrl}/post/${id}`,
     lastModified: new Date(),
     priority: 0.1,
   }))

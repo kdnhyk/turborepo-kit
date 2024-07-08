@@ -1,14 +1,13 @@
 import { MetadataRoute } from 'next'
-
-const URL = 'https://turborepo-kit.01.works'
+import { baseUrl } from './_const/url'
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: '*',
       allow: ['/', '/post/'],
-      disallow: ['/login', '/profile/'],
+      disallow: ['/login', '/profile/', '/post/edit/', '/post/new'],
     },
-    sitemap: `${URL}/sitemap.xml`,
+    sitemap: `${baseUrl}/sitemap.xml`,
   }
 }
