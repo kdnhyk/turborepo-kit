@@ -16,6 +16,10 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en" className={`${inter.variable} ${notoSansKr.variable}`}>
+      <meta
+        name="naver-site-verification"
+        content="dae69f3aa0892e004e7fb46831a38640e0e2c85f"
+      />
       <body className="font-notoSans">{children}</body>
     </html>
   )
