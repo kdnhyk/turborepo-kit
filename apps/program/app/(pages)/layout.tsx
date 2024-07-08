@@ -1,8 +1,12 @@
 import AuthProvider from '@/_providers/auth-provider'
 import { QueryProvider } from '@repo/query/provider'
 import { Header } from '@repo/shared/Header'
-import { Toaster } from 'sonner'
-import { Player } from '@repo/shared/Player'
+import dynamic from 'next/dynamic'
+
+const Toaster = dynamic(() => import('sonner').then((mod) => mod.Toaster))
+const Player = dynamic(() =>
+  import('@repo/shared/Player').then((mod) => mod.Player),
+)
 
 export default async function Layout({
   children,

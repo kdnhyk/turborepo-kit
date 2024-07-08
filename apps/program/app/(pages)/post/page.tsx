@@ -2,16 +2,15 @@
 
 import { PostButtons } from '@repo/shared/PostButtons'
 import { PostContent } from '@repo/shared/PostContent'
-import { notFound } from 'next/navigation'
 import { usePostById } from '@repo/query/post'
+import { redirect, useSearchParams } from 'next/navigation'
 
-export default function PostPage({
-  params: { id },
-}: {
-  params: { id: string }
-}) {
+export default function PostPage() {
+  const searchParams = useSearchParams()
+  const id = searchParams.get('id')
+  if (!id) redirect('/')
   const { data: post } = usePostById(Number(id))
-  if (!post) return notFound()
+  if (!post) redirect('/')
 
   return (
     <>

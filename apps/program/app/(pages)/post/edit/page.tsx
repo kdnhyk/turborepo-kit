@@ -1,16 +1,14 @@
 'use client'
 
 import { PostForm } from '@repo/shared/PostForm'
-import { notFound } from 'next/navigation'
 import { usePostById } from '@repo/query/post'
+import { redirect, useSearchParams } from 'next/navigation'
 
-export default function PostEditPage({
-  params: { id },
-}: {
-  params: { id: string }
-}) {
+export default function PostEditPage() {
+  const searchParams = useSearchParams()
+  const id = searchParams.get('id')
   const { data: post } = usePostById(Number(id))
-  if (!post) notFound()
+  if (!post) redirect('/')
 
   return (
     <>

@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { invoke } from '@tauri-apps/api'
 import { listen } from '@tauri-apps/api/event'
