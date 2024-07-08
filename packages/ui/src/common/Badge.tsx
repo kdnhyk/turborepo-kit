@@ -20,12 +20,18 @@ const BadgeVariants = cva(`rounded-full border bg-white text-zinc-700`, {
       black: 'bg-black text-white',
       red: 'text-red border-grey-700 border bg-white',
     },
+    transform: {
+      normal: 'normal-case',
+      uppercase: 'uppercase',
+      lowercase: 'lowercase',
+    },
   },
   defaultVariants: {
     variant: 'default',
     shape: 'default',
     size: 'small',
     color: 'white',
+    transform: 'normal',
   },
 })
 
@@ -39,10 +45,16 @@ export const Badge = ({
   variant,
   shape,
   size,
+  transform,
   className,
 }: BadgeProps) => {
   return (
-    <div className={cn(BadgeVariants({ variant, shape, size }), className)}>
+    <div
+      className={cn(
+        BadgeVariants({ variant, shape, size, transform }),
+        className,
+      )}
+    >
       <p>{children}</p>
     </div>
   )

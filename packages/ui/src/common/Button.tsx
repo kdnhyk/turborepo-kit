@@ -5,7 +5,7 @@ import { VariantProps, cva } from '../utils/cva'
 import { ClassName, cn } from '../utils/cn'
 
 const ButtonVariants = cva(
-  `disabled:opacity-85 flex items-center justify-center gap-1 transition hover:opacity-80 disabled:cursor-not-allowed`,
+  `flex items-center justify-center gap-1 transition hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-80`,
   {
     variants: {
       variant: {
@@ -49,6 +49,7 @@ interface ButtonProps extends VariantProps<typeof ButtonVariants> {
   className?: ClassName
   onClick?: () => void
   disable?: boolean
+  type?: 'button' | 'submit' | 'reset'
 }
 
 export const Button = ({
@@ -62,6 +63,7 @@ export const Button = ({
   size,
   color,
   weight,
+  type = 'button',
 }: ButtonProps) => {
   return (
     <motion.button
@@ -76,6 +78,7 @@ export const Button = ({
         scale: 0.95,
         opacity: 0.8,
       }}
+      type={type}
     >
       {icon && (
         <div className="flex basis-10 items-center justify-center">{icon}</div>
