@@ -6,6 +6,8 @@ module.exports = {
     '@repo/query',
     '@repo/ui',
     '@repo/utils',
+    '@repo/shared',
+    '@repo/const',
   ],
   output: 'export',
   reactStrictMode: false,
