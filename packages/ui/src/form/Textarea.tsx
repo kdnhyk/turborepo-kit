@@ -19,7 +19,7 @@ export const Textarea = ({
   label,
   placeholder,
   required,
-  maxLength = 80,
+  maxLength = 1000,
   disabled,
 }: TextareaProps) => {
   const { register } = useFormContext()
@@ -35,7 +35,7 @@ export const Textarea = ({
           required: required,
           maxLength: {
             value: maxLength,
-            message: `${maxLength}자 이내로 입력해주세요`,
+            message: `Must be less than ${maxLength} characters`,
           },
         })}
       />

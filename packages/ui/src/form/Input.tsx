@@ -14,6 +14,7 @@ interface InputProps {
   disabled?: boolean
   right?: React.ReactNode
   type?: 'text' | 'url'
+  maxLength?: number
 }
 
 export const Input = ({
@@ -24,6 +25,7 @@ export const Input = ({
   disabled,
   right,
   type = 'text',
+  maxLength = 255,
 }: InputProps) => {
   const { register } = useFormContext()
 
@@ -44,6 +46,10 @@ export const Input = ({
                 message: 'Invalid URL format',
               },
             }),
+            maxLength: {
+              value: maxLength,
+              message: `Must be less than ${maxLength} characters`,
+            },
           })}
         />
         {right}
