@@ -25,6 +25,7 @@ export function Player() {
     next,
     setIndex,
     setPlaying,
+    reset,
   } = usePlayer()
   if (!list || list.length < 1) return null
 
@@ -45,7 +46,7 @@ export function Player() {
         <div className="flex shrink-0 basis-10 justify-between border-b">
           <div
             className="flex basis-10 cursor-pointer items-center justify-center transition hover:bg-zinc-100"
-            onClick={() => setList(null)}
+            onClick={reset}
           >
             <CloseIcon />
           </div>

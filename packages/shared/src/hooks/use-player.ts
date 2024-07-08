@@ -16,6 +16,7 @@ interface PlayerState {
   next: () => void
   setPlaying: (playing: boolean) => void
   setMuted: (muted: boolean) => void
+  reset: () => void
   initialize: () => void
 }
 
@@ -65,6 +66,7 @@ export const usePlayer = create<PlayerState>()(
       },
       setPlaying: (playing) => set({ playing }),
       setMuted: (muted) => set({ muted }),
+      reset: () => set({ list: null, index: 0, playing: false, muted: false }),
       initialize: () => {
         const { list, remove } = get()
         console.log(list)
