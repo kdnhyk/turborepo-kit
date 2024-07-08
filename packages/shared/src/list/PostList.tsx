@@ -51,9 +51,9 @@ export function PostList({ posts }: { posts: PostType[] }) {
                   </h2>
                 </div>
                 {/* Date */}
-                <p className="text-end text-xs text-black/50">
+                {/* <p className="text-end text-xs text-black/50">
                   {kstFormat(post.updated_at)}
-                </p>
+                </p> */}
               </div>
               <div className="flex flex-1">
                 <div className="relative flex flex-1 flex-col">
