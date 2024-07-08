@@ -4,6 +4,7 @@ import { useCallback, useEffect } from 'react'
 import { useProfileSelf, useProfileMutation } from '@repo/query/user'
 import supabase from '@repo/supabase'
 import { Message } from '@repo/const/message'
+import { toast } from 'sonner'
 
 export default function AuthProvider({
   children,
@@ -30,6 +31,7 @@ export default function AuthProvider({
       }
 
       if (event === 'SIGNED_OUT') {
+        toast.success('Signed out')
         sendMessage(
           JSON.stringify({ type: 'SIGNED_OUT', value: null } as Message),
         )
