@@ -7,6 +7,7 @@ import { Section } from '../layout/Section'
 import { ProfileForm } from '../form/ProfileForm'
 import { redirect } from 'next/navigation'
 import { Badge } from '@repo/ui/Badge'
+import { toast } from 'sonner'
 
 export function UserProfile() {
   const { data: user } = useUser()
@@ -31,7 +32,13 @@ export function UserProfile() {
       <ProfileForm />
       <div className="flex-1" />
       <div className="flex justify-end">
-        <Button onClick={logout} color="white">
+        <Button
+          onClick={() => {
+            logout()
+            toast.success('Logged out')
+          }}
+          color="white"
+        >
           Logout
         </Button>
       </div>
