@@ -75,7 +75,7 @@ export function Player() {
                 playerVars: { showinfo: 0, controls: 0, modestbranding: 0 },
               },
               soundcloud: {
-                options: { auto_play: true },
+                options: { auto_play: false },
               },
             }}
             playing={playing}
