@@ -4,7 +4,7 @@
   "tabWidth": 2,
   "singleQuote": true,
   "plugins": ["prettier-plugin-tailwindcss"],
-  "tailwindConfig": "./packages/tailwind-config/tailwind.config.ts",
+  "tailwindConfig": "./config/tailwind-config/tailwind.config.ts",
   "tailwindFunctions": ["cn", "cva"],
   "tailwindPreserveWhitespace": true
 }
