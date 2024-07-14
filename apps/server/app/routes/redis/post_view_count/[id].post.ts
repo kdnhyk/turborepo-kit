@@ -1,5 +1,4 @@
 import { kstFormat } from '@repo/utils/date'
-import { rkey } from '~/utils/upstash'
 
 export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id')

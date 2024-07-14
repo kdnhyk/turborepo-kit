@@ -1,6 +1,7 @@
 //https://nitro.unjs.io/config
 export default defineNitroConfig({
-  srcDir: 'server',
+  srcDir: 'app',
+  preset: 'vercel-edge',
   runtimeConfig: {
     supabaseUrl: process.env.NITRO_SUPABASE_URL,
     supabaseAnonKey: process.env.NITRO_SUPABASE_ANON_KEY,
@@ -20,8 +21,5 @@ export default defineNitroConfig({
     '/api/**': {
       cors: true,
     },
-  },
-  experimental: {
-    websocket: true,
   },
 })
