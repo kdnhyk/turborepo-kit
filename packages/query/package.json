@@ -8,7 +8,6 @@
       "default": "./src/query-provider.tsx"
     },
     "./get-query-client": "./src/get-query-client.ts",
-    "./get-base-url": "./src/get-base-url.ts",
     "./auth": "./src/auth/index.ts",
     "./user": "./src/user/index.ts",
     "./post": "./src/post/index.ts"

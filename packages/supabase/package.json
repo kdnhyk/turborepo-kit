@@ -8,10 +8,10 @@
   },
   "exports": {
     ".": {
-      "react-native": "./cli/supabase.native.ts",
-      "browser": "./cli/supabase.browser.ts",
-      "node": "./cli/supabase.ts",
-      "default": "./cli/supabase.ts"
+      "react-native": "./client/supabase.native.ts",
+      "browser": "./client/supabase.browser.ts",
+      "node": "./client/supabase.ts",
+      "default": "./client/supabase.ts"
     },
     "./database": "./database.types.ts"
   },

@@ -1,20 +1,18 @@
 'use client'
 
+import { $fetch } from '@repo/api/server'
 import { useEffect } from 'react'
-import { getBaseURL } from '@repo/query/get-base-url'
 
 interface PostLogProps {
-  type: 'incr_post_view'
+  type: 'post_view_count'
   id: string
 }
 
 export function PostLog({ type, id }: PostLogProps) {
   useEffect(() => {
-    fetch(`${getBaseURL()}/api/redis/${type}?id=${id}`, {
+    $fetch(`/redis/${type}/${id}`, {
       method: 'POST',
     })
-      .then((res) => res.json())
-      .then(console.log)
   }, [])
   return null
 }

@@ -26,7 +26,7 @@ export default async function PostPage({
     <HydrationBoundary state={dehydrate(queryClient)}>
       <PostButtons post={post} />
       <PostContent post={post} />
-      <PostLog type="incr_post_view" id={id} />
+      <PostLog type="post_view_count" id={id} />
     </HydrationBoundary>
   )
 }

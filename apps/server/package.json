@@ -1,0 +1,21 @@
+{
+  "name": "server",
+  "private": true,
+  "scripts": {
+    "build": "nitro build",
+    "dev": "PORT=4000 nitro dev --host",
+    "prepare": "nitro prepare",
+    "preview": "node .output/server/index.mjs"
+  },
+  "dependencies": {
+    "@repo/supabase": "workspace:*",
+    "@repo/utils": "workspace:*",
+    "@supabase/supabase-js": "2.43.5",
+    "@upstash/redis": "^1.32.0"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "nitropack": "latest"
+  }
+}
