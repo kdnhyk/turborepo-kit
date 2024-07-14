@@ -12,11 +12,6 @@ export default defineNitroConfig({
     '/redis/**': {
       cors: true,
       // swr: 600,
-      headers: {
-        'access-control-allow-methods': 'GET,POST,PUT,DELETE,OPTIONS',
-        'access-control-allow-origin': 'http://localhost:3000',
-        'access-control-allow-headers': 'Content-Type,Authorization',
-      },
     },
     '/api/**': {
       cors: true,
