@@ -172,12 +172,6 @@ importers:
         specifier: ^5.3.3
         version: 5.5.3
 
-  apps/nitro-app:
-    devDependencies:
-      nitropack:
-        specifier: latest
-        version: 2.9.7(@upstash/redis@1.32.0)
-
   apps/program:
     dependencies:
       '@repo/api':
@@ -274,15 +268,9 @@ importers:
 
   apps/server:
     dependencies:
-      '@repo/api':
+      '@repo/utils':
         specifier: workspace:*
-        version: link:../../packages/api
-      '@repo/supabase':
-        specifier: workspace:*
-        version: link:../../packages/supabase
-      '@supabase/ssr':
-        specifier: 0.4.0
-        version: 0.4.0(@supabase/supabase-js@2.43.5)
+        version: link:../../packages/utils
       '@supabase/supabase-js':
         specifier: 2.43.5
         version: 2.43.5
