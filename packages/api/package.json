@@ -4,7 +4,7 @@
   "private": true,
   "exports": {
     "./edge": "./edge/index.ts",
-    "./redis": "./redis/index.ts",
+    "./server": "./server/index.ts",
     "./auth": "./src/auth/index.ts",
     "./storage": "./src/storage/index.ts",
     "./user": "./src/user/index.ts",

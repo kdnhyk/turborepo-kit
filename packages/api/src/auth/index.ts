@@ -25,4 +25,7 @@ const getUser = async () => (await supabase.auth.getUser()).data.user
 const getUserId = async () =>
   (await supabase.auth.getSession()).data.session?.user.id
 
-export { signInWithOAuth, signout, getUser, getUserId }
+const getToken = async () =>
+  (await supabase.auth.getSession()).data.session?.access_token
+
+export { signInWithOAuth, signout, getUser, getUserId, getToken }

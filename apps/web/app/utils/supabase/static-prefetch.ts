@@ -5,7 +5,7 @@ import { getPostById, getPostPage } from '@repo/api/post'
 import { profileQueryKey } from '@repo/query/user'
 import { getProfileByUserId } from '@repo/api/user'
 import { postQueryKey } from '@repo/query/post'
-import { getPostViewCount } from '@repo/api/redis'
+import { _fetch } from '@repo/api/server'
 
 // RSC Static Rendering
 
@@ -92,5 +92,8 @@ export const prefetchPostViewCount = async (
 ) =>
   queryClient.prefetchQuery({
     queryKey: postQueryKey.post_view_count(id),
-    queryFn: () => getPostViewCount(id.toString()),
+    queryFn: () =>
+      _fetch(`/redis/post_view_count/${id}`, { method: 'GET' })
+        .then((res) => res.text())
+        .then((data) => parseInt(data)),
   })

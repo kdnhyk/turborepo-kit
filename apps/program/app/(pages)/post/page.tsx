@@ -2,6 +2,7 @@
 
 import { PostButtons } from '@repo/shared/PostButtons'
 import { PostContent } from '@repo/shared/PostContent'
+import { PostLog } from '@repo/shared/PostLog'
 import { usePostById } from '@repo/query/post'
 import { redirect, useSearchParams } from 'next/navigation'
 
@@ -16,6 +17,7 @@ export default function PostPage() {
     <>
       <PostButtons post={post} />
       <PostContent post={post} />
+      <PostLog type="post_view_count" id={id} />
     </>
   )
 }
