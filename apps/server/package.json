@@ -8,6 +8,7 @@
     "preview": "node .output/server/index.mjs"
   },
   "dependencies": {
+    "@repo/supabase": "workspace:*",
     "@repo/utils": "workspace:*",
     "@supabase/supabase-js": "2.43.5",
     "@upstash/redis": "^1.32.0"
