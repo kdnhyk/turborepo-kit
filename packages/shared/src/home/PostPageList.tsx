@@ -4,6 +4,7 @@ import { useInView } from 'framer-motion'
 import { useEffect, useRef } from 'react'
 import { usePostPage } from '@repo/query/post'
 import { PostList } from '../list/PostList'
+import { Loading } from '@repo/ui/Loading'
 
 export function PostPageList() {
   const ref = useRef<HTMLDivElement | null>(null)
@@ -22,7 +23,7 @@ export function PostPageList() {
         <PostList posts={data} />
       </ul>
       <div className="basis-10" ref={ref}></div>
-      {isFetchingNextPage && <p>Loading...</p>}
+      {isFetchingNextPage && <Loading variant="fixed" />}
     </>
   )
 }

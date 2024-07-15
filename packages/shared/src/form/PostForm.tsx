@@ -26,7 +26,11 @@ export type PostFormType = Omit<PostType, 'image' | 'music'> & {
 }
 export function PostForm({ post }: { post?: PostType }) {
   const { data: user } = useUser()
-  if (!user) return null
+  const { push, replace, refresh } = useRouter()
+  if (!user) {
+    push('/login')
+    return null
+  }
 
   const methods = useForm<PostFormType>({
     defaultValues: {
@@ -40,7 +44,6 @@ export function PostForm({ post }: { post?: PostType }) {
   })
   const [editedMusic, setEditedMusic] = useState<MusicType | null>(null)
   const { insert, update } = usePostMutation()
-  const { replace, refresh } = useRouter()
 
   console.log(fields)
 

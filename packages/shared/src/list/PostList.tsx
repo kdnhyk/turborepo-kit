@@ -3,7 +3,6 @@
 import { PostType } from '@repo/api/post'
 import { Profile } from './Profile'
 import Link from 'next/link'
-import { kstFormat } from '@repo/utils/date'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { isTauri } from '../utils/env'
