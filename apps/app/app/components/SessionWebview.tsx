@@ -6,7 +6,7 @@ import { Session } from '@supabase/supabase-js'
 import { useAuth } from '@repo/query/auth'
 import { Message } from '@repo/const/message'
 
-const ORIGIN = 'https://nogwon.com/'
+const ORIGIN = 'http://192.168.45.139:3000' || 'https://nogwon.com/'
 
 const INJECTED_CODE = `
   (function() {

@@ -5,10 +5,8 @@ import * as Linking from 'expo-linking'
 import supabase from '@repo/supabase'
 import { signInWithOAuth } from '@repo/api/auth'
 import { Button } from '@repo/ui-app/Button'
-import { StyleSheet, useColorScheme } from 'react-native'
-import { ThemedView } from './ThemedView'
+import { StyleSheet, Text, View } from 'react-native'
 import { Provider } from '@supabase/supabase-js'
-import { ThemedText } from './ThemedText'
 
 WebBrowser.maybeCompleteAuthSession() // required for web only
 
@@ -50,20 +48,18 @@ export default function Login() {
   const url = Linking.useURL()
   if (url) createSessionFromUrl(url)
 
-  const color = useColorScheme()
-
   return (
-    <ThemedView style={styles.container}>
-      <ThemedView className="flex w-full flex-row justify-center">
-        <ThemedText className="text-lg">Login</ThemedText>
-      </ThemedView>
+    <View style={styles.container}>
+      <View className="flex w-full flex-row justify-center">
+        <Text className="text-lg">Login</Text>
+      </View>
       <Button
         onClick={async () => await siginInWithOauth('google')}
-        color={color === 'dark' ? 'white' : 'black'}
+        color="black"
       >
         Sign in with Google
       </Button>
-    </ThemedView>
+    </View>
   )
 }
 

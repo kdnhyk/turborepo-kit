@@ -6,7 +6,6 @@ module.exports = {
   content: [
     './app/**/*.tsx',
     './components/**/*.tsx',
-    './node_modules/@repo/ui/**/*.tsx',
-    '../../packages/ui/**/*.tsx',
+    './node_modules/@repo/ui-app/**/*.tsx',
   ],
 }
