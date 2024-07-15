@@ -1,5 +1,5 @@
 {
-  "name": "turborepo-kit",
+  "name": "nogwon",
   "private": true,
   "scripts": {
     "build": "turbo build",
