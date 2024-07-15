@@ -6,7 +6,7 @@ import { Session } from '@supabase/supabase-js'
 import { useAuth } from '@repo/query/auth'
 import { Message } from '@repo/const/message'
 
-const ORIGIN = 'https://turborepo-kit.01.works/'
+const ORIGIN = 'https://nogwon.com/'
 
 const INJECTED_CODE = `
   (function() {

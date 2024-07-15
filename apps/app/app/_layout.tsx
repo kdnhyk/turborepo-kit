@@ -9,9 +9,9 @@ import * as SplashScreen from 'expo-splash-screen'
 import { useEffect } from 'react'
 import 'react-native-reanimated'
 
-import { useColorScheme } from '@/hooks/useColorScheme'
+import { useColorScheme } from '@/app/hooks/useColorScheme'
 import { QueryProvider } from '@repo/query/provider'
-import AuthProvider from '../providers/auth-provider'
+import AuthProvider from './providers/auth-provider'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
@@ -19,7 +19,8 @@ SplashScreen.preventAutoHideAsync()
 export default function RootLayout() {
   const colorScheme = useColorScheme()
   const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    NotoSansKR_R: require('../assets/fonts/NotoSansKR-Regular.ttf'),
+    NotoSansKR_B: require('../assets/fonts/NotoSansKR-Bold.ttf'),
   })
 
   useEffect(() => {

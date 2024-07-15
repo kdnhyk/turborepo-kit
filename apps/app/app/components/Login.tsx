@@ -55,19 +55,13 @@ export default function Login() {
   return (
     <ThemedView style={styles.container}>
       <ThemedView className="flex w-full flex-row justify-center">
-        <ThemedText className="text-lg font-bold">Login</ThemedText>
+        <ThemedText className="text-lg">Login</ThemedText>
       </ThemedView>
       <Button
         onClick={async () => await siginInWithOauth('google')}
         color={color === 'dark' ? 'white' : 'black'}
       >
         Sign in with Google
-      </Button>
-      <Button
-        onClick={async () => await siginInWithOauth('kakao')}
-        color={color === 'dark' ? 'white' : 'black'}
-      >
-        Sign in with Kakao
       </Button>
     </ThemedView>
   )
@@ -78,7 +72,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-
     gap: 12,
     padding: 16,
   },

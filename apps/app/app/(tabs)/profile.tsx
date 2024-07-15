@@ -1,6 +1,6 @@
-import Login from '@/components/Login'
-import useSession from '@/hooks/use-session'
-import SessionWebview from '@/components/SessionWebview'
+import Login from '@/app/components/Login'
+import useSession from '@/app/hooks/use-session'
+import SessionWebview from '@/app/components/SessionWebview'
 
 export default function ProfileScreen() {
   const { session } = useSession()

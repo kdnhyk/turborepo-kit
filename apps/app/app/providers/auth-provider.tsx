@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 import { useProfileSelf, useProfileMutation } from '@repo/query/user'
 import supabase from '@repo/supabase'
-import useSession from '@/hooks/use-session'
+import useSession from '@/app/hooks/use-session'
+import Login from '@/app/components/Login'
 
 export default function AuthProvider({
   children,
@@ -10,7 +11,7 @@ export default function AuthProvider({
 }) {
   const { data: profile } = useProfileSelf()
   const { post } = useProfileMutation()
-  const { setSession } = useSession()
+  const { session, setSession } = useSession()
 
   useEffect(() => {
     console.log('AuthProvider')
@@ -35,5 +36,5 @@ export default function AuthProvider({
     return () => subscription.unsubscribe()
   }, [])
 
-  return <>{children}</>
+  return <>{!session ? <Login /> : children}</>
 }
