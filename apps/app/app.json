@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "turborepokit",
-    "slug": "turborepo-kit",
+    "name": "Nogwon",
+    "slug": "nogwon",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "com.turborepokit.app",
+    "scheme": "com.nogwon.app",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -15,7 +15,7 @@
     "ios": {
       "supportsTablet": true,
       "usesAppleSignIn": true,
-      "bundleIdentifier": "com.turborepokit.app",
+      "bundleIdentifier": "com.nogwon.app",
       "infoPlist": {}
     },
     "android": {
@@ -23,7 +23,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.turborepokit.app"
+      "package": "com.nogwon.app"
     },
     "web": {
       "bundler": "metro",
@@ -36,6 +36,15 @@
         "expo-dev-launcher",
         {
           "launchMode": "most-recent"
+        }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/NotoSansKR-Regular.ttf",
+            "./assets/fonts/NotoSansKR-Bold.ttf"
+          ]
         }
       ]
     ],
