@@ -4,6 +4,9 @@ import { useEffect } from 'react'
 import { useProfileSelf, useProfileMutation } from '@repo/query/user'
 import supabase from '@repo/supabase'
 import { toast } from 'sonner'
+import dynamic from 'next/dynamic'
+
+const Login = dynamic(() => import('@/_components/Login'))
 
 export default function AuthProvider({
   children,
@@ -33,6 +36,10 @@ export default function AuthProvider({
 
     return () => subscription.unsubscribe()
   }, [])
+
+  if (!profile) {
+    return <Login />
+  }
 
   return <>{children}</>
 }

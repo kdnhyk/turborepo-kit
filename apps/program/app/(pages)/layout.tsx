@@ -18,9 +18,9 @@ export default async function Layout({
 }) {
   return (
     <QueryProvider>
-      <Player />
-      <Header />
       <AuthProvider>
+        <Player />
+        <Header />
         <main>{children}</main>
         <Toaster
           toastOptions={{
