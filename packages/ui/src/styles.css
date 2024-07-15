@@ -39,6 +39,10 @@ img {
   img {
     @apply select-none;
   }
+
+  input {
+    @apply rounded-none;
+  }
 }
 
 @layer components {
